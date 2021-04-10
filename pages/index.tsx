@@ -1,8 +1,13 @@
 import Head from 'next/head';
 
+import { useBoolean } from 'ahooks';
+import { Button } from 'antd';
+
 export default function Home() {
-  const a = [];
-  const b = 1;
+  // const a = [];
+  // const b = 1;
+  const [tag, { toggle }] = useBoolean(true);
+
   return (
     <div className="container">
       <Head>
@@ -18,6 +23,17 @@ export default function Home() {
         <p className="description">
           Get started by editing <code>pages/index.js</code>
         </p>
+
+        <Button
+          type="primary"
+          onClick={() => {
+            console.log('点击了更改按钮', tag);
+            toggle();
+            console.log('更改后的tag值', tag);
+          }}
+        >
+          按钮在这里：{JSON.stringify(tag)}
+        </Button>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
