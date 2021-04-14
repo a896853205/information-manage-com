@@ -50,7 +50,7 @@ module.exports = withCSS({
             // needed for NextJS's jsx without react import
             'react/react-in-jsx-scope': 'off',
             // behind last item cannot have comma in array
-            'comma-dangle': [2, 'never'],
+            //  'comma-dangle': [2, 'always'],
             // single quotes
             quotes: [2, 'single'],
             // array left and right cannot have space

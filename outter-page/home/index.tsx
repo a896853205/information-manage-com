@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
-import AntdRouterMenu from '../components/Antd-router-menu/Antd-router-menu';
-import { MenuItem, MenuItemGroup } from '../components/Menu';
-// import PageLoading from '../components/page-loading';
-import UserHeader from '../components/page-header/user-header';
+import AntdRouterMenu from '../../components/Antd-router-menu/Antd-router-menu';
+import { MenuItem, MenuItemGroup } from '../../components/Menu';
+import PageLoading from '../../components/page-loading';
+import UserHeader from './components/user-header';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -27,7 +27,7 @@ export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
   MENU_DATA
 );
 
-export default function Home() {
+export default () => {
   const router = useRouter();
   return (
     <MenuContext.Provider value={MENU_DATA}>
@@ -59,14 +59,13 @@ export default function Home() {
             <AntdRouterMenu menuData={MENU_DATA} />
           </Sider>
           <div className="home-content-box">
-            <Content className="home-content">{router.pathname}</Content>
-            {/* <Suspense fallback={<PageLoading />}>
-              
-            </Suspense> */}
+            <Suspense fallback={<PageLoading />}>
+              <Content className="home-content">{router}</Content>
+            </Suspense>
             <Footer>code@Eric design@Luna</Footer>
           </div>
         </Layout>
       </Layout>
     </MenuContext.Provider>
   );
-}
+};
