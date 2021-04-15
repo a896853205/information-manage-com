@@ -4,8 +4,12 @@
  */
 import dynamic from 'next/dynamic';
 
-import MyLayout from '../layouts/index';
-const Compose = dynamic(() => import('../inner-page/attendance/compose'));
+import MyLayout from 'layouts/index';
+import PageLoading from 'components/page-loading';
+const Compose = dynamic(() => import('inner-page/attendance/compose'), {
+  ssr: false,
+  loading: PageLoading,
+});
 
 export default function Attendance() {
   console.log('Attendance');

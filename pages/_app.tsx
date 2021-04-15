@@ -1,7 +1,8 @@
 import React from 'react';
 
-import '../styles/antd.css';
-import '../styles/layout.css';
+import 'styles/antd.css';
+import 'styles/layout.css';
+import 'styles/page_loading_style.css';
 
 const MyApp = (props: any) => {
   const { Component, pageProps } = props;

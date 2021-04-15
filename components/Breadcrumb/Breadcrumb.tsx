@@ -4,8 +4,8 @@ import { useLocation } from 'react-router';
 import { Breadcrumb, Divider } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 
-import { MenuItem, MenuItemGroup } from '../../layouts/Menu';
-import { MenuContext } from '../page-outer';
+import { MenuItem, MenuItemGroup } from 'layouts/Menu';
+import { MenuContext } from 'layouts/';
 /**
  * 通过url来渲染面包屑
  * @param menuArr 菜单数组(是原来我方便antd-router自定义的类型)

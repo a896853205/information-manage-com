@@ -2,7 +2,7 @@ import { Button, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useBoolean } from 'ahooks';
 
-import Content from './content';
+import Content from 'inner-page/project/content';
 // import Mock from 'mockjs';
 
 const { Search } = Input;

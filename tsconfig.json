@@ -16,6 +16,13 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@inner-page/*": ["inner-page/*"],
+      "@layouts/*": ["layout/*"],
+      "@style/*": ["style/*"]
+    },
     "target": "esnext",
     "typeRoots": ["node_modules/@types"]
   },

@@ -4,9 +4,11 @@
  */
 import dynamic from 'next/dynamic';
 
-import MyLayout from '../layouts/index';
-const Compose = dynamic(() => import('../inner-page/weekly/compose'), {
+import MyLayout from 'layouts/index';
+import PageLoading from 'components/page-loading';
+const Compose = dynamic(() => import('inner-page/weekly/compose'), {
   ssr: false,
+  loading: PageLoading,
 });
 
 export default function Weekly() {

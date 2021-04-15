@@ -1,5 +1,5 @@
-import Increase from './increase';
-import Show from './show';
+import Increase from 'inner-page/project/increase';
+import Show from 'inner-page/project/show';
 
 export default () => {
   return (

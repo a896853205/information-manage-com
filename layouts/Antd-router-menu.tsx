@@ -5,7 +5,7 @@ import { v1 as uuid } from 'uuid';
 import Link from 'next/link';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
-import { MenuItem, MenuItemGroup } from './Menu';
+import { MenuItem, MenuItemGroup } from 'layouts/Menu';
 export interface Props {
   menuData: (MenuItem | MenuItemGroup)[];
 }
@@ -20,7 +20,7 @@ const AntdRouterMenu = memo((props: Props) => {
           return (
             <Menu.Item key={uuid()} icon={menuDataItem.icon}>
               <Link href={menuDataItem.url}>
-                <span>{menuDataItem.name}</span>
+                <a>{menuDataItem.name}</a>
               </Link>
             </Menu.Item>
           );
@@ -35,7 +35,7 @@ const AntdRouterMenu = memo((props: Props) => {
                 return (
                   <Menu.Item key={uuid()}>
                     <Link href={menuSubItem.url}>
-                      <span>{menuSubItem.name}</span>
+                      <a>{menuSubItem.name}</a>
                     </Link>
                   </Menu.Item>
                 );

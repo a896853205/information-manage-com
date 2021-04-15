@@ -1,6 +1,5 @@
-import { Button, Space, Table } from 'antd';
-import { useRequest } from 'ahooks';
-import Column from 'antd/lib/table/Column';
+import { Table } from 'antd';
+
 import { useState } from 'react';
 
 const Show = () => {
