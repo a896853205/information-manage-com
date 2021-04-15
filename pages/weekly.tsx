@@ -5,7 +5,9 @@
 import dynamic from 'next/dynamic';
 
 import MyLayout from '../layouts/index';
-const Compose = dynamic(() => import('../inner-page/weekly/compose'));
+const Compose = dynamic(() => import('../inner-page/weekly/compose'), {
+  ssr: false,
+});
 
 export default function Weekly() {
   console.log('Weekly');

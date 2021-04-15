@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar, Button, Space } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 
-export default () => {
+const UserHeader = () => {
   return (
     <div style={{ width: '300px' }}>
       <Space>
@@ -25,3 +25,5 @@ export default () => {
     </div>
   );
 };
+
+export default UserHeader;
