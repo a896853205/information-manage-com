@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { Breadcrumb, Divider } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 
-import { MenuItem, MenuItemGroup } from '../Menu';
+import { MenuItem, MenuItemGroup } from '../../layouts/Menu';
 import { MenuContext } from '../page-outer';
 /**
  * 通过url来渲染面包屑

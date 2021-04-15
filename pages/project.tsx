@@ -12,4 +12,4 @@ export default function Project() {
   return <Compose />;
 }
 
-Project.Layput = MyLayout;
+Project.Layout = MyLayout;

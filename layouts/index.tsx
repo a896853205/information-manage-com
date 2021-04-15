@@ -3,8 +3,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
-import AntdRouterMenu from '../components/Antd-router-menu/Antd-router-menu';
-import { MenuItem, MenuItemGroup } from '../components/Menu';
+import AntdRouterMenu from './Antd-router-menu';
+import { MenuItem, MenuItemGroup } from './Menu';
 import UserHeader from './user-header';
 
 const { Header, Footer, Sider, Content } = Layout;

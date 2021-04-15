@@ -5,7 +5,6 @@
 import dynamic from 'next/dynamic';
 
 import MyLayout from '../layouts/index';
-
 const Compose = dynamic(() => import('../inner-page/project/compose')); // FIXME:暂时用project内容代替系统首页
 
 export default function Home() {
