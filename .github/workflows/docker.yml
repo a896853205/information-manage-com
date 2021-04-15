@@ -1,0 +1,11 @@
+name: go-docker
+on:
+  push:
+    branches: [docker]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Unit Tests
+        run: go test
