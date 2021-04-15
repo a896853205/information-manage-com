@@ -3,7 +3,7 @@ import { useRequest } from 'ahooks';
 import Column from 'antd/lib/table/Column';
 import { useState } from 'react';
 
-export default () => {
+const Show = () => {
   const [projectList, setProjectList] = useState([]);
   // TODO:使用useRequest向后台获取项目信息
   return (
@@ -27,3 +27,4 @@ export default () => {
     </>
   );
 };
+export default Show;

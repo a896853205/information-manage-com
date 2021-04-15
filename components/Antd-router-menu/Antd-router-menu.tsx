@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+// import React, { memo } from 'react';
 
 import { Menu } from 'antd';
 import { v1 as uuid } from 'uuid';
@@ -6,10 +6,11 @@ import Link from 'next/link';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 import { MenuItem, MenuItemGroup } from '../Menu';
+import { memo } from 'react';
 export interface Props {
   menuData: (MenuItem | MenuItemGroup)[];
 }
-
+// memo(
 export default memo((props: Props) => {
   const { menuData } = props;
 

@@ -1,15 +1,13 @@
-import React, { Suspense } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 
 import { Layout } from 'antd';
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
-import AntdRouterMenu from '../../components/Antd-router-menu/Antd-router-menu';
-import { MenuItem, MenuItemGroup } from '../../components/Menu';
-import PageLoading from '../../components/page-loading';
+import AntdRouterMenu from '../Antd-router-menu/Antd-router-menu';
+import { MenuItem, MenuItemGroup } from '../Menu';
 import UserHeader from './components/user-header';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Footer, Sider, Content } = Layout;
 
 /**
  * 配置导航栏链接和文字
@@ -18,7 +16,15 @@ const MENU_DATA = [
   new MenuItem('/home/timeline', '首页', <HomeOutlined />),
   new MenuItemGroup(
     '项目对接管理',
-    [new MenuItem('/home/formwork', '项目新增')],
+    [new MenuItem('/project', '项目新增')],
+    <ApiOutlined />
+  ),
+  new MenuItemGroup(
+    '教务信息管理',
+    [
+      new MenuItem('/attendance', '考勤管理'),
+      new MenuItem('/weekly', '周志管理'),
+    ],
     <ApiOutlined />
   ),
 ];
@@ -27,8 +33,7 @@ export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
   MENU_DATA
 );
 
-export default () => {
-  const router = useRouter();
+export default function Home(props: any) {
   return (
     <MenuContext.Provider value={MENU_DATA}>
       <Layout>
@@ -46,11 +51,8 @@ export default () => {
               color: '#fafafa',
               cursor: 'pointer',
             }}
-            onClick={() => {
-              router.push('/login');
-            }}
           >
-            研究生联合培养基地
+            研究生科研管理
           </h1>
           <UserHeader />
         </Header>
@@ -59,13 +61,11 @@ export default () => {
             <AntdRouterMenu menuData={MENU_DATA} />
           </Sider>
           <div className="home-content-box">
-            <Suspense fallback={<PageLoading />}>
-              <Content className="home-content">{router}</Content>
-            </Suspense>
+            <Content className="home-content">{props.children}</Content>
             <Footer>code@Eric design@Luna</Footer>
           </div>
         </Layout>
       </Layout>
     </MenuContext.Provider>
   );
-};
+}

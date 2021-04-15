@@ -5,7 +5,7 @@ import { Breadcrumb, Divider } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 
 import { MenuItem, MenuItemGroup } from '../Menu';
-import { MenuContext } from '../../outter-page/home';
+import { MenuContext } from '../page-outer';
 /**
  * 通过url来渲染面包屑
  * @param menuArr 菜单数组(是原来我方便antd-router自定义的类型)
@@ -51,7 +51,7 @@ export default () => {
         <Breadcrumb.Item>
           <HomeOutlined />
         </Breadcrumb.Item>
-        {nameList.map(name => (
+        {nameList.map((name) => (
           <Breadcrumb.Item>{name}</Breadcrumb.Item>
         ))}
       </Breadcrumb>
