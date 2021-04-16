@@ -15,7 +15,7 @@ const AntdRouterMenu = memo((props: Props) => {
 
   return (
     <Menu theme="light" mode="inline">
-      {menuData.map((menuDataItem) => {
+      {menuData.map(menuDataItem => {
         if (menuDataItem instanceof MenuItem) {
           return (
             <Menu.Item key={uuid()} icon={menuDataItem.icon}>
@@ -31,7 +31,7 @@ const AntdRouterMenu = memo((props: Props) => {
               title={menuDataItem.title}
               icon={menuDataItem.icon}
             >
-              {menuDataItem.children.map((menuSubItem) => {
+              {menuDataItem.children.map(menuSubItem => {
                 return (
                   <Menu.Item key={uuid()}>
                     <Link href={menuSubItem.url}>

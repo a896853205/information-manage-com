@@ -1,12 +1,7 @@
-import Increase from 'inner-page/project/increase';
-import Show from 'inner-page/project/show';
+import Search from '@inner-page/project/search';
 
-export default () => {
-  return (
-    <>
-      {/* <BreadcrumbList /> */}
-      <Increase />
-      <Show />
-    </>
-  );
+const Compose = () => {
+  return <Search />;
 };
+
+export default Compose;

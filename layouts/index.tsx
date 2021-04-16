@@ -16,7 +16,10 @@ const MENU_DATA = [
   new MenuItem('/', '首页', <HomeOutlined />),
   new MenuItemGroup(
     '项目对接管理',
-    [new MenuItem('/project', '项目新增')],
+    [
+      new MenuItem('/project', '项目信息管理'),
+      new MenuItem('/apply_check', '指标审核管理'),
+    ],
     <ApiOutlined />
   ),
   new MenuItemGroup(
@@ -27,13 +30,18 @@ const MENU_DATA = [
     ],
     <ApiOutlined />
   ),
+  new MenuItemGroup(
+    '信息审批管理',
+    [new MenuItem('/attendance', '用户账号审核')],
+    <ApiOutlined />
+  ),
 ];
 
 export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
   MENU_DATA
 );
 
-export default function Home(props: any) {
+const Home = (props: any) => {
   const { children } = props;
   return (
     <MenuContext.Provider value={MENU_DATA}>
@@ -69,4 +77,5 @@ export default function Home(props: any) {
       </Layout>
     </MenuContext.Provider>
   );
-}
+};
+export default Home;

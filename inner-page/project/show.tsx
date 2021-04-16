@@ -1,30 +1,67 @@
-import { Button, Space, Table } from 'antd';
+/**
+ * 具体的项目信息弹窗
+ */
+import { Form, Input, Select, DatePicker } from 'antd';
 
-import Column from 'antd/lib/table/Column';
-import { useState } from 'react';
-
+const selectOptions = {
+  enterprise: ['enterprise1', 'enterprise2', 'enterprise3'],
+  majors: ['应用统计', '税务', '国际商务', '电气工程', '计算机技术'],
+  teachers: ['t1', 't2'],
+};
 const Show = () => {
-  const [projectList, setProjectList] = useState([]);
-  // TODO:使用useRequest向后台获取项目信息
   return (
+    // TODO:这里需要确定项目的具体属性
     <>
-      <Table dataSource={projectList} size="small" rowClassName="dc3-table-row">
-        <Column title="#" dataIndex="index" key="index" />
-        <Column title="分组名称" dataIndex="name" key="name" />
-        <Column title="分组ID" dataIndex="id" key="id" />
-        <Column title="创建日期" dataIndex="createTime" key="createTime" />
-        <Column
-          title="操作"
-          dataIndex="operation"
-          key="operation"
-          render={() => (
-            <Space size="middle">
-              <Button type="primary">查看</Button>
-            </Space>
-          )}
-        />
-      </Table>
+      <Form
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
+        layout="horizontal"
+        title="项目信息"
+      >
+        <Form.Item label="项目名称" required>
+          <Input placeholder="请输入项目名称" />
+        </Form.Item>
+        <Form.Item label="项目所属">
+          <Select>
+            {selectOptions.enterprise.map((items: any) => {
+              return (
+                <Select.Option value={items} key={items}>
+                  {items}
+                </Select.Option>
+              );
+            })}
+          </Select>
+        </Form.Item>
+        <Form.Item label="项目年份">
+          <Select>
+            <Select.Option value="2018">2018</Select.Option>
+            <Select.Option value="2019">2019</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="开始时间">
+          <DatePicker />
+        </Form.Item>
+        <Form.Item label="结束时间">
+          <DatePicker />
+        </Form.Item>
+        <Form.Item label="硕士生" required>
+          <Input placeholder="硕士生个数" />
+        </Form.Item>
+        <Form.Item label="博士生" required>
+          <Input placeholder="博士生个数" />
+        </Form.Item>
+        <Form.Item label="需求专业">
+          <Select>
+            <Select.Option value="2018">2018</Select.Option>
+            <Select.Option value="2019">2019</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="项目简介">
+          <Input.TextArea placeholder="项目简介" />
+        </Form.Item>
+      </Form>
     </>
   );
 };
+
 export default Show;
