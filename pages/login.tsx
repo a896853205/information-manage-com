@@ -1,6 +1,8 @@
 /**
  * login
  */
-export default () => {
+const Login = () => {
   return <></>;
 };
+
+export default Login;

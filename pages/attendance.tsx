@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 import MyLayout from 'layouts/index';
 import PageLoading from 'components/page-loading';
-const Compose = dynamic(() => import('inner-page/attendance/compose'), {
+const Compose = dynamic(() => import('inner-page/project/compose'), {
   ssr: false,
   loading: PageLoading,
 });
