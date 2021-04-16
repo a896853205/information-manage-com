@@ -25,7 +25,7 @@ module.exports = withCSS({
     config.plugins.push(
       new ESLintPligin({
         emitError: true,
-        extensions: [`tsx`],
+        extensions: [`tsx`, 'js', 'jsx'],
         exclude: [`/node_modules/`, `.next`, `public`],
         overrideConfig: {
           parser: '@typescript-eslint/parser',

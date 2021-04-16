@@ -17,6 +17,7 @@ const Show = () => {
         wrapperCol={{ span: 20 }}
         layout="horizontal"
         title="项目信息"
+        aria-disabled="false"
       >
         <Form.Item label="项目名称" required>
           <Input placeholder="请输入项目名称" />
