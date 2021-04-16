@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, memo } from 'react';
 
 import { Layout } from 'antd';
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
@@ -43,6 +43,7 @@ export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
 
 const Home = (props: any) => {
   const { children } = props;
+
   return (
     <MenuContext.Provider value={MENU_DATA}>
       <Layout>
@@ -78,4 +79,5 @@ const Home = (props: any) => {
     </MenuContext.Provider>
   );
 };
+
 export default Home;
