@@ -31,7 +31,7 @@ jobs:
       env:
         IMAGE_TAG: ${{ github.sha }}
       with:
-        hosts: "root@${{ secrets.ECS_HOST }}"
+        hosts: "root@${{ secrets.ECS_HOST }}:22"
         privateKey: ${{ secrets.ECS_PRIVATE_KEY }}
         debug: true
         command: |
