@@ -27,12 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Execute SSH commmands on remote server
-      uses: JimCronqvist/action-ssh@master
+      uses: fifsky/ssh-action@master
       env:
         IMAGE_TAG: ${{ github.sha }}
       with:
-        hosts: "root@123.57.194.36"
-        privateKey: ${{ secrets.ECS_PRIVATE_KEY }}
+        user: root
+        host: "${{ secrets.ECS_HOST }}"
+        key: ${{ secrets.ECS_PRIVATE_KEY }}
         debug: true
         command: |
           cd /
