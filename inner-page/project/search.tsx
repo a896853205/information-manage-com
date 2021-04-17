@@ -1,29 +1,48 @@
+import { Key } from 'react';
 import { Button, Input, Table, Space, Modal } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { useBoolean } from 'ahooks';
-// import Mock from 'mockjs';
+import Mock from 'mockjs';
+
 import Show from 'inner-page/project/show';
 
 const { Search } = Input;
 const { Column } = Table;
 
+const rowSelection = {
+  onchange: (selectedRowKeys: Key[]) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`);
+  },
+};
 const SearchComponent = () => {
   const [isShow, { setTrue, setFalse }] = useBoolean(false);
-  // TODO:MOCK数据填充
-  const projectList: any[] = [
-    {
-      key: 1,
-      index: 1,
-      name: '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
-      enterprise: '广东邦普循环科技有限公司',
-      invest: 20,
-      needStudent: 2,
-      createTime: '',
-      startTime: '',
-      endTime: '',
-      state: '指标招生',
-    },
-  ];
+  const { data } = Mock.mock({
+    'data|10': [
+      {
+        'key|+1': 1,
+        'index|+1': 1,
+        'name|+1': [
+          '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
+          '电动汽车全生命周期分析与环境评价',
+          '停车相关管理系统及平台',
+          '大型复杂结构施工监控关键技术研究',
+        ],
+        'enterprise|+1': [
+          '广东邦普循环科技有限公司',
+          '广东艾科智泊科技股份有限公司',
+          '佛山市顺德区高新技术企业协会	',
+          '广东施泰宝医疗科技有限公司',
+        ],
+        'invest|10-100': 1,
+        'needStudent|1-20': 1,
+        createTime: '@date("yyyy")',
+        startTime: '@date("yyyy-MM-dd")',
+        endTime: '@date("yyyy-MM-dd")',
+        state: '指标招生',
+      },
+    ],
+  });
+
   return (
     <>
       <Button
@@ -38,13 +57,21 @@ const SearchComponent = () => {
         title="项目查看"
         visible={isShow}
         onCancel={setFalse}
-        cancelText="返回"
-        okText="保存"
+        footer={
+          <Button key="back" onClick={setFalse}>
+            返回
+          </Button>
+        }
       >
         <Show />
       </Modal>
       <Search placeholder="搜索" style={{ width: 200 }} />
-      <Table dataSource={projectList} size="small" rowClassName="dc3-table-row">
+      <Table
+        dataSource={data}
+        size="small"
+        rowClassName="dc3-table-row"
+        rowSelection={{ type: 'checkbox', ...rowSelection }}
+      >
         <Column title="序号" dataIndex="index" key="index" />
         <Column title="项目名称" dataIndex="name" key="name" />
         <Column title="所属示范点" dataIndex="enterprise" key="enterprise" />
