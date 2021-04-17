@@ -24,16 +24,16 @@ jobs:
         docker push registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
   ecs-pull:
     runs-on: ubuntu-latest
-      steps:
-      - name: Execute SSH commmands on remote server
-        uses: JimCronqvist/action-ssh@master
-        env:
-          IMAGE_TAG: ${{ github.sha }}
-        with:
-          hosts: '${{ ECS_HOST }}'
-          privateKey: ${{ secrets.ECS_PRIVATE_KEY }}
-          debug: false
-          command: |
-            cd /
-            docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
-            docker run -p 80:3000
+    steps:
+    - name: Execute SSH commmands on remote server
+      uses: JimCronqvist/action-ssh@master
+      env:
+        IMAGE_TAG: ${{ github.sha }}
+      with:
+        hosts: '${{ ECS_HOST }}'
+        privateKey: ${{ secrets.ECS_PRIVATE_KEY }}
+        debug: false
+        command: |
+          cd /
+          docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
+          docker run -p 80:3000
