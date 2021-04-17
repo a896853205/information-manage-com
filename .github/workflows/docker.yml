@@ -36,5 +36,6 @@ jobs:
         debug: false
         command: |
           cd /
+          docker login --username=${{ secrets.QC_ACR_USERNAME }} --password=${{ secrets.QC_ACR_PASSWORD }} registry.cn-shanghai.aliyuncs.com
           docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
-          docker run $IMAGE_TAG -p 80:3000
+          docker run -p 80:3000 registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
