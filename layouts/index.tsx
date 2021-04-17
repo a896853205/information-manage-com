@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Layout } from 'antd';
-import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
+import { ApiOutlined, CalculatorFilled, HomeOutlined } from '@ant-design/icons';
 
 import AntdRouterMenu from 'layouts/Antd-router-menu';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
@@ -65,7 +65,11 @@ const Home = (props: any) => {
           </h1>
           <UserHeader />
         </Header>
-        <Layout>
+        <Layout
+          style={{
+            height: 'calc(100vh - 64px)',
+          }}
+        >
           <Sider theme="light" className="home-sider">
             <AntdRouterMenu menuData={MENU_DATA} />
           </Sider>

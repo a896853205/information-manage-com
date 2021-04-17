@@ -1,7 +1,7 @@
 import Increase from '@inner-page/weekly/increase';
 import Show from '@inner-page/weekly/show';
-import LocaleProvider from 'antd/es/locale-provider';
-import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN'; // FIXME:已修改国际化设置
 import React from 'react';
 
 export default () => {
@@ -9,10 +9,10 @@ export default () => {
     <>
       {/* <BreadcrumbList /> */}
       {/*这里做了antd的本地化处理*/}
-      <LocaleProvider locale={zh_CN}>
+      <ConfigProvider locale={zhCN}>
         <Increase />
         <Show />
-      </LocaleProvider>
+      </ConfigProvider>
     </>
   );
 };
