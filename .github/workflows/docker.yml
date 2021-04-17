@@ -34,7 +34,6 @@ jobs:
         user: root
         host: "${{ secrets.ECS_HOST }}"
         key: ${{ secrets.ECS_PRIVATE_KEY }}
-        debug: true
         command: |
           cd /
           docker login --username=${{ secrets.QC_ACR_USERNAME }} --password=${{ secrets.QC_ACR_PASSWORD }} registry.cn-shanghai.aliyuncs.com
