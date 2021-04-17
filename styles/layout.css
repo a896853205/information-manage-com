@@ -1,6 +1,6 @@
 .home-sider {
   width: 300px;
-  height: 100vh;
+  height: 91vh;
 }
 
 .home-content-box {
@@ -11,4 +11,5 @@
   margin: 20px;
   background: #fff;
   padding: 20px;
+  height: 77vh;
 }
