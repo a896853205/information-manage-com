@@ -23,6 +23,7 @@ jobs:
         docker build -t registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG .
         docker push registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
   ecs-pull:
+    needs: build-docker
     runs-on: ubuntu-latest
     steps:
     - name: Execute SSH commmands on remote server
@@ -36,4 +37,4 @@ jobs:
         command: |
           cd /
           docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
-          docker run -p 80:3000
+          docker run $IMAGE_TAG -p 80:3000
