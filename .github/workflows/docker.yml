@@ -1,17 +1,20 @@
-name: go-docker
+name: docker-ACR-ECS
 on:
   push:
     branches: [docker]
 jobs:
-  - name: Login to ACR
-    uses: aliyun/acr-login@v1
-    with:
-      login-server: https://registry.cn-shanghai.aliyuncs.com
-      username: "${{ secrets.QC_ACR_USERNAME }}"
-      password: "${{ secrets.QC_ACR_PASSWORD }}"
-  - name: Build and push image
-    env:
-      IMAGE_TAG: ${{ github.sha }}
-    run: |
-      docker build -t registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG .
-      docker push registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to ACR
+      uses: aliyun/acr-login@v1
+      with:
+        login-server: https://registry.cn-shanghai.aliyuncs.com
+        username: "${{ secrets.QC_ACR_USERNAME }}"
+        password: "${{ secrets.QC_ACR_PASSWORD }}"
+    - name: Build and push image
+      env:
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG .
+        docker push registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:$IMAGE_TAG
