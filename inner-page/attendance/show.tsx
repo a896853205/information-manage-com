@@ -1,10 +1,8 @@
-import { Button, Space, Table } from 'antd';
-import { useRequest } from 'ahooks';
-import Column from 'antd/lib/table/Column';
+import { Table } from 'antd';
 import { useState } from 'react';
 
 const Show = () => {
-  const [projectList, setProjectList] = useState([]);
+  const [projectList, _setProjectList] = useState([]);
   // TODO:使用useRequest向后台获取项目信息
   return (
     <>
