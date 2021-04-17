@@ -20,10 +20,11 @@ import {
 import 'moment/locale/zh-cn';
 import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
-import FileSaver from 'file-saver';
 import Search from 'antd/lib/input/Search';
 
 class Show extends Component {
+  // FIXME: 1.把类组件改成函数组件
+  // FIXME: 2.禁止使用any， 不知道类型可以用unknown代替
   constructor(props: {} | Readonly<{}>) {
     super(props);
     let that = this;
@@ -81,7 +82,7 @@ class Show extends Component {
         },
       },
     ];
-    // TODO:MOCK数据填充
+    // FIXME: 3.表格假数据用MOCK数据填充
     const projectList: any[] = [];
     for (let i = 0; i < 100; i++) {
       let randomMonth = Math.floor(Math.random() * 12);
@@ -99,6 +100,8 @@ class Show extends Component {
         index: i,
       });
     }
+
+    // FIXME: 4. 这个注释不是这么写的，这个@param是用在function的注释中的
     /**
      * @param:data 页面当前显示数据
      * @param:dataAll 从后台获取的所有数据
@@ -110,6 +113,7 @@ class Show extends Component {
      * @param:selectValue 代表当前正在搜索的value
      * @param:selectDate 代表当前选择的日期,这里使用moment对象
      */
+
     this.state = {
       data: projectList,
       dataAll: projectList,
@@ -160,9 +164,7 @@ class Show extends Component {
   };
 
   //详情页面下载的时候使用
-  downLoad = () => {
-    FileSaver.saveAs('111', Date.now() + '.docx');
-  };
+  downLoad = () => {};
 
   //设置对话框是否显示
   setFalse = () => {
@@ -327,7 +329,7 @@ class Show extends Component {
           </div>
         </div>
         {/*数据显示信息*/}
-        <div style={{ width: '81vw' }}>
+        <div>
           <Table
             key={data.length}
             rowSelection={rowSelection}
@@ -367,19 +369,19 @@ class Show extends Component {
                   />
                 </Form.Item>
                 <Form.Item label="第一周">
-                  <div style={{ width: 800, display: 'inline-block' }}>
+                  <Space>
                     <Input disabled={false} placeholder="社会实践报告.docx" />
-                  </div>
-                  <Button
-                    style={{
-                      marginLeft: '1vh',
-                    }}
-                    type="primary"
-                    danger={true}
-                    onClick={this.downLoad}
-                  >
-                    下载
-                  </Button>
+                    <Button
+                      style={{
+                        marginLeft: '1vh',
+                      }}
+                      type="primary"
+                      danger={true}
+                      onClick={this.downLoad}
+                    >
+                      下载
+                    </Button>
+                  </Space>
                 </Form.Item>
                 <Form.Item label="第二周">
                   <div style={{ width: 800, display: 'inline-block' }}>
@@ -434,7 +436,7 @@ class Show extends Component {
                 >
                   填写评论
                 </div>
-                <hr />
+                <hr /> {/* FIXME: 禁止使用样式标签,antd有专门的分割线Divider */}
                 <Form.Item name="advice">
                   <Radio.Group defaultValue={2}>
                     <Radio value={1}>优秀</Radio>
