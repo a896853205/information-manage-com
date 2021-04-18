@@ -1,7 +1,7 @@
-import Increase from '@inner-page/weekly/increase';
+import Increase from '@inner-page/weekly/content';
 import Show from '@inner-page/weekly/show';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN'; // FIXME:已修改国际化设置
+import zhCN from 'antd/lib/locale/zh_CN';
 import React from 'react';
 
 export default () => {
