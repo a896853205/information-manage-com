@@ -9,8 +9,8 @@ import {
   message,
 } from 'antd';
 import { MinusOutlined, UnorderedListOutlined } from '@ant-design/icons';
-import { withRouter } from 'next/router';
-import moment from 'moment';
+import { withRouter } from 'next/router'; // FIXME: 路由层面我们已经包装完成, 不用自己包装withRouter
+import moment from 'moment'; // FIXME: 目前不适用额外的日期处理包
 import { useState, useRef } from 'react';
 import Mock from 'mockjs';
 
@@ -31,11 +31,13 @@ let { data } = Mock.mock({
     },
   ],
 });
-let defaultDataSource = data;
+let defaultDataSource = data; // FIXME: 这一步是想给变量重命名嘛, 可以 { data: defaultDataSource }. 这样就减少了不必要的变量
 
-let timeSignal = '1980/0/0';
+let timeSignal = '1980/0/0'; // FIXME: 最好不要再函数外定义变量, 容易内存泄漏.
 
 // 组件
+// FIXME: 禁止使用any
+// FIXME: 目前整个增删改查的逻辑不用写, 因为后期链接后端后, 都是后端分页, 增加或删除都会导致当前分页直接重新请求, 而不是操作前端的数据. 有表单和表格的样式就好
 let Increase: any = () => {
   // 表单数据
   let [dataSource, setDataSource] = useState(defaultDataSource);
@@ -50,10 +52,10 @@ let Increase: any = () => {
   let [hasSelected, setHasSelected] = useState(false);
 
   // 表示当前选择时间
-  let currentTime = timeSignal;
+  let currentTime = timeSignal; // FIXME: 想获取现在的时间可以使用,new Date()
 
   // DataPicker Ref
-  let dataPickerRef: any = useRef();
+  let dataPickerRef: any = useRef(); // FIXME: 这个ref具体做什么了, 后面绑定了但没有用呀
 
   // 定义数据
   // 表单显示项
@@ -87,10 +89,14 @@ let Increase: any = () => {
       title: '操作',
       dataIndex: 'control',
       key: 'control',
-      render: (_: unknown, record: any) => (
+      render: (
+        _: unknown,
+        record: any // FIXME: 禁止使用any
+      ) => (
         <Popover
           placement="bottomRight"
           content={
+            // FIXME: 多使用了一层额外的标签
             <>
               <Button
                 type="primary"
@@ -99,6 +105,7 @@ let Increase: any = () => {
                   // 修改审核状态
                   let d = [...dataSource];
                   d.forEach((item: any) => {
+                    // FIXME: 禁止使用any
                     if (item.key == record.key) {
                       item.state = '已审核';
                     }
@@ -109,6 +116,7 @@ let Increase: any = () => {
                   ) {
                     console.log('选了');
                     d = d.filter((item: any) => {
+                      // FIXME: 禁止使用any
                       return moment(currentTime, 'YYYY/MM/DD').isSame(
                         item.date,
                         'month'
@@ -132,7 +140,7 @@ let Increase: any = () => {
   ];
 
   // 表单显示项
-  let [columns, setColumns] = useState(defaultColumns);
+  let [columns, setColumns] = useState(defaultColumns); // FIXME: useState必须置顶
 
   // 表单中item项被选中调用的事件
   let onSelectChange = (keys: []) => {
@@ -142,15 +150,17 @@ let Increase: any = () => {
 
   // 选中事件对象
   let rowSelection: any = {
+    // FIXME: 禁止使用any
     selectedRowKeys,
     onChange: onSelectChange,
   };
 
   // 下拉框ref
-  let dropDownRef: any = useRef();
+  let dropDownRef: any = useRef(); // FIXME: 这个ref后边只绑定了,未被使用
 
   // 修改表单显示项
   function checkedChange(e: any) {
+    // FIXME: 禁止使用any
     let col = defaultColumns.filter(i => {
       return e.some((j: string) => i.key == j);
     });
@@ -175,9 +185,13 @@ let Increase: any = () => {
 
   // 获取选取时间的函数：用于筛选数据
   function getTime(data: any) {
+    // FIXME: 禁止使用any
+
     let d = [...defaultDataSource];
     if (data != null) {
       d = d.filter((item: any) => {
+        // FIXME: 禁止使用any
+
         return moment(item.date, 'YYYY/MM/DD').isSame(
           data.format('YYYY/MM/DD'),
           'month'
@@ -194,9 +208,14 @@ let Increase: any = () => {
   // 删除选中的项目
   let deleteData = () => {
     setLoading(true);
-    let d: any = defaultDataSource;
+    let d: any = defaultDataSource; // FIXME: 禁止使用any
+
     selectedRowKeys.forEach((i: any) => {
+      // FIXME: 禁止使用any
+
       d = d.filter((j: any) => {
+        // FIXME: 禁止使用any
+
         return j.key != i;
       });
     });
@@ -216,8 +235,8 @@ let Increase: any = () => {
   return (
     <>
       <div
-        className="attendance-increse"
-        style={{ display: 'flex', justifyContent: 'space-between' }}
+        className="attendance-increse" // FIXME: 只写了className没有对应的css
+        style={{ display: 'flex', justifyContent: 'space-between' }} // FIXME: 推荐使用antd中的col, 有更好的适配
       >
         <Popconfirm
           title="你确定要删除这些信息么?"
@@ -256,6 +275,8 @@ let Increase: any = () => {
         </Space>
       </div>
       <div className="attendance-table">
+        {/* FIXME: 只写了className没有对应的css */}
+        {/* FIXME: Table展示组件需要放在show.tsx中, 然后用compose合并两个组件, 因为后序有后端请求时会使单个的组件逻辑复杂, 不容易维护 */}
         <Table
           rowSelection={rowSelection}
           columns={columns}
@@ -266,4 +287,4 @@ let Increase: any = () => {
   );
 };
 
-export default withRouter(Increase);
+export default withRouter(Increase); // FIXME: 路由层面我们已经包装完成, 不用自己包装withRouter
