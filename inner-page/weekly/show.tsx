@@ -11,6 +11,7 @@ import {
   Space,
   Table,
   Checkbox,
+  Divider,
 } from 'antd';
 import {
   MinusOutlined,
@@ -102,7 +103,6 @@ class Show extends Component {
         },
       },
     ];
-    console.log(data);
     /*
      * data 页面当前显示数据
      * dataAll 从后台获取的所有数据
@@ -114,7 +114,6 @@ class Show extends Component {
      * selectValue 代表当前正在搜索的value
      * selectDate 代表当前选择的日期,这里使用moment对象
      */
-
     this.state = {
       data: data,
       dataAll: data,
@@ -247,9 +246,9 @@ class Show extends Component {
             <Search
               placeholder="搜索"
               onSearch={value => {
-                //使用类似于stream的思想通过filter来剔除不符合条件的数据,剔除两次是因为有两个需要做filter的属性
+                // 使用类似于stream的思想通过filter来剔除不符合条件的数据,剔除两次是因为有两个需要做filter的属性
                 const dataFilter = dataAll
-                  //剔除搜索框
+                  // 剔除搜索框
                   .filter(
                     (_values: unknown, index: string | number, _a: unknown) => {
                       return dataAll[index].name
@@ -258,7 +257,7 @@ class Show extends Component {
                         .includes(value.toLowerCase());
                     }
                   )
-                  //剔除日期选择栏
+                  // 剔除日期选择栏
                   .filter(
                     (_values: unknown, index: string | number, _a: unknown) => {
                       if (selectDate) {
@@ -273,7 +272,7 @@ class Show extends Component {
                           )
                         );
                       } else {
-                        //如果没选择日期则返回false
+                        // 如果没选择日期则返回false
                         return true;
                       }
                     }
@@ -395,7 +394,7 @@ class Show extends Component {
                   />
                 </Form.Item>
                 <Form.Item label="第一周">
-                  <div style={{ width: '50vw', display: 'inline-block' }}>
+                  <div style={{ width: 500, display: 'inline-block' }}>
                     <Input
                       disabled={false}
                       value="社会实践报告.docx"
@@ -414,7 +413,7 @@ class Show extends Component {
                   </Button>
                 </Form.Item>
                 <Form.Item label="第二周">
-                  <div style={{ width: '50vw', display: 'inline-block' }}>
+                  <div style={{ width: 500, display: 'inline-block' }}>
                     <Input
                       disabled={false}
                       value="社会实践报告.docx"
@@ -433,7 +432,7 @@ class Show extends Component {
                   </Button>
                 </Form.Item>
                 <Form.Item label="第三周">
-                  <div style={{ width: '50vw', display: 'inline-block' }}>
+                  <div style={{ width: 500, display: 'inline-block' }}>
                     <Input
                       disabled={false}
                       value="社会实践报告.docx"
@@ -452,7 +451,7 @@ class Show extends Component {
                   </Button>
                 </Form.Item>
                 <Form.Item label="第四周">
-                  <div style={{ width: '50vw', display: 'inline-block' }}>
+                  <div style={{ width: 500, display: 'inline-block' }}>
                     <Input
                       disabled={false}
                       value="社会实践报告.docx"
@@ -478,7 +477,7 @@ class Show extends Component {
                 >
                   填写评论
                 </div>
-                <hr />
+                <Divider />
                 <Form.Item name="advice">
                   <Radio.Group defaultValue={2}>
                     <Radio value={1}>优秀</Radio>
