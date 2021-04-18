@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Radio } from 'antd';
+import { Button, DatePicker, Form, Input, Radio, Divider } from 'antd';
 import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
 
@@ -117,7 +117,7 @@ const Content = (props: any) => {
         >
           填写评论
         </div>
-        <hr />
+        <Divider />
         <Form.Item name="advice">
           <Radio.Group defaultValue={2}>
             <Radio value={1}>优秀</Radio>

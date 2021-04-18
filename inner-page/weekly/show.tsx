@@ -8,6 +8,7 @@ import {
   Space,
   Table,
   Checkbox,
+  Divider,
 } from 'antd';
 import {
   MinusOutlined,
@@ -34,7 +35,7 @@ const { weeklyData } = Mock.mock({
         '大型复杂结构施工监控关键技术研究',
       ],
       studentName: 'jhx',
-      date: '@date("yyyy/mm")',
+      date: '@date("yyyy/MM")',
       status: 'false',
       advice: 'with out advice',
       state: '指标招生',
