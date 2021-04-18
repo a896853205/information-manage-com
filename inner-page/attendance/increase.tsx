@@ -12,9 +12,9 @@ import {
 import { MinusOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 // 组件
-export default () => {
+const Increase = () => {
   // 下拉框中多选框（组件）：用于选择表单显示项
-  let checkboxMenu = (
+  const checkboxMenu = (
     <Checkbox.Group
       defaultValue={['id', 'name', 'projectName', 'date', 'status']}
     >
@@ -28,47 +28,44 @@ export default () => {
     </Checkbox.Group>
   );
 
-  function confirm() {
+  const confirm = () => {
     message.success('删除成功');
-  }
+  };
 
-  function cancel() {
-    return;
-  }
+  const cancel = () => {};
 
   return (
-    <>
-      <Row justify="space-between">
-        <Col>
-          <Popconfirm
-            title="你确定要删除这些信息么?"
-            onConfirm={confirm}
-            onCancel={cancel}
-            okText="是"
-            cancelText="否"
+    <Row justify="space-between">
+      <Col>
+        <Popconfirm
+          title="你确定要删除这些信息么?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="是"
+          cancelText="否"
+        >
+          <Button icon={<MinusOutlined />} danger type="primary">
+            删除
+          </Button>
+        </Popconfirm>
+      </Col>
+
+      <Col>
+        <Space>
+          <span style={{ width: '40px' }}>日期：</span>
+          <DatePicker picker="month" placeholder="选择日期" />
+
+          <Popover
+            placement="bottomRight"
+            content={checkboxMenu}
+            trigger="click"
           >
-            <Button icon={<MinusOutlined />} danger type="primary">
-              删除
-            </Button>
-          </Popconfirm>
-        </Col>
-
-        <Col>
-          <Space>
-            <span style={{ width: '40px' }}>日期：</span>
-            <DatePicker picker="month" placeholder="选择日期" />
-
-            <Popover
-              placement="bottomRight"
-              content={checkboxMenu}
-              trigger="click"
-            >
-              <Button icon={<UnorderedListOutlined />}></Button>
-            </Popover>
-          </Space>
-        </Col>
-      </Row>
-      <div></div>
-    </>
+            <Button icon={<UnorderedListOutlined />} />
+          </Popover>
+        </Space>
+      </Col>
+    </Row>
   );
 };
+
+export default Increase;

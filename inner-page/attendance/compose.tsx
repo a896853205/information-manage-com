@@ -1,20 +1,11 @@
+import { useState } from 'react';
+
+import Mock from 'mockjs';
+
 import Increase from 'inner-page/attendance/increase';
 import Show from 'inner-page/attendance/show';
-import Mock from 'mockjs';
-import { useState } from 'react';
-import { Popover, Button } from 'antd';
-import { ColumnsType } from 'antd/es/table';
 
-export interface Student {
-  key: number;
-  id: number;
-  name: string;
-  projectName: string;
-  data: string;
-  status: string;
-}
-
-let defaultDataSource: Student[] = Mock.mock({
+const { defaultDataSource }: { defaultDataSource: Attendance[] } = Mock.mock({
   'defaultDataSource|5-100': [
     {
       'key|+1': 1,
@@ -30,67 +21,19 @@ let defaultDataSource: Student[] = Mock.mock({
       status: '审批中',
     },
   ],
-}).defaultDataSource;
+});
 
-// 定义数据
-// 表单显示项
-let defaultColumns: ColumnsType<Student> = [
-  {
-    title: '序号',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: '学生名称',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '项目名称',
-    dataIndex: 'projectName',
-    key: 'projectName',
-  },
-  {
-    title: '日期',
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: '考勤状况',
-    dataIndex: 'status',
-    key: 'status',
-  },
-  {
-    title: '操作',
-    dataIndex: 'control',
-    key: 'control',
-    render: () => (
-      <Popover
-        placement="bottomRight"
-        content={
-          <Button type="primary" size="small">
-            批准
-          </Button>
-        }
-        trigger="click"
-      >
-        <Button>操作</Button>
-      </Popover>
-    ),
-  },
-];
-
-export default () => {
-  // 表单数据
-  let [dataSource] = useState<Student[]>(defaultDataSource);
-  // 表单显示项
-  let [columns] = useState<ColumnsType<Student>>(defaultColumns);
+const Attendance = () => {
+  // 表格填充数据
+  let [dataSource] = useState<Attendance[]>(defaultDataSource);
 
   return (
     <>
       {/* <BreadcrumbList /> */}
       <Increase />
-      <Show dataSource={dataSource} columns={columns} />
+      <Show dataSource={dataSource} />
     </>
   );
 };
+
+export default Attendance;
