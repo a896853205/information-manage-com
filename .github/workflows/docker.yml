@@ -1,7 +1,7 @@
 name: docker-ACR-ECS
 on:
   push:
-    branches: [docker]
+    branches: [main]
 jobs:
   build-docker:
     runs-on: ubuntu-latest
@@ -9,7 +9,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: docker
+        ref: main
     - name: Login to ACR
       uses: aliyun/acr-login@v1
       with:
