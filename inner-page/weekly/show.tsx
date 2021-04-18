@@ -50,10 +50,32 @@ const { weeklyData } = Mock.mock({
     },
   ],
 });
-
+let columnsData: (
+  | { title: string; key: string; dataIndex: string; render?: undefined }
+  | {
+      title: string;
+      key: string;
+      render: (
+        _text: object,
+        _record: dataInterface,
+        _index: number
+      ) => JSX.Element;
+      dataIndex?: undefined;
+    }
+)[];
 const Show = () => {
+  const [data, setData] = useState(weeklyData); // data 页面当前显示数据
+  const [dataAll, setdataAll] = useState(weeklyData); // dataAll 从后台获取的所有数据
+  const [columns, setColumns] = useState(columnsData); // columns 当前显示表格的行属性
+  const [defaultColumns, setdefaultColumns] = useState(columnsData); //
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // selectedRowKeys 代表当前选择中的列
+  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
+  const [selectIndex, setSelectIndex] = useState<number>(0); // selectIndex 帮助获取详情对话框的具体参数
+  const colClickChange = (_record: dataInterface) => {
+    setSelectIndex(_record.index), setShowModel(true);
+  };
   //初始化行属性
-  const columnsData = [
+  columnsData = [
     {
       title: '序号',
       key: 'key',
@@ -93,7 +115,7 @@ const Show = () => {
             <Button
               type={'primary'}
               onClick={() => {
-                setSelectIndex(_record.index), setShowModel(true);
+                colClickChange(_record);
               }}
             >
               查看
@@ -103,13 +125,6 @@ const Show = () => {
       },
     },
   ];
-  const [data, setData] = useState(weeklyData); // data 页面当前显示数据
-  const [dataAll, setdataAll] = useState(weeklyData); // dataAll 从后台获取的所有数据
-  const [columns, setColumns] = useState(columnsData); // columns 当前显示表格的行属性
-  const [defaultColumns] = useState(columnsData); //
-  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // selectedRowKeys 代表当前选择中的列
-  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
-  const [selectIndex, setSelectIndex] = useState<number>(0); // selectIndex 帮助获取详情对话框的具体参数
 
   // 删除选中项
   const deleteWeekly = () => {
