@@ -3,7 +3,13 @@ import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
 
 const Content = (props: any) => {
+  if (props == {}) {
+    return <div>wrong</div>;
+  }
   const { data, selectIndex } = props;
+  if (!data || !selectIndex) {
+    return <div>wrong</div>;
+  }
   // 详情页面下载的时候使用
   const downLoad = () => {};
   return (
