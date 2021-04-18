@@ -42,7 +42,7 @@ class Show extends Component {
             '大型复杂结构施工监控关键技术研究',
           ],
           studentName: 'jhx',
-          date: '@date("yyyy/mm")',
+          date: '@date("yyyy/MM")',
           status: 'false',
           advice: 'with out advice',
           state: '指标招生',
