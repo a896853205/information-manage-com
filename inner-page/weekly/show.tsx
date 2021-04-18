@@ -1,4 +1,4 @@
-import { Key, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import {
   Button,
   DatePicker,
@@ -42,72 +42,72 @@ const { weeklyData } = Mock.mock({
   ],
 });
 
-//初始化行属性
-const columnsData = [
-  {
-    title: '序号',
-    key: 'key',
-    dataIndex: 'key',
-  },
-  {
-    title: '学生名称',
-    key: 'studentName',
-    dataIndex: 'studentName',
-  },
-  {
-    title: '项目名称',
-    key: 'name',
-    dataIndex: 'name',
-  },
-  {
-    title: '日期',
-    key: 'date',
-    dataIndex: 'date',
-  },
-  {
-    title: '完成情况',
-    key: 'status',
-    dataIndex: 'status',
-  },
-  {
-    title: '评价',
-    key: 'advice',
-    dataIndex: 'advice',
-  },
-  {
-    title: '操作',
-    key: 'action',
-    render: (_text: object, _record: object, _index: number) => {
-      return (
-        <Space>
-          <Button
-            type={'primary'}
-            onClick={() => {
-              /*  that.setState({
-                selectIndex: _record.index,
-                showModel: true,
-              }); */
-            }}
-          >
-            查看
-          </Button>
-        </Space>
-      );
-    },
-  },
-];
-
 const Show = () => {
-  const [data, setData] = useState(weeklyData); // data 页面当前显示数据
-  const [dataAll, setdataAll] = useState(weeklyData); // dataAll 从后台获取的所有数据
-  const [columns, setColumns] = useState(columnsData); // columns 当前显示表格的行属性
-  const [defaultColumns, setDefaultColumns] = useState(columnsData); //
+  const [data, setData] = useState<Object[]>(weeklyData); // data 页面当前显示数据
+  const [dataAll, setdataAll] = useState<Object[]>(weeklyData); // dataAll 从后台获取的所有数据
+  const [columns, setColumns] = useState<Object[]>([]); // columns 当前显示表格的行属性
+  const [defaultColumns, setDefaultColumns] = useState<Object[]>([]); //
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // selectedRowKeys 代表当前选择中的列
   const [loading, setLoading] = useState(false); // loading 代表当前页面正在加载
   const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
   const [selectIndex, setSelectIndex] = useState<number>(0); // selectIndex 帮助获取详情对话框的具体参数
   const [selectValue, setSelectValue] = useState<string>(''); // selectValue 代表当前正在搜索的value
   const [selectDate, setSelectDate] = useState<moment.Moment | null>(); // selectDate 代表当前选择的日期,这里使用moment对象
+
+  //初始化行属性
+  const columnsData = [
+    {
+      title: '序号',
+      key: 'key',
+      dataIndex: 'key',
+    },
+    {
+      title: '学生名称',
+      key: 'studentName',
+      dataIndex: 'studentName',
+    },
+    {
+      title: '项目名称',
+      key: 'name',
+      dataIndex: 'name',
+    },
+    {
+      title: '日期',
+      key: 'date',
+      dataIndex: 'date',
+    },
+    {
+      title: '完成情况',
+      key: 'status',
+      dataIndex: 'status',
+    },
+    {
+      title: '评价',
+      key: 'advice',
+      dataIndex: 'advice',
+    },
+    {
+      title: '操作',
+      key: 'action',
+      render: (_text: object, _record: object, _index: number) => {
+        return (
+          <Space>
+            <Button
+              type={'primary'}
+              onClick={() => {
+                setSelectIndex(_record.index), setShowModel(true);
+              }}
+            >
+              查看
+            </Button>
+          </Space>
+        );
+      },
+    },
+  ];
+  useEffect(() => {
+    setColumns(columnsData), setDefaultColumns(columnsData);
+  });
 
   // FIXME:moment包太重了，最好不要用
   const start = () => {
@@ -137,11 +137,14 @@ const Show = () => {
     setShowModel(false);
   };
 
-  const checkedChange = (e: CheckboxValueType[]) => {
+  const checkedChange = (selectedList: CheckboxValueType[]) => {
     // FIXME: 参数
-    let col = defaultColumns.filter((i: { key: number }) => {
-      return e.some((j: CheckboxValueType) => i.key == j);
+    let col = defaultColumns.filter(item => {
+      return selectedList.some((j: CheckboxValueType) => item.key == j);
     });
+    /* let col = defaultColumns.filter((i: { key: number }) => {
+      return e.some((j: CheckboxValueType) => i.key == j);
+    }); */
     setColumns(col);
   };
 
