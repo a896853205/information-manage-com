@@ -43,8 +43,8 @@ const { weeklyData } = Mock.mock({
 });
 
 const Show = () => {
-  const [data, setData] = useState<Object[]>(weeklyData); // data 页面当前显示数据
-  const [dataAll, setdataAll] = useState<Object[]>(weeklyData); // dataAll 从后台获取的所有数据
+  const [data, setData] = useState(weeklyData); // data 页面当前显示数据
+  const [dataAll, setdataAll] = useState(weeklyData); // dataAll 从后台获取的所有数据
   const [columns, setColumns] = useState<Object[]>([]); // columns 当前显示表格的行属性
   const [defaultColumns, setDefaultColumns] = useState<Object[]>([]); //
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // selectedRowKeys 代表当前选择中的列
@@ -105,9 +105,11 @@ const Show = () => {
       },
     },
   ];
+
+  // FIXME：存疑
   useEffect(() => {
     setColumns(columnsData), setDefaultColumns(columnsData);
-  });
+  }, [columnsData]);
 
   // FIXME:moment包太重了，最好不要用
   const start = () => {
@@ -139,12 +141,9 @@ const Show = () => {
 
   const checkedChange = (selectedList: CheckboxValueType[]) => {
     // FIXME: 参数
-    let col = defaultColumns.filter(item => {
-      return selectedList.some((j: CheckboxValueType) => item.key == j);
+    let col = defaultColumns.filter((i: { key: number }) => {
+      return selectedList.some((j: CheckboxValueType) => i.key == j);
     });
-    /* let col = defaultColumns.filter((i: { key: number }) => {
-      return e.some((j: CheckboxValueType) => i.key == j);
-    }); */
     setColumns(col);
   };
 
