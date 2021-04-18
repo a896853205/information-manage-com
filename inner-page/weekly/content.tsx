@@ -40,7 +40,7 @@ const Content = (props: any) => {
           />
         </Form.Item>
         <Form.Item label="第一周">
-          <div style={{ width: '50vw', display: 'inline-block' }}>
+          <div style={{ width: 500, display: 'inline-block' }}>
             <Input
               disabled={false}
               value="社会实践报告.docx"
@@ -59,7 +59,7 @@ const Content = (props: any) => {
           </Button>
         </Form.Item>
         <Form.Item label="第二周">
-          <div style={{ width: '50vw', display: 'inline-block' }}>
+          <div style={{ width: 500, display: 'inline-block' }}>
             <Input
               disabled={false}
               value="社会实践报告.docx"
@@ -78,7 +78,7 @@ const Content = (props: any) => {
           </Button>
         </Form.Item>
         <Form.Item label="第三周">
-          <div style={{ width: '50vw', display: 'inline-block' }}>
+          <div style={{ width: 500, display: 'inline-block' }}>
             <Input
               disabled={false}
               value="社会实践报告.docx"
@@ -97,7 +97,7 @@ const Content = (props: any) => {
           </Button>
         </Form.Item>
         <Form.Item label="第四周">
-          <div style={{ width: '50vw', display: 'inline-block' }}>
+          <div style={{ width: 500, display: 'inline-block' }}>
             <Input
               disabled={false}
               value="社会实践报告.docx"
