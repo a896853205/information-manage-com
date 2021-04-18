@@ -25,6 +25,16 @@ import Search from 'antd/lib/input/Search';
 import Mock from 'mockjs';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 
+interface dataInterface {
+  key: number;
+  index: number;
+  name: string;
+  studentName: string;
+  date: string;
+  status: string;
+  advice: string;
+  state: string;
+}
 class Show extends Component {
   constructor(props: {} | Readonly<{}>) {
     super(props);
@@ -34,7 +44,7 @@ class Show extends Component {
       'data|10': [
         {
           'key|+1': 1,
-          'index|+1': 1,
+          'index|+1': 0,
           'name|+1': [
             '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
             '电动汽车全生命周期分析与环境评价',
@@ -84,7 +94,11 @@ class Show extends Component {
       {
         title: '操作',
         key: 'action',
-        render: function (_text: object, _record: object, _index: number) {
+        render: function (
+          _text: object,
+          _record: dataInterface,
+          _index: number
+        ) {
           return (
             <Space>
               <Button
