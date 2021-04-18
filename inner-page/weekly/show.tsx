@@ -138,6 +138,7 @@ const Show = () => {
   };
 
   const checkedChange = (e: CheckboxValueType[]) => {
+    // FIXME: 参数
     let col = defaultColumns.filter((i: { key: number }) => {
       return e.some((j: CheckboxValueType) => i.key == j);
     });
