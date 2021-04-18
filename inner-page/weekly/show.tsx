@@ -1,4 +1,4 @@
-import { Key, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import {
   Button,
   DatePicker,
@@ -74,6 +74,7 @@ const Show = () => {
   const colClickChange = (_record: dataInterface) => {
     setSelectIndex(_record.index), setShowModel(true);
   };
+
   //初始化行属性
   columnsData = [
     {
@@ -125,7 +126,11 @@ const Show = () => {
       },
     },
   ];
-
+  useEffect(() => {
+    console.log(111);
+    setColumns(columnsData);
+    setdefaultColumns(columnsData);
+  }, []);
   // 删除选中项
   const deleteWeekly = () => {
     let remainData = dataAll;
