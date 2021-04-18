@@ -20,7 +20,6 @@ import {
 import 'moment/locale/zh-cn';
 import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
-import FileSaver from 'file-saver';
 import Search from 'antd/lib/input/Search';
 
 class Show extends Component {
@@ -161,7 +160,7 @@ class Show extends Component {
 
   //详情页面下载的时候使用
   downLoad = () => {
-    FileSaver.saveAs('111', Date.now() + '.docx');
+    // FileSaver.saveAs('111', Date.now() + '.docx');
   };
 
   //设置对话框是否显示
