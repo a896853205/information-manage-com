@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Checkbox, Space, Table } from 'antd';
+import { Button, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
