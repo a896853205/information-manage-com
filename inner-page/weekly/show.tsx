@@ -21,9 +21,10 @@ interface ShowProps {
   data: PT.Weekly[];
 }
 const Show = (props: ShowProps) => {
-  const { data } = props;
-  // 设置对话框是否显示
   const [columns, setColumns] = useState<ColumnsType<PT.Weekly>>([]); // columns 当前显示表格的行属性
+  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
+  const { data } = props;
+
   const columnsData = [
     {
       title: '序号',
@@ -80,7 +81,6 @@ const Show = (props: ShowProps) => {
   const setFalse = () => {
     setShowModel(false);
   };
-  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
 
   // 下拉框中多选框：用于选择表单显示项
   const menu = (
