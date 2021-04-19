@@ -1,17 +1,11 @@
-/**
- * 角色：高校管理员
- * 教务信息管理->周志管理
- */
-import dynamic from 'next/dynamic';
-
 import MyLayout from 'layouts/index';
-import PageLoading from 'components/page-loading';
-const Compose = dynamic(() => import('inner-page/project/compose'), {
-  ssr: false,
-  loading: PageLoading,
-});
+import Compose from 'inner-page/weekly/compose';
 
-export default function Weekly() {
-  return <Compose />;
-}
+/**
+ * 教务信息管理->周志管理
+ * 角色：高校管理员
+ */
+const Weekly = () => <Compose />;
 Weekly.Layout = MyLayout;
+
+export default Weekly;
