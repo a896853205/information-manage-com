@@ -12,6 +12,7 @@ import {
 import TextArea from 'antd/lib/input/TextArea';
 import React, { Dispatch, SetStateAction } from 'react';
 
+// FIXME: 组件FC类型的props, 直接参考Attendance分支
 const Show = (props: {
   data: PT.weeklyData[];
   columns: PT.columnsData;
@@ -58,6 +59,7 @@ const Show = (props: {
               <Input value="社会实践报告.docx" />
               <Button
                 style={{
+                  // FIXME： 使用Space， 代替marginLeft。
                   marginLeft: '1vh',
                 }}
                 type="primary"
@@ -72,6 +74,7 @@ const Show = (props: {
               <Input value="社会实践报告.docx" />
               <Button
                 style={{
+                  // FIXME： 使用Space， 代替marginLeft。
                   marginLeft: '1vh',
                 }}
                 type="primary"
@@ -86,6 +89,7 @@ const Show = (props: {
               <Input value="社会实践报告.docx" />
               <Button
                 style={{
+                  // FIXME： 使用Space， 代替marginLeft。
                   marginLeft: '1vh',
                 }}
                 type="primary"
@@ -100,6 +104,7 @@ const Show = (props: {
               <Input value="社会实践报告.docx" />
               <Button
                 style={{
+                  // FIXME： 使用Space， 代替marginLeft。
                   marginLeft: '1vh',
                 }}
                 type="primary"
@@ -111,6 +116,7 @@ const Show = (props: {
           </Form.Item>
           <div
             style={{
+              // FIXME： 使用Space， 代替marginLeft。
               fontSize: 'large',
               marginLeft: '2vh',
             }}
@@ -128,6 +134,7 @@ const Show = (props: {
           <Form.Item label="周志评测" name="textAdvice">
             <TextArea rows={1} cols={8} />
           </Form.Item>
+          {/* FIXME: Modal自带footer, 不用自己写 */}
           <Form.Item style={{ float: 'right' }}>
             <Button type="primary" htmlType="submit">
               提交

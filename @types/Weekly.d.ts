@@ -1,5 +1,5 @@
 namespace PT {
-  // weekly行属性类型
+  // FIXME: antd的列属性官方给了, 不用自己编写, 参考Attendance分支修改
   type columnsData = (
     | { title: string; key: string; dataIndex: string; render: undefined }
     | {
@@ -10,6 +10,7 @@ namespace PT {
       }
   )[];
   // weekly数据属性
+  // FIXME: 命名参考Attendance
   type weeklyData={
     key: number,
     index: number,

@@ -6,8 +6,10 @@ import Mock from 'mockjs';
 import { Button, Space } from 'antd';
 
 const Compose = () => {
+  // FIXME: 本项目的表头不是变量, 不用useState, 应该直接在Show组件中写成常量的形式
   const [columns, setColumns] = useState<PT.columnsData>([]); // columns 当前显示表格的行属性
   const [data, setData] = useState<PT.weeklyData[]>([]); // data 页面当前显示数据
+  // FIXME: 这个变量就需要放在Show组件里边
   const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
 
   useEffect(() => {
@@ -29,7 +31,9 @@ const Compose = () => {
         },
       ],
     });
+
     // 初始化行属性
+    // FIXME: 本项目的表头不是变量, 不用useState, 应该直接在Show组件中写成常量的形式
     const columnsData = [
       {
         title: '序号',
