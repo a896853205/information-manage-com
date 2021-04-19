@@ -1,65 +1,110 @@
-import { Button, DatePicker, Popconfirm, Popover, Space, Checkbox } from 'antd';
 import {
-  MinusOutlined,
-  UnorderedListOutlined,
-  WarningOutlined,
-} from '@ant-design/icons';
-import Search from 'antd/lib/input/Search';
+  Button,
+  DatePicker,
+  Divider,
+  Form,
+  Input,
+  Modal,
+  Radio,
+  Space,
+} from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+import React from 'react';
 
-const Increase = () => {
-  // 下拉框中多选框：用于选择表单显示项
-  const menu = (
-    <Checkbox.Group
-      defaultValue={[
-        'key',
-        'name',
-        'studentName',
-        'status',
-        'advice',
-        'date',
-        'action',
-      ]}
-      onChange={() => {}}
-    >
-      <Space direction="vertical">
-        <Checkbox value="key">序号</Checkbox>
-        <Checkbox value="studentName">学生名称</Checkbox>
-        <Checkbox value="name">项目名称</Checkbox>
-        <Checkbox value="date">日期</Checkbox>
-        <Checkbox value="status">完成情况</Checkbox>
-        <Checkbox value="advice">评价</Checkbox>
-        <Checkbox value="action">操作</Checkbox>
-      </Space>
-    </Checkbox.Group>
-  );
+interface IncreaseProps {
+  showModel: boolean;
+  setFalse: () => void;
+}
+const Increase = (props: IncreaseProps) => {
+  const { showModel, setFalse } = props;
   return (
-    <>
-      {/*数据展示及操作模板*/}
-      {/*左侧删除按钮及提示框*/}
-
-      <Popconfirm
-        title="一经删除将无法恢复数据,请确认是否进行删除"
-        onConfirm={() => {}}
-        okText="确定删除"
-        cancelText="取消"
-        icon={<WarningOutlined style={{ color: 'red' }} />}
-      >
-        <Button type="primary" danger={true}>
-          <MinusOutlined />
-          删除
+    <Modal
+      title="查看周志"
+      visible={showModel}
+      onCancel={setFalse}
+      footer={
+        <Button type="primary" htmlType="submit">
+          提交
         </Button>
-      </Popconfirm>
-      {/*右侧搜索栏目前只实现了搜索属性name也就是项目名称*/}
-      <div style={{ float: 'right' }}>
-        <Space>
-          <Search placeholder="搜索" style={{ width: '200px' }} />
-          <DatePicker picker={'month'} />
-          <Popover placement="bottomRight" content={menu} trigger="click">
-            <Button icon={<UnorderedListOutlined />} />
-          </Popover>
-        </Space>
-      </div>
-    </>
+      }
+      style={{ top: 10 }}
+      width={1000}
+    >
+      {/*详情页面的表单结构*/}
+      <Form
+        labelCol={{ span: 2 }}
+        wrapperCol={{ span: 25 }}
+        layout="horizontal"
+      >
+        <Form.Item name="name" label="姓名">
+          {/* 这里为了不让其调用表单的onFinish和onChange所以单独隔离出来 */}
+          <div>
+            <Input value={'jhx'} />
+          </div>
+        </Form.Item>
+        <Form.Item name="projectName" label="项目名称">
+          <div>
+            <Input value="退役锂电材料短程循环与过程污染控制技术与评价方法研究" />
+          </div>
+        </Form.Item>
+        <Form.Item name="date" label="项目年份">
+          <DatePicker picker={'month'} disabled={false} />
+        </Form.Item>
+        <Form.Item label="第一周">
+          <Space>
+            <Input value="社会实践报告.docx" />
+            <Button type="primary" danger={true}>
+              下载
+            </Button>
+          </Space>
+        </Form.Item>
+        <Form.Item label="第二周">
+          <Space>
+            <Input value="社会实践报告.docx" />
+            <Button type="primary" danger={true}>
+              下载
+            </Button>
+          </Space>
+        </Form.Item>
+        <Form.Item label="第三周">
+          <Space>
+            <Input value="社会实践报告.docx" />
+            <Button type="primary" danger={true}>
+              下载
+            </Button>
+          </Space>
+        </Form.Item>
+        <Form.Item label="第四周">
+          <Space>
+            <Input value="社会实践报告.docx" />
+            <Button type="primary" danger={true}>
+              下载
+            </Button>
+          </Space>
+        </Form.Item>
+        <div
+          style={{
+            // FIXME： 使用Space， 代替marginLeft。
+            fontSize: 'large',
+          }}
+        >
+          填写评论
+        </div>
+        <Divider />
+        <Form.Item name="advice">
+          <Radio.Group defaultValue={2}>
+            <Radio value={1}>优秀</Radio>
+            <Radio value={2}>合格</Radio>
+            <Radio value={3}>不合格</Radio>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="周志评测" name="textAdvice">
+          <TextArea rows={1} cols={8} />
+        </Form.Item>
+        {/* FIXME: Modal自带footer, 不用自己写 */}
+        <Form.Item />
+      </Form>
+    </Modal>
   );
 };
 
