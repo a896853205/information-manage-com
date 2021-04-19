@@ -62,30 +62,45 @@ const Home = (props: any) => {
   return (
     <MenuContext.Provider value={MENU_DATA}>
       <Layout>
-        <Header
+        <Sider
+          theme="dark"
+          className="home-sider"
           style={{
-            justifyContent: 'space-between',
-            display: 'flex',
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
           }}
         >
-          <h1
-            style={{
-              fontFamily: 'fantasy',
-              fontSize: '30px',
-              fontWeight: 'bold',
-              color: '#fafafa',
-              cursor: 'pointer',
-            }}
-          >
-            研究生科研管理
-          </h1>
-          <UserHeader />
-        </Header>
-        <Layout>
-          <Sider theme="light" className="home-sider">
-            <AntdRouterMenu menuData={MENU_DATA} />
-          </Sider>
+          <div className="home-side-head">
+            <div>Scientific Research</div>
+            <div>Management</div>
+          </div>
+          <AntdRouterMenu menuData={MENU_DATA} />
+        </Sider>
+        <Layout style={{ marginLeft: 200 }}>
           <div className="home-content-box">
+            <Header
+              style={{
+                justifyContent: 'space-between',
+                display: 'flex',
+                background: '#fafafa',
+              }}
+            >
+              <h1
+                style={{
+                  fontFamily: 'fantasy',
+                  fontSize: '30px',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  color: '#000',
+                  cursor: 'pointer',
+                }}
+              >
+                研究生科研管理
+              </h1>
+              <UserHeader />
+            </Header>
             <Content className="home-content">
               {isLoading ? <PageLoading /> : children}
             </Content>
