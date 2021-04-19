@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Button,
   DatePicker,
@@ -11,108 +11,97 @@ import {
   Input,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import 'moment/locale/zh-cn'; // FIXME: 没有用到可以删除
 import Mock from 'mockjs';
 
-interface dataInterface {
-  // FIXME: 数据类型说明这一块可以单独摘出去，建一个文件比如说叫types.d.ts。方便以后属性的管理。
-  key: number;
-  index: number;
-  name: string;
-  studentName: string;
-  date: string;
-  status: string;
-  advice: string;
-  state: string;
-}
-const { weeklyData } = Mock.mock({
-  // FIXME: 周志管理对照文档把具体的属性再改一下
-  'weeklyData|10': [
-    {
-      'key|+1': 1,
-      'index|+1': 1,
-      'name|+1': [
-        '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
-        '电动汽车全生命周期分析与环境评价',
-        '停车相关管理系统及平台',
-        '大型复杂结构施工监控关键技术研究',
-      ],
-      studentName: 'jhx', // FIXME: 这名字别都一样吧...
-      date: '@date("yyyy/MM")',
-      status: 'false', // FIXME: 完成情况：已完成/未完成
-      advice: 'with out advice', // FIXME: 已评价/未评价
-    },
-  ],
-});
-
-// FIXME: 目前整个增删改查的逻辑不用写, 因为后期链接后端后, 都是后端分页, 增加或删除都会导致当前分页直接重新请求, 而不是操作前端的数据. 有表单和表格的样式就好
 const Show = () => {
-  // FIXME: useState的位置必须是函数组件最顶层
   const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
+  const [columns, setColumns] = useState<PT.columnsData>(); // columns 当前显示表格的行属性
+  const [data, setData] = useState(); // data 页面当前显示数据
+
+  useEffect(() => {
+    const { weeklyData } = Mock.mock({
+      'weeklyData|10': [
+        {
+          'key|+1': 1,
+          'index|+1': 1,
+          'projectName|+1': [
+            '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
+            '电动汽车全生命周期分析与环境评价',
+            '停车相关管理系统及平台',
+            '大型复杂结构施工监控关键技术研究',
+          ],
+          'name|+1': ['jhx', 'jwy', 'lwm', 'ycc'],
+          date: '@date("yyyy/MM")',
+          status: '已完成',
+          level: '优秀',
+        },
+      ],
+    });
+    // 初始化行属性
+    const columnsData = [
+      {
+        title: '序号',
+        key: 'key',
+        dataIndex: 'key',
+      },
+      {
+        title: '学生名称',
+        key: 'name',
+        dataIndex: 'name',
+      },
+      {
+        title: '项目名称',
+        key: 'projectName',
+        dataIndex: 'projectName',
+      },
+      {
+        title: '日期',
+        key: 'date',
+        dataIndex: 'date',
+      },
+      {
+        title: '完成情况',
+        key: 'status',
+        dataIndex: 'status',
+      },
+      {
+        title: '评价',
+        key: 'level',
+        dataIndex: 'level',
+      },
+      {
+        title: '操作',
+        key: 'action',
+        render: () => {
+          return (
+            <Space>
+              <Button
+                type={'primary'}
+                onClick={() => {
+                  setShowModel(true);
+                }}
+              >
+                查看
+              </Button>
+            </Space>
+          );
+        },
+      },
+    ];
+    setColumns(columnsData);
+    setData(weeklyData);
+  }, []);
   // 设置对话框是否显示
   const setFalse = () => {
     setShowModel(false);
   };
-
-  // 初始化行属性
-  const columnsData = [
-    {
-      title: '序号',
-      key: 'key',
-      dataIndex: 'key',
-    },
-    {
-      title: '学生名称',
-      key: 'studentName',
-      dataIndex: 'studentName',
-    },
-    {
-      title: '项目名称',
-      key: 'name',
-      dataIndex: 'name',
-    },
-    {
-      title: '日期',
-      key: 'date',
-      dataIndex: 'date',
-    },
-    {
-      title: '完成情况',
-      key: 'status',
-      dataIndex: 'status',
-    },
-    {
-      title: '评价',
-      key: 'advice',
-      dataIndex: 'advice',
-    },
-    {
-      title: '操作',
-      key: 'action',
-      render: (_text: object, _record: dataInterface, _index: number) => {
-        // FIXME:  没有用到的属性可以删除
-        return (
-          <Space>
-            <Button
-              type={'primary'}
-              onClick={() => {
-                setShowModel(true);
-              }}
-            >
-              查看
-            </Button>
-          </Space>
-        );
-      },
-    },
-  ];
   return (
     <>
       {/*数据显示信息*/}
       <Table
         rowSelection={{ type: 'checkbox' }}
-        columns={columnsData}
-        dataSource={weeklyData}
+        columns={columns}
+        dataSource={data}
         pagination={{ pageSize: 15 }}
         scroll={{ y: '52vh' }}
       />
@@ -122,7 +111,7 @@ const Show = () => {
         visible={showModel}
         onCancel={setFalse}
         footer={null}
-        style={{ top: 20 }}
+        style={{ top: 10 }}
         width={1000}
       >
         {/*详情页面的表单结构*/}
@@ -132,29 +121,22 @@ const Show = () => {
             wrapperCol={{ span: 25 }}
             layout="horizontal"
           >
-            <Form.Item name="studentName" label="姓名">
+            <Form.Item name="name" label="姓名">
               <div>
-                <Input value={'jhx'} disabled={true} />
+                <Input value={'jhx'} />
               </div>
             </Form.Item>
-            <Form.Item name="name" label="项目名称">
+            <Form.Item name="projectName" label="项目名称">
               <div>
-                <Input
-                  value="退役锂电材料短程循环与过程污染控制技术与评价方法研究"
-                  disabled={true}
-                />
+                <Input value="退役锂电材料短程循环与过程污染控制技术与评价方法研究" />
               </div>
             </Form.Item>
             <Form.Item name="date" label="项目年份">
-              <DatePicker picker={'month'} disabled={true} />
+              <DatePicker picker={'month'} disabled={false} />
             </Form.Item>
             <Form.Item label="第一周">
               <div style={{ width: 500, display: 'inline-block' }}>
-                <Input
-                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
-                  value="社会实践报告.docx"
-                  aria-disabled={false} // FIXME:删除
-                />
+                <Input value="社会实践报告.docx" />
               </div>
               <Button
                 style={{
@@ -168,11 +150,7 @@ const Show = () => {
             </Form.Item>
             <Form.Item label="第二周">
               <div style={{ width: 500, display: 'inline-block' }}>
-                <Input
-                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
-                  value="社会实践报告.docx"
-                  aria-disabled={false} // FIXME:删除
-                />
+                <Input value="社会实践报告.docx" />
               </div>
               <Button
                 style={{
@@ -186,11 +164,7 @@ const Show = () => {
             </Form.Item>
             <Form.Item label="第三周">
               <div style={{ width: 500, display: 'inline-block' }}>
-                <Input
-                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
-                  value="社会实践报告.docx"
-                  aria-disabled={false} // FIXME: 删除
-                />
+                <Input value="社会实践报告.docx" />
               </div>
               <Button
                 style={{
@@ -204,11 +178,7 @@ const Show = () => {
             </Form.Item>
             <Form.Item label="第四周">
               <div style={{ width: 500, display: 'inline-block' }}>
-                <Input
-                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
-                  value="社会实践报告.docx"
-                  aria-disabled={false} // FIXME:删除
-                />
+                <Input value="社会实践报告.docx" />
               </div>
               <Button
                 style={{

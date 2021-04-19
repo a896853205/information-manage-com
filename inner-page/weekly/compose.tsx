@@ -1,4 +1,4 @@
-import Show from '@inner-page/weekly/show'; // FIXME: 这个路径之前不用加@，已经在全局配置过baseURL
+import Show from 'inner-page/weekly/show';
 import Increase from 'inner-page/weekly/increase';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
