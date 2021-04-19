@@ -4,10 +4,10 @@ import { Table, Popover, Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 interface ShowProps {
-  dataSource: Attendance[];
+  dataSource: PT.Attendance[];
 }
 
-const DEFAULT_COLUMNS: ColumnsType<Attendance> = [
+const DEFAULT_COLUMNS: ColumnsType<PT.Attendance> = [
   {
     title: '序号',
     dataIndex: 'id',

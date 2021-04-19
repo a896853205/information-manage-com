@@ -13,21 +13,6 @@ import { MinusOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 // 组件
 const Increase = () => {
-  // 下拉框中多选框（组件）：用于选择表单显示项
-  const checkboxMenu = (
-    <Checkbox.Group
-      defaultValue={['id', 'name', 'projectName', 'date', 'status']}
-    >
-      <Space direction="vertical">
-        <Checkbox value="id">序号</Checkbox>
-        <Checkbox value="name">学生名称</Checkbox>
-        <Checkbox value="projectName">项目名称</Checkbox>
-        <Checkbox value="date">日期</Checkbox>
-        <Checkbox value="status">考勤状况</Checkbox>
-      </Space>
-    </Checkbox.Group>
-  );
-
   const confirm = () => {
     message.success('删除成功');
   };
@@ -57,7 +42,19 @@ const Increase = () => {
 
           <Popover
             placement="bottomRight"
-            content={checkboxMenu}
+            content={
+              <Checkbox.Group
+                defaultValue={['id', 'name', 'projectName', 'date', 'status']}
+              >
+                <Space direction="vertical">
+                  <Checkbox value="id">序号</Checkbox>
+                  <Checkbox value="name">学生名称</Checkbox>
+                  <Checkbox value="projectName">项目名称</Checkbox>
+                  <Checkbox value="date">日期</Checkbox>
+                  <Checkbox value="status">考勤状况</Checkbox>
+                </Space>
+              </Checkbox.Group>
+            }
             trigger="click"
           >
             <Button icon={<UnorderedListOutlined />} />
