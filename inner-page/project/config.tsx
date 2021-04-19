@@ -5,7 +5,7 @@ import { useBoolean } from 'ahooks';
 const { Search } = Input;
 const { Option } = Select;
 
-const SearchComponent = () => {
+const Config = () => {
   const [isShow, { setTrue, setFalse }] = useBoolean(false);
   return (
     <>
@@ -36,4 +36,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default Config;

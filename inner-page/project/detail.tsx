@@ -17,13 +17,45 @@ import Mock from 'mockjs';
 
 const { Column, ColumnGroup } = Table;
 
-const selectOptions = {
-  enterprise: ['enterprise1', 'enterprise2', 'enterprise3'],
-  majors: ['应用统计', '税务', '国际商务', '电气工程', '计算机技术'],
-  teachers: ['t1', 't2'],
-};
+const { teacherData }: { teacherData: PT.Teacher[] } = Mock.mock({
+  'teacherData|2': [
+    {
+      'key|+1': 1,
+      'id|+1': 1,
+      'name|+1': ['郑威', '张永泉'],
+      'schoolName|+1': ['哈尔滨理工大学'],
+      'tel|+1': ['13945072055', '18846077959'],
+      'applyDoctorNums|0-5': 1,
+      'applyPostgraduateNums|0-5': 1,
+      'checkDoctorNums|0-5': 1,
+      'checkPostgraduateNums|0-5': 1,
+      'FirstDoctorNums|0-5': 1,
+      'FirstPostgraduateNums|0-5': 1,
+      'secondDoctorNums|0-5': 1,
+      'secondPostgraduateNums|0-5': 1,
+      description: '',
+      state: '未审批',
+    },
+  ],
+});
 
-const { teacherData } = Mock.mock({});
+const { studentData }: { studentData: PT.Student[] } = Mock.mock({
+  'studentData|2': [
+    {
+      'key|+1': 1,
+      'id|+1': 1,
+      'name|+1': ['赵达', '李牧'],
+      'tel|+1': ['13945072050', '13231888738'],
+      'schoolName|+1': ['哈尔滨理工大学'],
+      'schoolTeacher|+1': ['郑威', '张永泉'],
+      'grade|+1': ['二年级', '一年级'],
+      'eduBackground|+1': ['硕士', '博士'],
+      'projectName|+1': ['电动汽车全生命周期分析与环境评价', '金属材料'],
+      'enterpriseTeacher|+1': ['刘强', '张桑'],
+      state: '未审批',
+    },
+  ],
+});
 const Detail = () => {
   const rowSelection = {
     onchange: (selectedRowKeys: Key[]) => {
@@ -33,12 +65,7 @@ const Detail = () => {
   return (
     <>
       <Card title="项目信息">
-        <Form
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 20 }}
-          layout="horizontal"
-          title="项目信息"
-        >
+        <Form layout="horizontal" title="项目信息">
           <Form.Item label="项目名称">
             <Input
               placeholder="请输入项目名称"
@@ -46,52 +73,84 @@ const Detail = () => {
               defaultValue="退役锂电材料短程循环与过程污染控制技术与评价方法研究"
             />
           </Form.Item>
-
           <Form.Item label="项目所属">
-            <Select disabled={true}>
-              {selectOptions.enterprise.map((items: any) => {
-                return (
-                  <Select.Option value={items} key={items}>
-                    {items}
+            <Row justify="space-between">
+              <Col span={8}>
+                <Select disabled={true} defaultValue="enterprise1">
+                  <Select.Option value="enterprise1">
+                    广东邦普循环科技有限公司
                   </Select.Option>
-                );
-              })}
-            </Select>
+                  <Select.Option value="enterprise2">
+                    广东艾科智泊科技股份有限公司
+                  </Select.Option>
+                </Select>
+              </Col>
+              <Col span={10}>
+                <Form.Item label="项目年份">
+                  <Select disabled={true} defaultValue="2018">
+                    <Select.Option value="2018">2018</Select.Option>
+                    <Select.Option value="2019">2019</Select.Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
           </Form.Item>
-
-          <Form.Item label="项目年份">
-            <Select disabled={true}>
-              <Select.Option value="2018">2018</Select.Option>
-              <Select.Option value="2019">2019</Select.Option>
-            </Select>
-          </Form.Item>
-
           <Form.Item label="开始时间">
-            <DatePicker disabled={true} />
+            <Row justify="space-between">
+              <Col span={8}>
+                <DatePicker disabled={true} />
+              </Col>
+              <Col span={10}>
+                <Form.Item label="结束时间">
+                  <DatePicker disabled={true} />
+                </Form.Item>
+              </Col>
+            </Row>
           </Form.Item>
-          <Form.Item label="结束时间">
-            <DatePicker disabled={true} />
-          </Form.Item>
-          <Form.Item label="硕士生" required>
-            <Input placeholder="硕士生个数" disabled={true} defaultValue="1" />
-          </Form.Item>
-          <Form.Item label="博士生" required>
-            <Input placeholder="博士生个数" disabled={true} defaultValue="1" />
+          <Form.Item label="硕士生">
+            <Row justify="space-between">
+              <Col span={8}>
+                <Input
+                  placeholder="硕士生个数"
+                  disabled={true}
+                  defaultValue="1"
+                />
+              </Col>
+              <Col span={10}>
+                <Form.Item label="博士生">
+                  <Input
+                    placeholder="博士生个数"
+                    disabled={true}
+                    defaultValue="1"
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
           </Form.Item>
           <Form.Item label="需求专业">
-            <Select disabled={true}>
-              <Select.Option value="2018">2018</Select.Option>
-              <Select.Option value="2019">2019</Select.Option>
+            <Select disabled={true} defaultValue="computer">
+              <Select.Option value="physical">物理</Select.Option>
+              <Select.Option value="computer">计算机</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="项目投资" required>
-            <Input placeholder="项目投资" disabled={true} defaultValue="20" />
-          </Form.Item>
-          <Form.Item label="是否公开">
-            <Radio.Group disabled={true} defaultValue="public">
-              <Radio value="public">是</Radio>
-              <Radio value="private">否</Radio>
-            </Radio.Group>
+          <Form.Item label="项目投资">
+            <Row justify="space-between">
+              <Col span={8}>
+                <Input
+                  placeholder="项目投资"
+                  disabled={true}
+                  defaultValue="20"
+                />
+              </Col>
+              <Col span={10}>
+                <Form.Item label="是否公开">
+                  <Radio.Group disabled={true} defaultValue="public">
+                    <Radio value="public">是</Radio>
+                    <Radio value="private">否</Radio>
+                  </Radio.Group>
+                </Form.Item>
+              </Col>
+            </Row>
           </Form.Item>
           <Form.Item label="项目简介">
             <Input.TextArea placeholder="项目简介" disabled={true} />
@@ -104,59 +163,75 @@ const Detail = () => {
           size="small"
           rowSelection={{ type: 'checkbox', ...rowSelection }}
         >
-          <Column title="选择" dataIndex="id" key="id" />
-          <Column title="序号" dataIndex="index" key="index" />
-          <Column title="导师名称" dataIndex="teacherName" key="teacherName" />
+          <Column title="选择" dataIndex="index" key="index" />
+          <Column title="序号" dataIndex="id" key="id" />
+          <Column title="导师名称" dataIndex="name" key="name" />
           <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
           <Column title="联系电话" dataIndex="tel" key="tel" />
           <ColumnGroup title="高校导师申请对接数">
-            <Column title="博士生" dataIndex="doctorNums" key="doctorNum" />
+            <Column
+              title="博士生"
+              dataIndex="applyDoctorNums"
+              key="applyDoctorNums"
+            />
             <Column
               title="硕士生"
-              dataIndex="postgraduateNums"
-              key="postgraduateNums"
+              dataIndex="applyPostgraduateNums"
+              key="applyPostgraduateNums"
             />
           </ColumnGroup>
           <ColumnGroup title="企业确认对接数">
-            <Column title="博士生" dataIndex="doctorNums" key="doctorNums" />
+            <Column
+              title="博士生"
+              dataIndex="checkDoctorNums"
+              key="checkDoctorNums"
+            />
             <Column
               title="硕士生"
-              dataIndex="postgraduateNums"
-              key="postgraduateNums"
+              dataIndex="checkPostgraduateNums"
+              key="checkPostgraduateNums"
             />
           </ColumnGroup>
           <ColumnGroup title="第一次分配指标">
-            <Column title="博士生" dataIndex="doctorNums" key="doctorNums" />
+            <Column
+              title="博士生"
+              dataIndex="FirstDoctorNums"
+              key="FirstDoctorNums"
+            />
             <Column
               title="硕士生"
-              dataIndex="postgraduateNums"
-              key="postgraduateNums"
+              dataIndex="FirstPostgraduateNums"
+              key="FirstPostgraduateNums"
             />
           </ColumnGroup>
           <Column title="备注" dataIndex="age" key="age" />
           <ColumnGroup title="第二次分配指标">
-            <Column title="博士生" dataIndex="doctorNums" key="doctorNums" />
+            <Column
+              title="博士生"
+              dataIndex="secondDoctorNums"
+              key="secondDoctorNums"
+            />
             <Column
               title="硕士生"
-              dataIndex="postgraduateNums"
-              key="postgraduateNums"
+              dataIndex="secondPostgraduateNums"
+              key="secondPostgraduateNums"
             />
           </ColumnGroup>
           <Column title="备注" dataIndex="description" key="description" />
-          <Column title="高校审批" dataIndex="status" key="status" />
+          <Column title="高校审批" dataIndex="state" key="state" />
         </Table>
       </Card>
       <Card title="学生管理">
         <Table
-          dataSource={teacherData}
+          dataSource={studentData}
           size="small"
           rowSelection={{ type: 'checkbox', ...rowSelection }}
         >
-          <Column title="" dataIndex="id" key="id" />
-          <Column title="序号" dataIndex="index" key="index" />
+          <Column title="" dataIndex="index" key="index" />
+          <Column title="序号" dataIndex="id" key="id" />
           <Column title="学生姓名" dataIndex="name" key="name" />
           <Column title="联系电话" dataIndex="tel" key="tel" />
-          <Column title="所属高校" dataIndex="school" key="school" />
+          <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
           <Column
             title="高校导师"
             dataIndex="schoolTeacher"
@@ -164,13 +239,13 @@ const Detail = () => {
           />
           <Column title="学届" dataIndex="grade" key="grade" />
           <Column title="学位" dataIndex="eduBackground" key="eduBackground" />
-          <Column title="参与项目" dataIndex="project" key="project" />
+          <Column title="参与项目" dataIndex="projectName" key="projectName" />
           <Column
             title="企业导师"
             dataIndex="enterpriseTeacher"
             key="enterpriseTeacher"
           />
-          <Column title="学生状态" dataIndex="status" key="status" />
+          <Column title="学生状态" dataIndex="state" key="state" />
         </Table>
       </Card>
     </>

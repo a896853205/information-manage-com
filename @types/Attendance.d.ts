@@ -26,4 +26,37 @@ namespace PT {
     endTime: Date;
     state: string;
   };
+  /**
+   * 学生
+   */
+  type Student = {
+    id: string;
+    name: string;
+    schoolName: string;
+    grade: string;
+    schoolTeacher: string;
+    eduBackground: string;
+    projectName: string;
+    enterpriseTeacher: string;
+    state: string;
+  };
+  /**
+   * 高校导师
+   */
+  type Teacher = {
+    id: string;
+    name: string;
+    schoolName: string;
+    tel: string;
+    applyDoctorNums: number;
+    applyPostgraduateNums: number;
+    checkDoctorNums: number;
+    checkPostgraduateNums: number;
+    FirstDoctorNums: number;
+    FirstPostgraduateNums: number;
+    secondDoctorNums: number;
+    secondPostgraduateNums: number;
+    description: string;
+    state: string;
+  };
 }
