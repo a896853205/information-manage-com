@@ -1,8 +1,9 @@
-import React from 'react';
-
 import { Spin } from 'antd';
-export default () => (
+
+const PageLoading = () => (
   <div className="page-loading-box">
     <Spin size="large" />
   </div>
 );
+
+export default PageLoading;

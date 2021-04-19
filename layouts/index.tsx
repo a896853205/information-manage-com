@@ -1,10 +1,13 @@
-import React from 'react';
+// FIXME: 这块需要打上home的layout的标签,这样好与login的layout区别
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
 import AntdRouterMenu from 'layouts/Antd-router-menu';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
+import PageLoading from 'components/page-loading';
 import UserHeader from 'layouts/user-header';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -43,6 +46,19 @@ export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
 
 const Home = (props: any) => {
   const { children } = props;
+
+  const [isLoading, setLoadingState] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => {
+      setLoadingState(true);
+    });
+    router.events.on('routeChangeComplete', () => {
+      setLoadingState(false);
+    });
+  }, []);
+
   return (
     <MenuContext.Provider value={MENU_DATA}>
       <Layout>
@@ -70,7 +86,9 @@ const Home = (props: any) => {
             <AntdRouterMenu menuData={MENU_DATA} />
           </Sider>
           <div className="home-content-box">
-            <Content className="home-content">{children}</Content>
+            <Content className="home-content">
+              {isLoading ? <PageLoading /> : children}
+            </Content>
             <Footer>code@Eric design@Luna</Footer>
           </div>
         </Layout>
@@ -78,4 +96,5 @@ const Home = (props: any) => {
     </MenuContext.Provider>
   );
 };
+
 export default Home;
