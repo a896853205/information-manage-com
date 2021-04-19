@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import Show from 'inner-page/weekly/show';
 import Mock from 'mockjs';
 
+import Show from 'inner-page/weekly/show';
+import Config from 'inner-page/weekly/config';
+
 const Compose = () => {
-  // FIXME: 本项目的表头不是变量, 不用useState, 应该直接在Show组件中写成常量的形式
   const [data, setData] = useState<PT.Weekly[]>([]); // data 页面当前显示数据
-  // FIXME: 这个变量就需要放在Show组件里边
+
   useEffect(() => {
     const { weeklyData } = Mock.mock({
       'weeklyData|10': [
@@ -28,12 +29,13 @@ const Compose = () => {
     });
 
     // 初始化数据属性
-    // FIXME: 本项目的表头不是变量, 不用useState, 应该直接在Show组件中写成常量的形式
     setData(weeklyData);
   }, []);
+
   return (
     <>
       {/* <BreadcrumbList /> */}
+      <Config />
       <Show data={data} />
     </>
   );

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Button,
   DatePicker,
@@ -9,14 +11,13 @@ import {
   Space,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import React from 'react';
 
 interface IncreaseProps {
   showModel: boolean;
   setFalse: () => void;
 }
-const Increase = (props: IncreaseProps) => {
-  const { showModel, setFalse } = props;
+
+const Increase = ({ showModel, setFalse }: IncreaseProps) => {
   return (
     <Modal
       title="查看周志"
@@ -37,18 +38,16 @@ const Increase = (props: IncreaseProps) => {
         layout="horizontal"
       >
         <Form.Item name="name" label="姓名">
-          {/* 这里为了不让其调用表单的onFinish和onChange所以单独隔离出来 */}
-          <div>
-            <Input value={'jhx'} />
-          </div>
+          <Input value="jhx" disabled />
         </Form.Item>
         <Form.Item name="projectName" label="项目名称">
-          <div>
-            <Input value="退役锂电材料短程循环与过程污染控制技术与评价方法研究" />
-          </div>
+          <Input
+            value="退役锂电材料短程循环与过程污染控制技术与评价方法研究"
+            disabled
+          />
         </Form.Item>
         <Form.Item name="date" label="项目年份">
-          <DatePicker picker={'month'} disabled={false} />
+          <DatePicker picker="month" />
         </Form.Item>
         <Form.Item label="第一周">
           <Space>
@@ -82,15 +81,7 @@ const Increase = (props: IncreaseProps) => {
             </Button>
           </Space>
         </Form.Item>
-        <div
-          style={{
-            // FIXME： 使用Space， 代替marginLeft。
-            fontSize: 'large',
-          }}
-        >
-          填写评论
-        </div>
-        <Divider />
+        <Divider orientation="left">填写评论</Divider>
         <Form.Item name="advice">
           <Radio.Group defaultValue={2}>
             <Radio value={1}>优秀</Radio>
@@ -101,8 +92,6 @@ const Increase = (props: IncreaseProps) => {
         <Form.Item label="周志评测" name="textAdvice">
           <TextArea rows={1} cols={8} />
         </Form.Item>
-        {/* FIXME: Modal自带footer, 不用自己写 */}
-        <Form.Item />
       </Form>
     </Modal>
   );
