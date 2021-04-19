@@ -1,135 +1,90 @@
 /**
  * 具体的项目信息弹窗
  */
-import { Form, Input, Select, DatePicker, Radio, Card } from 'antd';
+import { Key } from 'react';
+import { Button, Table, Space, Modal } from 'antd';
+import { useBoolean } from 'ahooks';
+import Mock from 'mockjs';
 
-const selectOptions = {
-  enterprise: ['enterprise1', 'enterprise2', 'enterprise3'],
-  majors: ['应用统计', '税务', '国际商务', '电气工程', '计算机技术'],
-  teachers: ['t1', 't2'],
-};
+import Detail from 'inner-page/project/detail';
+
+const { Column } = Table;
+
+const { data }: { data: PT.Project[] } = Mock.mock({
+  'data|10': [
+    {
+      'key|+1': 1,
+      'id|+1': 1,
+      'name|+1': [
+        '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
+        '电动汽车全生命周期分析与环境评价',
+        '停车相关管理系统及平台',
+        '大型复杂结构施工监控关键技术研究',
+      ],
+      'enterprise|+1': [
+        '广东邦普循环科技有限公司',
+        '广东艾科智泊科技股份有限公司',
+        '佛山市顺德区高新技术企业协会	',
+        '广东施泰宝医疗科技有限公司',
+      ],
+      'invest|10-100': 1,
+      'needStudent|1-20': 1,
+      createTime: '@date("yyyy")',
+      startTime: '@date("yyyy-MM-dd")',
+      endTime: '@date("yyyy-MM-dd")',
+      state: '指标招生',
+    },
+  ],
+});
 const Show = () => {
+  const [isShow, { setTrue, setFalse }] = useBoolean(false);
+  const rowSelection = {
+    onchange: (selectedRowKeys: Key[]) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`);
+    },
+  };
   return (
-    // TODO:这里需要确定项目的具体属性
     <>
-      <Card title="项目信息">
-        <Form
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 20 }}
-          layout="horizontal"
-          title="项目信息"
-          aria-disabled="false"
-        >
-          <Form.Item label="项目名称" required>
-            <Input placeholder="请输入项目名称" />
-          </Form.Item>
-          <Form.Item label="项目所属">
-            <Select>
-              {selectOptions.enterprise.map((items: any) => {
-                return (
-                  <Select.Option value={items} key={items}>
-                    {items}
-                  </Select.Option>
-                );
-              })}
-            </Select>
-          </Form.Item>
-          <Form.Item label="项目年份">
-            <Select>
-              <Select.Option value="2018">2018</Select.Option>
-              <Select.Option value="2019">2019</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="开始时间">
-            <DatePicker />
-          </Form.Item>
-          <Form.Item label="结束时间">
-            <DatePicker />
-          </Form.Item>
-          <Form.Item label="硕士生" required>
-            <Input placeholder="硕士生个数" />
-          </Form.Item>
-          <Form.Item label="博士生" required>
-            <Input placeholder="博士生个数" />
-          </Form.Item>
-          <Form.Item label="需求专业">
-            <Select>
-              <Select.Option value="2018">2018</Select.Option>
-              <Select.Option value="2019">2019</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="项目投资" required>
-            <Input placeholder="项目投资" />
-          </Form.Item>
-          <Form.Item label="是否公开">
-            <Radio.Group>
-              <Radio value="public">是</Radio>
-              <Radio value="private">否</Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item label="项目简介">
-            <Input.TextArea placeholder="项目简介" />
-          </Form.Item>
-        </Form>
-      </Card>
-      <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
-        layout="horizontal"
-        title="项目信息"
-        aria-disabled="false"
+      <Table
+        dataSource={data}
+        size="small"
+        rowSelection={{ type: 'checkbox', ...rowSelection }}
       >
-        <Form.Item label="项目名称" required>
-          <Input placeholder="请输入项目名称" />
-        </Form.Item>
-        <Form.Item label="项目所属">
-          <Select>
-            {selectOptions.enterprise.map((items: any) => {
-              return (
-                <Select.Option value={items} key={items}>
-                  {items}
-                </Select.Option>
-              );
-            })}
-          </Select>
-        </Form.Item>
-        <Form.Item label="项目年份">
-          <Select>
-            <Select.Option value="2018">2018</Select.Option>
-            <Select.Option value="2019">2019</Select.Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="开始时间">
-          <DatePicker />
-        </Form.Item>
-        <Form.Item label="结束时间">
-          <DatePicker />
-        </Form.Item>
-        <Form.Item label="硕士生" required>
-          <Input placeholder="硕士生个数" />
-        </Form.Item>
-        <Form.Item label="博士生" required>
-          <Input placeholder="博士生个数" />
-        </Form.Item>
-        <Form.Item label="需求专业">
-          <Select>
-            <Select.Option value="2018">2018</Select.Option>
-            <Select.Option value="2019">2019</Select.Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="项目投资" required>
-          <Input placeholder="项目投资" />
-        </Form.Item>
-        <Form.Item label="是否公开">
-          <Radio.Group>
-            <Radio value="public">是</Radio>
-            <Radio value="private">否</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item label="项目简介">
-          <Input.TextArea placeholder="项目简介" />
-        </Form.Item>
-      </Form>
+        <Column title="序号" dataIndex="id" key="id" />
+        <Column title="项目名称" dataIndex="name" key="name" />
+        <Column title="所属示范点" dataIndex="enterprise" key="enterprise" />
+        <Column title="投资金额（万元）" dataIndex="invest" key="invest" />
+        <Column title="需求学生" dataIndex="needStudent" key="needStudent" />
+        <Column title="项目年份" dataIndex="createTime" key="createTime" />
+        <Column title="开始时间" dataIndex="startTime" key="startTime" />
+        <Column title="结束时间" dataIndex="endTime" key="endTime" />
+        <Column title="项目状态" dataIndex="state" key="state" />
+        <Column
+          title="操作"
+          dataIndex="operation"
+          key="operation"
+          render={() => (
+            <Space size="middle">
+              <Button type="primary" onClick={setTrue}>
+                查看
+              </Button>
+            </Space>
+          )}
+        />
+      </Table>
+      <Modal
+        title="项目查看"
+        visible={isShow}
+        onCancel={setFalse}
+        width="300dp"
+        footer={
+          <Button key="back" onClick={setFalse}>
+            返回
+          </Button>
+        }
+      >
+        <Detail />
+      </Modal>
     </>
   );
 };
