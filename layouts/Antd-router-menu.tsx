@@ -16,7 +16,7 @@ const AntdRouterMenu = memo(
     const { menuData } = props;
 
     return (
-      <Menu theme="light" mode="inline">
+      <Menu theme="dark" mode="inline">
         {menuData.map(menuDataItem => {
           if (menuDataItem instanceof MenuItem) {
             return (

@@ -11,13 +11,13 @@ const UserHeader = () => {
           style={{ backgroundColor: '#87d068' }}
           icon={<UserOutlined />}
         />
-        <Button type="text" style={{ color: 'white', fontSize: '14px' }}>
+        <Button type="text" style={{ fontSize: '14px' }}>
           admin
         </Button>
         <Button
           type="text"
           icon={<LogoutOutlined />}
-          style={{ color: 'white', fontSize: '14px' }}
+          style={{ fontSize: '14px' }}
         >
           退出登录
         </Button>
