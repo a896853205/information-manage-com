@@ -36,6 +36,7 @@ const Increase = () => {
     <>
       {/*数据展示及操作模板*/}
       {/*左侧删除按钮及提示框*/}
+
       <Popconfirm
         title="一经删除将无法恢复数据,请确认是否进行删除"
         onConfirm={() => {}}
@@ -50,14 +51,13 @@ const Increase = () => {
       </Popconfirm>
       {/*右侧搜索栏目前只实现了搜索属性name也就是项目名称*/}
       <div style={{ float: 'right' }}>
-        <Search
-          placeholder="搜索"
-          style={{ width: '200px', marginRight: '0.2vw' }}
-        />
-        <DatePicker picker={'month'} />
-        <Popover placement="bottomRight" content={menu} trigger="click">
-          <Button icon={<UnorderedListOutlined />} />
-        </Popover>
+        <Space>
+          <Search placeholder="搜索" style={{ width: '200px' }} />
+          <DatePicker picker={'month'} />
+          <Popover placement="bottomRight" content={menu} trigger="click">
+            <Button icon={<UnorderedListOutlined />} />
+          </Popover>
+        </Space>
       </div>
     </>
   );
