@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
-import { ApiOutlined, CalculatorFilled, HomeOutlined } from '@ant-design/icons';
+import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
 import AntdRouterMenu from 'layouts/Antd-router-menu';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
