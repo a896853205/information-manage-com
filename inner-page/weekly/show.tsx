@@ -1,27 +1,21 @@
-import { Key, useState } from 'react';
+import { useState } from 'react';
 import {
   Button,
   DatePicker,
   Modal,
-  Popconfirm,
-  Popover,
+  Radio,
   Space,
   Table,
-  Checkbox,
+  Divider,
+  Form,
+  Input,
 } from 'antd';
-import {
-  MinusOutlined,
-  UnorderedListOutlined,
-  WarningOutlined,
-} from '@ant-design/icons';
-import 'moment/locale/zh-cn';
-import Search from 'antd/lib/input/Search';
+import TextArea from 'antd/lib/input/TextArea';
+import 'moment/locale/zh-cn'; // FIXME: 没有用到可以删除
 import Mock from 'mockjs';
-import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-
-import Content from 'inner-page/weekly/content';
 
 interface dataInterface {
+  // FIXME: 数据类型说明这一块可以单独摘出去，建一个文件比如说叫types.d.ts。方便以后属性的管理。
   key: number;
   index: number;
   name: string;
@@ -32,6 +26,7 @@ interface dataInterface {
   state: string;
 }
 const { weeklyData } = Mock.mock({
+  // FIXME: 周志管理对照文档把具体的属性再改一下
   'weeklyData|10': [
     {
       'key|+1': 1,
@@ -42,17 +37,24 @@ const { weeklyData } = Mock.mock({
         '停车相关管理系统及平台',
         '大型复杂结构施工监控关键技术研究',
       ],
-      studentName: 'jhx',
+      studentName: 'jhx', // FIXME: 这名字别都一样吧...
       date: '@date("yyyy/MM")',
-      status: 'false',
-      advice: 'with out advice',
-      state: '指标招生',
+      status: 'false', // FIXME: 完成情况：已完成/未完成
+      advice: 'with out advice', // FIXME: 已评价/未评价
     },
   ],
 });
 
+// FIXME: 目前整个增删改查的逻辑不用写, 因为后期链接后端后, 都是后端分页, 增加或删除都会导致当前分页直接重新请求, 而不是操作前端的数据. 有表单和表格的样式就好
 const Show = () => {
-  //初始化行属性
+  // FIXME: useState的位置必须是函数组件最顶层
+  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
+  // 设置对话框是否显示
+  const setFalse = () => {
+    setShowModel(false);
+  };
+
+  // 初始化行属性
   const columnsData = [
     {
       title: '序号',
@@ -88,12 +90,13 @@ const Show = () => {
       title: '操作',
       key: 'action',
       render: (_text: object, _record: dataInterface, _index: number) => {
+        // FIXME:  没有用到的属性可以删除
         return (
           <Space>
             <Button
               type={'primary'}
               onClick={() => {
-                setSelectIndex(_record.index), setShowModel(true);
+                setShowModel(true);
               }}
             >
               查看
@@ -103,126 +106,16 @@ const Show = () => {
       },
     },
   ];
-  const [data, setData] = useState(weeklyData); // data 页面当前显示数据
-  const [dataAll, setdataAll] = useState(weeklyData); // dataAll 从后台获取的所有数据
-  const [columns, setColumns] = useState(columnsData); // columns 当前显示表格的行属性
-  const [defaultColumns] = useState(columnsData); //
-  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // selectedRowKeys 代表当前选择中的列
-  const [showModel, setShowModel] = useState(false); // showModel 是否显示详情的对话框
-  const [selectIndex, setSelectIndex] = useState<number>(0); // selectIndex 帮助获取详情对话框的具体参数
-
-  // 删除选中项
-  const deleteWeekly = () => {
-    let remainData = dataAll;
-    console.log(selectedRowKeys);
-    for (let x of selectedRowKeys) {
-      remainData = remainData.filter(
-        (_item: unknown, index: string | number) => {
-          return remainData[index].key != x;
-        }
-      );
-    }
-    setdataAll(remainData), setData(remainData);
-  };
-
-  // 设置对话框是否显示
-  const setFalse = () => {
-    setShowModel(false);
-  };
-
-  const checkedChange = (selectedList: CheckboxValueType[]) => {
-    let col = defaultColumns.filter(i => {
-      return selectedList.some((j: CheckboxValueType) => i.key == j);
-    });
-    setColumns(col);
-  };
-
-  // 下拉框中多选框：用于选择表单显示项
-  const menu = (
-    <Checkbox.Group
-      defaultValue={[
-        'key',
-        'name',
-        'studentName',
-        'status',
-        'advice',
-        'date',
-        'action',
-      ]}
-      onChange={checkedChange}
-    >
-      <Space direction="vertical">
-        <Checkbox value="key">序号</Checkbox>
-        <Checkbox value="studentName">学生名称</Checkbox>
-        <Checkbox value="name">项目名称</Checkbox>
-        <Checkbox value="date">日期</Checkbox>
-        <Checkbox value="status">完成情况</Checkbox>
-        <Checkbox value="advice">评价</Checkbox>
-        <Checkbox value="action">操作</Checkbox>
-      </Space>
-    </Checkbox.Group>
-  );
-  const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[]) => {
-      // 选中列改变时调用
-      setSelectedRowKeys(selectedRowKeys);
-    },
-  };
   return (
-    <div>
-      {/*数据展示及操作模板*/}
-      <div style={{ marginBottom: '1vh' }}>
-        {/*左侧删除按钮及提示框*/}
-        <Popconfirm
-          title="一经删除将无法恢复数据,请确认是否进行删除"
-          onConfirm={deleteWeekly}
-          okText="确定删除"
-          cancelText="取消"
-          icon={<WarningOutlined style={{ color: 'red' }} />}
-        >
-          <Button type="primary" danger={true}>
-            <MinusOutlined />
-            删除
-          </Button>
-        </Popconfirm>
-        <div style={{ float: 'right' }}>
-          {/*右侧搜索栏目前只实现了搜索属性name也就是项目名称*/}
-          <Search
-            placeholder="搜索"
-            style={{ width: '200px', marginRight: '0.2vw' }}
-          />
-          <DatePicker picker={'month'} />
-          <div
-            style={{
-              display: 'inline-block',
-              marginLeft: '0.2vw',
-              marginRight: '1vw',
-            }}
-          >
-            <Popover
-              style={{
-                marginLeft: '1vh',
-                marginRight: '1vw',
-              }}
-              placement="bottomRight"
-              content={menu}
-              trigger="click"
-            >
-              <Button icon={<UnorderedListOutlined />} />
-            </Popover>
-          </div>
-        </div>
-      </div>
+    <>
       {/*数据显示信息*/}
-      <div style={{ width: '81vw' }}>
-        <Table
-          rowSelection={{ type: 'checkbox', ...rowSelection }}
-          columns={columns}
-          dataSource={data}
-          pagination={{ pageSize: 15 }}
-          scroll={{ y: '52vh' }}
-        />
-      </div>
+      <Table
+        rowSelection={{ type: 'checkbox' }}
+        columns={columnsData}
+        dataSource={weeklyData}
+        pagination={{ pageSize: 15 }}
+        scroll={{ y: '52vh' }}
+      />
       {/*查看周志模板*/}
       <Modal
         title="查看周志"
@@ -234,14 +127,128 @@ const Show = () => {
       >
         {/*详情页面的表单结构*/}
         <>
-          {data[selectIndex] ? (
-            <Content data={data} selectIndex={selectIndex} />
-          ) : (
-            <div style={{ color: 'red' }}>空数据异常请添加数据后重试</div>
-          )}
+          <Form
+            labelCol={{ span: 2 }}
+            wrapperCol={{ span: 25 }}
+            layout="horizontal"
+          >
+            <Form.Item name="studentName" label="姓名">
+              <div>
+                <Input value={'jhx'} disabled={true} />
+              </div>
+            </Form.Item>
+            <Form.Item name="name" label="项目名称">
+              <div>
+                <Input
+                  value="退役锂电材料短程循环与过程污染控制技术与评价方法研究"
+                  disabled={true}
+                />
+              </div>
+            </Form.Item>
+            <Form.Item name="date" label="项目年份">
+              <DatePicker picker={'month'} disabled={true} />
+            </Form.Item>
+            <Form.Item label="第一周">
+              <div style={{ width: 500, display: 'inline-block' }}>
+                <Input
+                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
+                  value="社会实践报告.docx"
+                  aria-disabled={false} // FIXME:删除
+                />
+              </div>
+              <Button
+                style={{
+                  marginLeft: '1vh',
+                }}
+                type="primary"
+                danger={true}
+              >
+                下载
+              </Button>
+            </Form.Item>
+            <Form.Item label="第二周">
+              <div style={{ width: 500, display: 'inline-block' }}>
+                <Input
+                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
+                  value="社会实践报告.docx"
+                  aria-disabled={false} // FIXME:删除
+                />
+              </div>
+              <Button
+                style={{
+                  marginLeft: '1vh',
+                }}
+                type="primary"
+                danger={true}
+              >
+                下载
+              </Button>
+            </Form.Item>
+            <Form.Item label="第三周">
+              <div style={{ width: 500, display: 'inline-block' }}>
+                <Input
+                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
+                  value="社会实践报告.docx"
+                  aria-disabled={false} // FIXME: 删除
+                />
+              </div>
+              <Button
+                style={{
+                  marginLeft: '1vh',
+                }}
+                type="primary"
+                danger={true}
+              >
+                下载
+              </Button>
+            </Form.Item>
+            <Form.Item label="第四周">
+              <div style={{ width: 500, display: 'inline-block' }}>
+                <Input
+                  disabled={false} // FIXME: 如果想表示这个input不可操作，disable的属性值应该是true不是false。
+                  value="社会实践报告.docx"
+                  aria-disabled={false} // FIXME:删除
+                />
+              </div>
+              <Button
+                style={{
+                  marginLeft: '1vh',
+                }}
+                type="primary"
+                danger={true}
+              >
+                下载
+              </Button>
+            </Form.Item>
+            <div
+              style={{
+                fontSize: 'large',
+                marginLeft: '2vh',
+              }}
+            >
+              填写评论
+            </div>
+            <Divider />
+            <Form.Item name="advice">
+              <Radio.Group defaultValue={2}>
+                <Radio value={1}>优秀</Radio>
+                <Radio value={2}>合格</Radio>
+                <Radio value={3}>不合格</Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="周志评测" name="textAdvice">
+              <TextArea rows={1} cols={8} />
+            </Form.Item>
+            <Form.Item style={{ float: 'right' }}>
+              <Button type="primary" htmlType="submit">
+                提交
+              </Button>
+            </Form.Item>
+            <Form.Item />
+          </Form>
         </>
       </Modal>
-    </div>
+    </>
   );
 };
 
