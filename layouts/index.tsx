@@ -35,7 +35,7 @@ const MENU_DATA = [
   ),
   new MenuItemGroup(
     '信息审批管理',
-    [new MenuItem('/attendance', '用户账号审核')],
+    [new MenuItem('/user-check', '用户账号审核')],
     <ApiOutlined />
   ),
 ];
