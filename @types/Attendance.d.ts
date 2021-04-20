@@ -1,7 +1,7 @@
 /**
  * 研究生培养命名空间
  */
-export namespace PT {
+namespace PT {
   /**
    * 研究生考勤类型
    */

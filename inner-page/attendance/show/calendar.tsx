@@ -1,6 +1,5 @@
 import { Row, Col, Card } from 'antd';
 import React from 'react';
-import { PT } from '../../../@types/Attendance';
 
 interface Calendar {
   attendance: PT.Attendance | undefined;

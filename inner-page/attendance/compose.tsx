@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { PT } from '../../@types/Attendance';
 import Mock from 'mockjs';
 import Increase from 'inner-page/attendance/increase';
 import Show from './show/show';
