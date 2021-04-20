@@ -3,145 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
-import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
 import AntdRouterMenu from 'layouts/Antd-router-menu';
-import { MenuItem, MenuItemGroup } from 'layouts/Menu';
 import PageLoading from 'components/page-loading';
 import UserHeader from 'layouts/user-header';
+import useRoleMenu from 'layouts/hooks';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-/**
- * 根据不同的用户权限，配置导航栏链接和文字
- */
-const MENU_DATA = [
-  new MenuItem('/login', '首页', <HomeOutlined />),
-  new MenuItemGroup(
-    '项目对接管理',
-    [
-      new MenuItem('/project', '项目信息管理'),
-      new MenuItem('/apply_check', '指标审核管理'),
-    ],
-    <ApiOutlined />
-  ),
-  new MenuItemGroup(
-    '教务信息管理',
-    [
-      new MenuItem('/attendance', '考勤管理'),
-      new MenuItem('/weekly', '周志管理'),
-    ],
-    <ApiOutlined />
-  ),
-  new MenuItemGroup(
-    '信息审批管理',
-    [new MenuItem('/attendance', '用户账号审核')],
-    <ApiOutlined />
-  ),
-];
-
-/* export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
-  munuData
-); */
-
-/**
- * 获取role，生成对应的Menu_data
- * @param props
- * @returns
- */
-
 const Home = (props: any) => {
-  const { children } = props;
-
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
-  const role = localStorage.getItem('ROLE');
-  let munuData: (MenuItem | MenuItemGroup)[] = [
-    new MenuItem('/login', '首页', <HomeOutlined />),
-  ];
-  switch (Number(role)) {
-    case 0: {
-      munuData = [
-        new MenuItem('/login', '首页', <HomeOutlined />),
-        new MenuItemGroup(
-          '项目对接管理',
-          [
-            new MenuItem('/project', '项目信息管理'),
-            new MenuItem('/apply_check', '指标审核管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '教务信息管理',
-          [
-            new MenuItem('/attendance', '考勤管理'),
-            new MenuItem('/weekly', '周志管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '信息审批管理',
-          [new MenuItem('/attendance', '用户账号审核')],
-          <ApiOutlined />
-        ),
-      ];
-      break;
-    }
-    case 1: {
-      munuData = [
-        new MenuItem('/login', '首页', <HomeOutlined />),
-        new MenuItemGroup(
-          '项目对接管理',
-          [
-            new MenuItem('/project', '项目信息管理'),
-            new MenuItem('/apply_check', '指标审核管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '教务信息管理',
-          [
-            new MenuItem('/attendance', '考勤管理'),
-            new MenuItem('/weekly', '周志管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '信息审批管理',
-          [new MenuItem('/attendance', '用户账号审核')],
-          <ApiOutlined />
-        ),
-      ];
-      break;
-    }
-    case 2: {
-      munuData = [
-        new MenuItem('/login', '首页', <HomeOutlined />),
-        new MenuItemGroup(
-          '项目对接管理',
-          [
-            new MenuItem('/project', '项目信息管理'),
-            new MenuItem('/apply_check', '指标审核管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '教务信息管理',
-          [
-            new MenuItem('/attendance', '考勤管理'),
-            new MenuItem('/weekly', '周志管理'),
-          ],
-          <ApiOutlined />
-        ),
-        new MenuItemGroup(
-          '信息审批管理',
-          [new MenuItem('/attendance', '用户账号审核')],
-          <ApiOutlined />
-        ),
-      ];
-      break;
-    }
-  }
+  const { menuData, role } = useRoleMenu();
+  console.log('role', role);
+  const { children } = props;
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
@@ -168,7 +43,7 @@ const Home = (props: any) => {
           <div>Scientific Research</div>
           <div>Management</div>
         </div>
-        <AntdRouterMenu menuData={munuData} />
+        <AntdRouterMenu menuData={menuData} role={role} />
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
         <div className="home-content-box">
