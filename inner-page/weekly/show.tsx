@@ -43,6 +43,11 @@ const Show = ({ data, rowSelection }: ShowProps) => {
       title: '评价',
       key: 'level',
       dataIndex: 'level',
+      render: (_text, _render) => (
+        <div>
+          {_render.level == 1 ? '优秀' : _render.level == 2 ? '合格' : '不合格'}
+        </div>
+      ),
     },
     {
       title: '操作',

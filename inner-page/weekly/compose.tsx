@@ -25,10 +25,10 @@ const Compose = () => {
             '停车相关管理系统及平台',
             '大型复杂结构施工监控关键技术研究',
           ],
-          'name|+1': ['jhx', 'jwy', 'lwm', 'ycc'],
-          date: '@date()',
-          status: '已完成',
-          'level|+1': ['优秀', '合格', '不合格'],
+          'name|+1': '@cname()',
+          'date|+1': '@datetime()',
+          'status|+1': ['已完成', '未完成'],
+          'level|+1': '@natural(1,3)',
         },
       ],
     });
@@ -36,7 +36,6 @@ const Compose = () => {
     // 初始化数据属性
     setData(weeklyData);
   }, []);
-
   return (
     <>
       {/* <BreadcrumbList /> */}

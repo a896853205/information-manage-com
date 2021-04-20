@@ -16,17 +16,8 @@ interface IncreaseProps {
 
 const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
   let data = selectData;
-  let level = 3;
   if (!data) {
     return <></>;
-  }
-  switch (data.level) {
-    case '优秀':
-      level = 1;
-      break;
-    case '合格':
-      level = 2;
-      break;
   }
   return (
     <Modal
@@ -40,7 +31,6 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           提交
         </Button>
       }
-      style={{ top: 10 }}
       width={1000}
     >
       {/*详情页面的表单结构*/}
@@ -59,7 +49,8 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             disabled
           />
         </Form.Item>
-        <Form.Item name="datea" label="项目年份">
+        {/*这里先修改name不让表单自动注入,等后续更改完Date再做尝试*/}
+        <Form.Item name="dates" label="项目年份">
           <DatePicker
             defaultValue={dayjs(data.date).toDate()}
             disabled
@@ -99,8 +90,8 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           </Space>
         </Form.Item>
         <Divider orientation="left">填写评论</Divider>
-        <Form.Item name="advice">
-          <Radio.Group defaultValue={level}>
+        <Form.Item name="level">
+          <Radio.Group>
             <Radio value={1}>优秀</Radio>
             <Radio value={2}>合格</Radio>
             <Radio value={3}>不合格</Radio>

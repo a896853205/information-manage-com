@@ -7,6 +7,6 @@ namespace PT {
     name: string;
     date: string;
     status: string;
-    level: string;
+    level: number;
   };
 }
