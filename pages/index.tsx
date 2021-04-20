@@ -15,7 +15,7 @@ const Login = () => {
         <Button
           type="primary"
           onClick={() => {
-            handleClick(0);
+            handleClick(1);
           }}
         >
           高校管理员
@@ -23,7 +23,7 @@ const Login = () => {
         <Button
           type="primary"
           onClick={() => {
-            handleClick(1);
+            handleClick(2);
           }}
         >
           高校导师
@@ -31,7 +31,7 @@ const Login = () => {
         <Button
           type="primary"
           onClick={() => {
-            handleClick(2);
+            handleClick(3);
           }}
         >
           企业管理员

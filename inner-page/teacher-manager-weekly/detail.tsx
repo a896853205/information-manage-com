@@ -83,9 +83,11 @@ const Increase = ({ showModel, setFalse }: IncreaseProps) => {
         </Form.Item>
         <Divider orientation="left">填写评论</Divider>
         <Form.Item name="advice">
-          <Radio.Group defaultValue={2}>
+          <Radio.Group>
             <Radio value={1}>优秀</Radio>
-            <Radio value={2}>合格</Radio>
+            <Radio value={2} defaultChecked={true}>
+              合格
+            </Radio>
             <Radio value={3}>不合格</Radio>
           </Radio.Group>
         </Form.Item>

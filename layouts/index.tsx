@@ -1,4 +1,6 @@
-// FIXME: 这块需要打上home的layout的标签,这样好与login的layout区别
+/**
+ * layout-home
+ */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,12 +13,14 @@ import useRoleMenu from 'layouts/hooks';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const Home = (props: any) => {
+interface HomeProps {
+  children: JSX.Element;
+}
+const Home: React.FC<HomeProps> = ({ children }) => {
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
   const { menuData, role } = useRoleMenu();
-  console.log('role', role);
-  const { children } = props;
+  console.log('HOME Layout role', role);
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {

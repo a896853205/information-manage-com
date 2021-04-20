@@ -1,69 +1,68 @@
-import React from 'react';
+/**
+ * 具体的项目信息弹窗
+ */
+import { Key } from 'react';
+import { Button, Table, Space, Modal } from 'antd';
+import { useBoolean } from 'ahooks';
 
-import { Table, Popover, Button } from 'antd';
-import { ColumnsType } from 'antd/es/table';
+import Detail from 'inner-page/teacher-manager-project/detail';
+
+const { Column } = Table;
 
 interface ShowProps {
-  dataSource: PT.Attendance[];
+  projectDataSource: PT.Project[];
 }
-
-const DEFAULT_COLUMNS: ColumnsType<PT.Attendance> = [
-  {
-    title: '序号',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: '学生名称',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '项目名称',
-    dataIndex: 'projectName',
-    key: 'projectName',
-  },
-  {
-    title: '日期',
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: '考勤状况',
-    dataIndex: 'status',
-    key: 'status',
-  },
-  {
-    title: '操作',
-    dataIndex: 'control',
-    key: 'control',
-    render: () => (
-      <Popover
-        placement="bottomRight"
-        content={
-          <Button type="primary" size="small">
-            批准
+const Show: React.FC<ShowProps> = props => {
+  const [isShow, { setTrue, setFalse }] = useBoolean(false);
+  const { projectDataSource } = props;
+  const rowSelection = {
+    onchange: (selectedRowKeys: Key[]) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`);
+    },
+  };
+  return (
+    <>
+      <Table
+        dataSource={projectDataSource}
+        size="small"
+        rowSelection={{ type: 'checkbox', ...rowSelection }}
+      >
+        <Column title="序号" dataIndex="id" key="id" />
+        <Column title="项目名称" dataIndex="name" key="name" />
+        <Column title="所属示范点" dataIndex="enterprise" key="enterprise" />
+        <Column title="投资金额（万元）" dataIndex="invest" key="invest" />
+        <Column title="需求学生" dataIndex="needStudent" key="needStudent" />
+        <Column title="项目年份" dataIndex="createTime" key="createTime" />
+        <Column title="开始时间" dataIndex="startTime" key="startTime" />
+        <Column title="结束时间" dataIndex="endTime" key="endTime" />
+        <Column title="项目状态" dataIndex="state" key="state" />
+        <Column
+          title="操作"
+          dataIndex="operation"
+          key="operation"
+          render={() => (
+            <Space size="middle">
+              <Button type="primary" onClick={setTrue}>
+                查看
+              </Button>
+            </Space>
+          )}
+        />
+      </Table>
+      <Modal
+        title="项目查看"
+        visible={isShow}
+        onCancel={setFalse}
+        width={1000}
+        footer={
+          <Button key="back" onClick={setFalse}>
+            返回
           </Button>
         }
-        trigger="click"
       >
-        <Button>操作</Button>
-      </Popover>
-    ),
-  },
-];
-
-const Show: React.FC<ShowProps> = props => {
-  let { dataSource } = props;
-
-  return (
-    <Table
-      rowSelection={{
-        type: 'checkbox',
-      }}
-      columns={DEFAULT_COLUMNS}
-      dataSource={dataSource}
-    />
+        <Detail />
+      </Modal>
+    </>
   );
 };
 
