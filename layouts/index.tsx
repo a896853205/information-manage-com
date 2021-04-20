@@ -13,10 +13,10 @@ import UserHeader from 'layouts/user-header';
 const { Header, Footer, Sider, Content } = Layout;
 
 /**
- * 配置导航栏链接和文字
+ * 根据不同的用户权限，配置导航栏链接和文字
  */
 const MENU_DATA = [
-  new MenuItem('/', '首页', <HomeOutlined />),
+  new MenuItem('/login', '首页', <HomeOutlined />),
   new MenuItemGroup(
     '项目对接管理',
     [
@@ -41,14 +41,105 @@ const MENU_DATA = [
 ];
 
 export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
-  MENU_DATA
+  munuData
 );
+
+/**
+ * 获取role，生成对应的Menu_data
+ * @param props
+ * @returns
+ */
 
 const Home = (props: any) => {
   const { children } = props;
 
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
+  const role = localStorage.getItem('ROLE');
+  let munuData: (MenuItem | MenuItemGroup)[];
+  switch (Number(role)) {
+    case 0: {
+      munuData = [
+        new MenuItem('/login', '首页', <HomeOutlined />),
+        new MenuItemGroup(
+          '项目对接管理',
+          [
+            new MenuItem('/project', '项目信息管理'),
+            new MenuItem('/apply_check', '指标审核管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '教务信息管理',
+          [
+            new MenuItem('/attendance', '考勤管理'),
+            new MenuItem('/weekly', '周志管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '信息审批管理',
+          [new MenuItem('/attendance', '用户账号审核')],
+          <ApiOutlined />
+        ),
+      ];
+      break;
+    }
+    case 1: {
+      munuData = [
+        new MenuItem('/login', '首页', <HomeOutlined />),
+        new MenuItemGroup(
+          '项目对接管理',
+          [
+            new MenuItem('/project', '项目信息管理'),
+            new MenuItem('/apply_check', '指标审核管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '教务信息管理',
+          [
+            new MenuItem('/attendance', '考勤管理'),
+            new MenuItem('/weekly', '周志管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '信息审批管理',
+          [new MenuItem('/attendance', '用户账号审核')],
+          <ApiOutlined />
+        ),
+      ];
+      break;
+    }
+    case 2: {
+      munuData = [
+        new MenuItem('/login', '首页', <HomeOutlined />),
+        new MenuItemGroup(
+          '项目对接管理',
+          [
+            new MenuItem('/project', '项目信息管理'),
+            new MenuItem('/apply_check', '指标审核管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '教务信息管理',
+          [
+            new MenuItem('/attendance', '考勤管理'),
+            new MenuItem('/weekly', '周志管理'),
+          ],
+          <ApiOutlined />
+        ),
+        new MenuItemGroup(
+          '信息审批管理',
+          [new MenuItem('/attendance', '用户账号审核')],
+          <ApiOutlined />
+        ),
+      ];
+      break;
+    }
+  }
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
@@ -60,7 +151,7 @@ const Home = (props: any) => {
   }, []);
 
   return (
-    <MenuContext.Provider value={MENU_DATA}>
+    <MenuContext.Provider value={munuData}>
       <Layout>
         <Sider
           theme="dark"
