@@ -60,7 +60,6 @@ const Show = ({ data }: ShowProps) => {
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
   const [selectData, setSelectData] = useState<PT.Weekly>(data[0]);
-  console.log(data);
   return (
     <>
       {/*数据显示信息*/}
