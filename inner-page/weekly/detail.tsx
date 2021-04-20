@@ -16,6 +16,7 @@ interface IncreaseProps {
 
 const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
   let data = selectData;
+  // data 做了类似类组件的生命周期的处理所以这里判断一下data是否为空
   if (!data) {
     return <></>;
   }

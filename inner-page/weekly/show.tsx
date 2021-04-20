@@ -66,7 +66,7 @@ const Show = ({ data, rowSelection }: ShowProps) => {
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
-  const [selectData, setSelectData] = useState<PT.Weekly>(data[0]);
+  const [selectData, setSelectData] = useState<PT.Weekly>(data[0]); // 代表点击查看后显示的当前列
 
   return (
     <>

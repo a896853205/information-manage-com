@@ -3,10 +3,10 @@ namespace PT {
   type Weekly = {
     key: number;
     index: number;
-    projectName: string;
-    name: string;
-    date: string;
-    status: string;
-    level: number;
+    projectName: string; // 项目的名字
+    name: string; // 学生的姓名
+    date: string; // date的值是一个YYYY-MM-DD格式的字符串,这里后续应该改为Date
+    status: string; //周志的完成状况(应该指的是周志评价的完成情况,或者周志的完成情况)
+    level: number; // level的值分别为1-3,1代表优秀,2代表及格,3代表不及格
   };
 }
