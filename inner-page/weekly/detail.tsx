@@ -1,16 +1,12 @@
 import React from 'react';
 
-import {
-  Button,
-  DatePicker,
-  Divider,
-  Form,
-  Input,
-  Modal,
-  Radio,
-  Space,
-} from 'antd';
+import { Button, Divider, Form, Input, Modal, Radio, Space } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+import dateFnsGenerateConfig from 'rc-picker/lib/generate/dateFns';
+import generatePicker from 'antd/es/date-picker/generatePicker';
+import dayjs from 'dayjs';
+
+const DatePicker = generatePicker<Date>(dateFnsGenerateConfig);
 
 interface IncreaseProps {
   showModel: boolean;
@@ -21,7 +17,10 @@ interface IncreaseProps {
 const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
   let data = selectData;
   let level = 3;
-  switch (data ? data.level : '') {
+  if (!data) {
+    return <></>;
+  }
+  switch (data.level) {
     case '优秀':
       level = 1;
       break;
@@ -32,7 +31,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
   return (
     <Modal
       centered={true}
-      key={data ? data.key : 0}
+      key={data.key}
       title="查看周志"
       visible={showModel}
       onCancel={setFalse}
@@ -60,8 +59,12 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             disabled
           />
         </Form.Item>
-        <Form.Item name="dates" label="项目年份">
-          <DatePicker disabled picker="month" />
+        <Form.Item name="datea" label="项目年份">
+          <DatePicker
+            defaultValue={dayjs(data.date).toDate()}
+            disabled
+            picker="month"
+          />
         </Form.Item>
         <Form.Item label="第一周">
           <Space>

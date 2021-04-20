@@ -26,7 +26,7 @@ const Compose = () => {
             '大型复杂结构施工监控关键技术研究',
           ],
           'name|+1': ['jhx', 'jwy', 'lwm', 'ycc'],
-          date: '@date("yyyy/MM")',
+          date: '@date()',
           status: '已完成',
           'level|+1': ['优秀', '合格', '不合格'],
         },
