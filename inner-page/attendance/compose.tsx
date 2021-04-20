@@ -11,7 +11,7 @@ const { defaultDataSource }: { defaultDataSource: PT.Attendance[] } = Mock.mock(
       {
         'key|+1': 1,
         'id|+1': 1,
-        name: '@name',
+        'name|+1': ['郑威', '张永泉'],
         'projectName|+1': [
           '退役锂电材料短程循环与过程污染控制技术与评价方法研究',
           '电动汽车全生命周期分析与环境评价',

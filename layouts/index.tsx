@@ -21,7 +21,7 @@ const MENU_DATA = [
     '项目对接管理',
     [
       new MenuItem('/project', '项目信息管理'),
-      new MenuItem('/apply_check', '指标审核管理'),
+      new MenuItem('/apply-check', '指标审核管理'),
     ],
     <ApiOutlined />
   ),
