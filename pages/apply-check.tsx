@@ -1,5 +1,5 @@
 import MyLayout from 'layouts/index';
-import Compose from 'inner-page/project/compose';
+import Compose from 'inner-page/apply-check/compose';
 
 /**
  * 角色：高校管理员
