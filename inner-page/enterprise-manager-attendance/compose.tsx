@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import Mock from 'mockjs';
 
-import Increase from 'inner-page/attendance/increase';
-import Show from 'inner-page/attendance/show';
+import Increase from '@inner-page/teacher-attendance/increase';
+import Show from '@inner-page/teacher-attendance/show';
 
 const { defaultDataSource }: { defaultDataSource: PT.Attendance[] } = Mock.mock(
   {

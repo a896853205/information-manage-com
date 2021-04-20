@@ -1,5 +1,5 @@
 import MyLayout from 'layouts/index';
-import Compose from 'inner-page/weekly/compose';
+import Compose from '@inner-page/teacher-weekly/compose';
 
 /**
  * 教务信息管理->周志管理

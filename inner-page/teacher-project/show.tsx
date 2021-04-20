@@ -5,7 +5,7 @@ import { Key } from 'react';
 import { Button, Table, Space, Modal } from 'antd';
 import { useBoolean } from 'ahooks';
 
-import Detail from 'inner-page/project/detail';
+import Detail from '@inner-page/teacher-project/detail';
 
 const { Column } = Table;
 

@@ -40,9 +40,9 @@ const MENU_DATA = [
   ),
 ];
 
-export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
+/* export const MenuContext = React.createContext<(MenuItem | MenuItemGroup)[]>(
   munuData
-);
+); */
 
 /**
  * 获取role，生成对应的Menu_data
@@ -56,7 +56,9 @@ const Home = (props: any) => {
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
   const role = localStorage.getItem('ROLE');
-  let munuData: (MenuItem | MenuItemGroup)[];
+  let munuData: (MenuItem | MenuItemGroup)[] = [
+    new MenuItem('/login', '首页', <HomeOutlined />),
+  ];
   switch (Number(role)) {
     case 0: {
       munuData = [
@@ -151,55 +153,53 @@ const Home = (props: any) => {
   }, []);
 
   return (
-    <MenuContext.Provider value={munuData}>
-      <Layout>
-        <Sider
-          theme="dark"
-          className="home-sider"
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-          }}
-        >
-          <div className="home-side-head">
-            <div>Scientific Research</div>
-            <div>Management</div>
-          </div>
-          <AntdRouterMenu menuData={MENU_DATA} />
-        </Sider>
-        <Layout style={{ marginLeft: 200 }}>
-          <div className="home-content-box">
-            <Header
+    <Layout>
+      <Sider
+        theme="dark"
+        className="home-sider"
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}
+      >
+        <div className="home-side-head">
+          <div>Scientific Research</div>
+          <div>Management</div>
+        </div>
+        <AntdRouterMenu menuData={munuData} />
+      </Sider>
+      <Layout style={{ marginLeft: 200 }}>
+        <div className="home-content-box">
+          <Header
+            style={{
+              justifyContent: 'space-between',
+              display: 'flex',
+              background: '#fafafa',
+            }}
+          >
+            <h1
               style={{
-                justifyContent: 'space-between',
-                display: 'flex',
-                background: '#fafafa',
+                fontFamily: 'fantasy',
+                fontSize: '30px',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                color: '#000',
+                cursor: 'pointer',
               }}
             >
-              <h1
-                style={{
-                  fontFamily: 'fantasy',
-                  fontSize: '30px',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  color: '#000',
-                  cursor: 'pointer',
-                }}
-              >
-                研究生科研管理
-              </h1>
-              <UserHeader />
-            </Header>
-            <Content className="home-content">
-              {isLoading ? <PageLoading /> : children}
-            </Content>
-            <Footer>code@Eric design@Luna</Footer>
-          </div>
-        </Layout>
+              研究生科研管理
+            </h1>
+            <UserHeader />
+          </Header>
+          <Content className="home-content">
+            {isLoading ? <PageLoading /> : children}
+          </Content>
+          <Footer>code@Eric design@Luna</Footer>
+        </div>
       </Layout>
-    </MenuContext.Provider>
+    </Layout>
   );
 };
 

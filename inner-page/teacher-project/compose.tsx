@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Mock from 'mockjs';
 
-import Show from 'inner-page/project/show';
-import Config from 'inner-page/project/config';
+import Show from '@inner-page/teacher-project/show';
+import Config from '@inner-page/teacher-project/config';
 
 const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
   'dataSource|10': [

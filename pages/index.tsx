@@ -1,5 +1,5 @@
 import MyLayout from 'layouts/index';
-import Compose from 'inner-page/project/compose'; // FIXME:暂时用project内容代替系统首页
+import Compose from '@inner-page/teacher-project/compose'; // FIXME:暂时用project内容代替系统首页
 
 /**
  * 角色：高校管理员

@@ -1,5 +1,5 @@
 import MyLayout from 'layouts/index';
-import Compose from 'inner-page/attendance/compose';
+import Compose from '@inner-page/teacher-attendance/compose';
 
 /**
  * 教务信息管理->考勤管理
