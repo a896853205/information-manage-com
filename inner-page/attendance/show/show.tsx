@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { PT } from '../../../@types/Attendance';
-import { Table, Modal, Button, Input, Row, Col, Divider, Select } from 'antd';
-import { ColumnsType } from 'antd/es/table';
-import Calendar from './calendar';
 
-const { Option } = Select;
+import { Table, Button } from 'antd';
+import { ColumnsType } from 'antd/es/table';
+import { useBoolean } from 'ahooks';
+
+import Detail from './detail';
 
 interface ShowProps {
   dataSource: PT.Attendance[];
 }
 
-const Show: React.FC<ShowProps> = props => {
-  let { dataSource } = props;
-  const [modalVisible, setModal1Visible] = useState<boolean>(false);
+const Show: React.FC<ShowProps> = ({ dataSource }) => {
+  const [
+    modalVisible,
+    { setTrue: setModalVisible, setFalse: setModalHidden },
+  ] = useBoolean(false);
   const [currentAttendance, setCurrentAttendance] = useState<PT.Attendance>();
 
   const DEFAULT_COLUMNS: ColumnsType<PT.Attendance> = [
@@ -48,8 +50,8 @@ const Show: React.FC<ShowProps> = props => {
       render: (_: unknown, record) => (
         <Button
           onClick={() => {
-            setModal1Visible(true);
             setCurrentAttendance(record);
+            setModalVisible();
           }}
         >
           操作
@@ -67,56 +69,13 @@ const Show: React.FC<ShowProps> = props => {
         columns={DEFAULT_COLUMNS}
         dataSource={dataSource}
       />
-      <Modal
-        title="考勤管理"
-        centered
-        visible={modalVisible}
-        onOk={() => {
-          // TODO 向后端提交数据
-          setModal1Visible(true);
-        }}
-        onCancel={() => setModal1Visible(false)}
-        width={'60vw'}
-      >
-        <div>
-          <Row align={'middle'} gutter={[0, 16]}>
-            <Col span={2}>
-              <span>姓名:</span>
-            </Col>
-            <Col span={22}>
-              <Input disabled value={currentAttendance?.name}></Input>
-            </Col>
-
-            <Col span={2}>
-              <span>项目:</span>
-            </Col>
-            <Col span={22}>
-              <Input disabled value={currentAttendance?.projectName}></Input>
-            </Col>
-
-            <Col span={2}>
-              <span>年份:</span>
-            </Col>
-            <Col span={6}>
-              <Input disabled value="2018"></Input>
-            </Col>
-
-            <Col offset={8} span={2}>
-              <span>月份:</span>
-            </Col>
-            <Col span={6}>
-              <Input disabled value="一月"></Input>
-            </Col>
-          </Row>
-          <Calendar attendance={currentAttendance}></Calendar>
-          <h3 style={{ margin: '0' }}>添加评价</h3>
-          <Divider></Divider>
-          <Select style={{ width: '100%' }} defaultValue={'通过'}>
-            <Option value="通过">通过</Option>
-            <Option value="不通过">不通过</Option>
-          </Select>
-        </div>
-      </Modal>
+      {currentAttendance ? (
+        <Detail
+          modalVisible={modalVisible}
+          setModalHidden={setModalHidden}
+          currentAttendance={currentAttendance}
+        />
+      ) : null}
     </>
   );
 };
