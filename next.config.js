@@ -1,3 +1,5 @@
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+
 // const path = require('path');
 // const eslintOption = require('./.eslintrc.js');
 const withSass = require('@zeit/next-sass');
@@ -63,7 +65,8 @@ module.exports = withCSS({
             'arrow-parens': [2, 'as-needed'],
           },
         },
-      })
+      }),
+      new AntdDayjsWebpackPlugin()
     );
     return config;
   },
