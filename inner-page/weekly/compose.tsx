@@ -23,7 +23,7 @@ const Compose = () => {
           'name|+1': ['jhx', 'jwy', 'lwm', 'ycc'],
           date: '@date("yyyy/MM")',
           status: '已完成',
-          level: '优秀',
+          'level|+1': ['优秀', '合格', '不合格'],
         },
       ],
     });

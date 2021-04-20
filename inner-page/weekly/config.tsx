@@ -10,7 +10,6 @@ const Config = () => (
   <div
     style={{
       display: 'flex',
-      flexDirection: 'row',
       justifyContent: 'space-between',
     }}
   >

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Checkbox, Space, Table } from 'antd';
+import { Button, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
@@ -45,15 +45,22 @@ const Show = ({ data }: ShowProps) => {
     {
       title: '操作',
       key: 'action',
-      render: () => (
-        <Button type={'primary'} onClick={setTrue}>
+      render: (_text, _render) => (
+        <Button
+          type={'primary'}
+          onClick={() => {
+            setTrue();
+            setSelectData(_render);
+          }}
+        >
           查看
         </Button>
       ),
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
-
+  const [selectData, setSelectData] = useState<PT.Weekly>(data[0]);
+  console.log(data);
   return (
     <>
       {/*数据显示信息*/}
@@ -64,7 +71,11 @@ const Show = ({ data }: ShowProps) => {
         pagination={{ pageSize: 15 }}
       />
       {/*查看周志模板*/}
-      <Detail setFalse={setFalse} showModel={isShowDetailModal} />
+      <Detail
+        selectData={selectData}
+        setFalse={setFalse}
+        showModel={isShowDetailModal}
+      />
     </>
   );
 };
