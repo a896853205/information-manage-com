@@ -1,15 +1,11 @@
-import { Row, Col, Card } from 'antd';
 import React from 'react';
-import { PT } from '../../../@types/Attendance';
 
+import { Row, Col, Card } from 'antd';
 interface Calendar {
-  attendance: PT.Attendance | undefined;
+  attendance?: PT.Attendance;
 }
-//
-const calendar: React.FC<Calendar> = props => {
-  // 获取当前时间
-  const { attendance } = props;
 
+const calendar: React.FC<Calendar> = ({ attendance }) => {
   if (attendance !== undefined) {
     //TODO: 此处根据attendance中的date对象动态获取该月有几天，并判断1号是周几
     let dayItem: JSX.Element[] = [];
