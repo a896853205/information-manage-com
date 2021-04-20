@@ -4,10 +4,15 @@ import Mock from 'mockjs';
 
 import Show from 'inner-page/weekly/show';
 import Config from 'inner-page/weekly/config';
+import { Key } from 'antd/es/table/interface';
 
 const Compose = () => {
   const [data, setData] = useState<PT.Weekly[]>([]); // data 页面当前显示数据
-
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: setSelectedRowKeys,
+  };
   useEffect(() => {
     const { weeklyData } = Mock.mock({
       'weeklyData|10': [
@@ -35,8 +40,8 @@ const Compose = () => {
   return (
     <>
       {/* <BreadcrumbList /> */}
-      <Config />
-      <Show data={data} />
+      <Config selectedRowKeys={selectedRowKeys} />
+      <Show rowSelection={rowSelection} data={data} />
     </>
   );
 };

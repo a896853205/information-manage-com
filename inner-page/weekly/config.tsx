@@ -5,8 +5,11 @@ import {
   WarningOutlined,
 } from '@ant-design/icons';
 import Search from 'antd/lib/input/Search';
-
-const Config = () => (
+import { Key } from 'antd/es/table/interface';
+interface configProps {
+  selectedRowKeys: Key[];
+}
+const Config = ({ selectedRowKeys }: configProps) => (
   <div
     style={{
       display: 'flex',
@@ -17,7 +20,10 @@ const Config = () => (
     {/*左侧删除按钮及提示框*/}
     <Popconfirm
       title="一经删除将无法恢复数据,请确认是否进行删除"
-      onConfirm={() => {}}
+      onConfirm={() => {
+        // TODO 向后端发送数据
+        console.log(selectedRowKeys);
+      }}
       okText="确定删除"
       cancelText="取消"
       icon={<WarningOutlined style={{ color: 'red' }} />}

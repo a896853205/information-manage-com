@@ -5,11 +5,13 @@ import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
 import Detail from './detail';
+import { TableRowSelection } from 'antd/es/table/interface';
 
 interface ShowProps {
   data: PT.Weekly[];
+  rowSelection: TableRowSelection<PT.Weekly>;
 }
-const Show = ({ data }: ShowProps) => {
+const Show = ({ data, rowSelection }: ShowProps) => {
   // columns 当前显示表格的行属性
   const [columns] = useState<ColumnsType<PT.Weekly>>([
     {
@@ -60,11 +62,12 @@ const Show = ({ data }: ShowProps) => {
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
   const [selectData, setSelectData] = useState<PT.Weekly>(data[0]);
+
   return (
     <>
       {/*数据显示信息*/}
       <Table
-        rowSelection={{ type: 'checkbox' }}
+        rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
         pagination={{ pageSize: 15 }}
