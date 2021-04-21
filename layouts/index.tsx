@@ -20,7 +20,6 @@ const Home: React.FC<HomeProps> = ({ children }) => {
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
   const { menuData, role } = useRoleMenu();
-  console.log('HOME Layout role', role);
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {

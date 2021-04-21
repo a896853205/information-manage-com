@@ -7,10 +7,14 @@ import { MenuItem, MenuItemGroup } from 'layouts/Menu';
 const useRoleMenu = () => {
   const role = Number(localStorage.getItem('Role'));
   let menuData: (MenuItem | MenuItemGroup)[] = [new MenuItem('/', '首页')];
+
+  // FIXME: 你这样写就带有副作用了, hooks都是纯函数, router.push算是副作用, 需要在外边进行处理.
+  // 其次是这样if else 结构就会越来越深, 一般都用if return/ 然后再if 这样更好些.
   if (!role) {
     const router = useRouter();
     router.push('/');
   } else {
+    // FIXME: 这里可以学习一下, 策略模式改善switch case. 其次备注可以看下jsdoc, 写好了,vscode都有各种提示
     switch (role) {
       case 1: {
         // 高校管理员
@@ -100,7 +104,7 @@ const useRoleMenu = () => {
       }
     }
   }
-  return { role, menuData };
+  return { role, menuData } as const;
 };
 
 export default useRoleMenu;
