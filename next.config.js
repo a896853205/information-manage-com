@@ -61,6 +61,7 @@ module.exports = withCSS({
             'no-mixed-spaces-and-tabs': [2, false],
             // 'arrow-parens': 2,
             'arrow-parens': [2, 'as-needed'],
+            eqeqeq: [2, 'always'],
           },
         },
       })

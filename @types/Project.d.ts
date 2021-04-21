@@ -17,22 +17,9 @@ namespace PT {
     state: string;
   };
   /**
-   * 学生
-   */
-  type Student = {
-    id: string;
-    name: string;
-    schoolName: string;
-    grade: string;
-    schoolTeacher: string;
-    eduBackground: string;
-    projectName: string;
-    enterpriseTeacher: string;
-    state: string;
-  };
-  /**
    * 高校导师
    */
+  // FIXME: 决定teacher是否需要单独拿出去（看一下数据库）
   type Teacher = {
     id: string;
     name: string;

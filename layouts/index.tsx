@@ -20,7 +20,10 @@ const Home: React.FC<HomeProps> = ({ children }) => {
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
   const { menuData, role } = useRoleMenu();
-
+  if (role === 0) {
+    localStorage.clear();
+    router.push('/');
+  }
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
       setLoadingState(true);

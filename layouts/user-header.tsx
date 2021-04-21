@@ -22,6 +22,7 @@ const UserHeader = () => {
           style={{ fontSize: '14px' }}
           onClick={() => {
             // TODO: 还需清空Storage
+            localStorage.clear();
             router.push('/');
           }}
         >
