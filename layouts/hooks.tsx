@@ -2,20 +2,25 @@
  * 根据用户不同权限生成对应导航
  * @returns {role:number; menuData:(MenuItem | MenuItemGroup)[];} 用户权限role，对应导航menuData
  */
+import { useState } from 'react';
+
 import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
+import {
+  TEACHER_MANAGER,
+  TEACHER,
+  ENTERPRISE_MANAGER,
+} from 'constants/user-role';
 
-const useRoleMenu = (role: number) => {
-  let menu: (MenuItem | MenuItemGroup)[] = [new MenuItem('/', '首页')];
-  const setMenu = () => {
-    // FIXME: 你这样写就带有副作用了, hooks都是纯函数, router.push算是副作用, 需要在外边进行处理.
-    // 其次是这样if else 结构就会越来越深, 一般都用if return/ 然后再if 这样更好些.
-    // FIXME: 这里可以学习一下, 策略模式改善switch case. 其次备注可以看下jsdoc, 写好了,vscode都有各种提示
+// FIXME: commit
+const useRoleMenu = (role?: number | null) => {
+  // FIXME: 这里可以学习一下, 策略模式改善switch case. 其次备注可以看下jsdoc, 写好了,vscode都有各种提示
+  const menuFromRole = (role?: number | null) => {
     switch (role) {
-      case 1: {
+      case TEACHER_MANAGER: {
         // 高校管理员
-        menu = [
+        return [
           new MenuItem('/home', '首页', <HomeOutlined />),
           new MenuItemGroup(
             '项目对接管理',
@@ -39,11 +44,10 @@ const useRoleMenu = (role: number) => {
             <ApiOutlined />
           ),
         ];
-        break;
       }
-      case 2: {
+      case TEACHER: {
         // 高校导师
-        menu = [
+        return [
           new MenuItem('/home', '首页', <HomeOutlined />),
           new MenuItemGroup(
             '项目对接管理',
@@ -69,11 +73,10 @@ const useRoleMenu = (role: number) => {
             <ApiOutlined />
           ),
         ];
-        break;
       }
-      case 3: {
+      case ENTERPRISE_MANAGER: {
         // 企业管理员
-        menu = [
+        return [
           new MenuItem('/home', '首页', <HomeOutlined />),
           new MenuItemGroup(
             '项目对接管理',
@@ -97,12 +100,20 @@ const useRoleMenu = (role: number) => {
             <ApiOutlined />
           ),
         ];
-        break;
       }
+      default:
+        return [new MenuItem('/', '首页')];
     }
-    // return menu;
   };
-  return [menu, { setMenu }] as const;
+  const [menu, setMenu] = useState<(MenuItem | MenuItemGroup)[]>(
+    menuFromRole(role)
+  );
+
+  const setMenuFromRole = (currentRole?: number | null) => {
+    setMenu(menuFromRole(currentRole));
+  };
+
+  return [menu, { setMenuFromRole }] as const;
 };
 
 export default useRoleMenu;

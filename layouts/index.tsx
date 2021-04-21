@@ -6,25 +6,29 @@ import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
 
-import AntdRouterMenu from 'layouts/Antd-router-menu';
 import PageLoading from 'components/page-loading';
+import AntdRouterMenu from 'layouts/Antd-router-menu';
 import UserHeader from 'layouts/user-header';
-import useRoleMenu from 'layouts/hooks';
+import { UNAUTHENTICATION } from 'constants/user-role';
 
 const { Header, Footer, Sider, Content } = Layout;
 
 interface HomeProps {
   children: JSX.Element;
 }
+
 const Home: React.FC<HomeProps> = ({ children }) => {
   const [isLoading, setLoadingState] = useState(false);
+  const [role, setRole] = useState(UNAUTHENTICATION);
   const router = useRouter();
-  const role = Number(localStorage.getItem('Role'));
-  if (role === 0) {
-    localStorage.clear();
-    router.push('/');
+
+  // client环境
+  if (typeof window !== 'undefined') {
+    if (localStorage.getItem('Role') === null) {
+      router.push('/');
+    }
   }
-  const [menu, { setMenu }] = useRoleMenu(role);
+
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
       console.log('router change');
@@ -33,7 +37,11 @@ const Home: React.FC<HomeProps> = ({ children }) => {
     router.events.on('routeChangeComplete', () => {
       setLoadingState(false);
     });
-  }, [setMenu()]);
+  }, []);
+
+  useEffect(() => {
+    setRole(Number(localStorage.getItem('Role')));
+  }, []);
 
   return (
     <Layout>
@@ -51,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
           <div>Scientific Research</div>
           <div>Management</div>
         </div>
-        <AntdRouterMenu menuData={menu} role={role} />
+        <AntdRouterMenu role={role} />
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
         <div className="home-content-box">
