@@ -1,19 +1,47 @@
+import { Space, Button } from 'antd';
+import { useRouter } from 'next/router';
+
 /**
- * 角色：高校管理员
- * 系统首页（以后更换，现用项目信息管理页面代替）
+ * login
  */
-import dynamic from 'next/dynamic';
+const Login = () => {
+  const router = useRouter();
+  // TODO: 暂时方便进入到不同权限页面, 后期加上登录
+  const handleClick = (role: number) => {
+    localStorage.setItem('Role', role.toString());
+    router.push('/home');
+  };
 
-import MyLayout from 'layouts/index';
-import PageLoading from 'components/page-loading';
-const Compose = dynamic(() => import('inner-page/project/compose'), {
-  ssr: false,
-  loading: PageLoading,
-}); // FIXME:暂时用project内容代替系统首页
+  return (
+    <>
+      <Space>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleClick(1);
+          }}
+        >
+          高校管理员
+        </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleClick(2);
+          }}
+        >
+          高校导师
+        </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleClick(3);
+          }}
+        >
+          企业管理员
+        </Button>
+      </Space>
+    </>
+  );
+};
 
-export default function Home() {
-  console.log('index-project');
-  return <Compose />;
-}
-
-Home.Layout = MyLayout;
+export default Login;

@@ -40,7 +40,7 @@ const useBreadcrumbListByUrl = (
   return nameList;
 };
 
-export default () => {
+const BreadcrumbComponnet = () => {
   const menu = useContext(MenuContext);
 
   const nameList = useBreadcrumbListByUrl(menu);
@@ -51,7 +51,7 @@ export default () => {
         <Breadcrumb.Item>
           <HomeOutlined />
         </Breadcrumb.Item>
-        {nameList.map((name) => (
+        {nameList.map(name => (
           <Breadcrumb.Item>{name}</Breadcrumb.Item>
         ))}
       </Breadcrumb>
@@ -59,3 +59,5 @@ export default () => {
     </>
   );
 };
+
+export default BreadcrumbComponnet;
