@@ -16,7 +16,7 @@ import Mock from 'mockjs';
 
 const { Column, ColumnGroup } = Table;
 
-const { teacherData }: { teacherData: PT.Teacher[] } = Mock.mock({
+const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
   'teacherData|2': [
     {
       'key|+1': 1,
