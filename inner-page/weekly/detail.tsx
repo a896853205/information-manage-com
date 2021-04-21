@@ -11,6 +11,7 @@ import {
   DatePicker,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+import dayjs from 'dayjs';
 
 interface IncreaseProps {
   showModel: boolean;
@@ -55,7 +56,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           />
         </Form.Item>
         <Form.Item name="dates" label="项目年份">
-          <DatePicker defaultValue={undefined} disabled picker="month" />
+          <DatePicker defaultValue={dayjs(data.date)} disabled picker="month" />
         </Form.Item>
         <Form.Item label="第一周">
           <Space>
