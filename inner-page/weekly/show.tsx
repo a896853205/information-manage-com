@@ -5,11 +5,13 @@ import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
 import Detail from './detail';
+import { TableRowSelection } from 'antd/es/table/interface';
 
 interface ShowProps {
   data: PT.Weekly[];
+  rowSelection: TableRowSelection<PT.Weekly>;
 }
-const Show = ({ data }: ShowProps) => {
+const Show = ({ data, rowSelection }: ShowProps) => {
   // columns 当前显示表格的行属性
   const [columns] = useState<ColumnsType<PT.Weekly>>([
     {
@@ -41,30 +43,46 @@ const Show = ({ data }: ShowProps) => {
       title: '评价',
       key: 'level',
       dataIndex: 'level',
+      render: (_text, _render) => (
+        <div>
+          {_render.level == 1 ? '优秀' : _render.level == 2 ? '合格' : '不合格'}
+        </div>
+      ),
     },
     {
       title: '操作',
       key: 'action',
-      render: () => (
-        <Button type={'primary'} onClick={setTrue}>
+      render: (_text, _render) => (
+        <Button
+          type={'primary'}
+          onClick={() => {
+            setTrue();
+            setSelectData(_render);
+          }}
+        >
           查看
         </Button>
       ),
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
+  const [selectData, setSelectData] = useState<PT.Weekly>(data[0]); // 代表点击查看后显示的当前列
 
   return (
     <>
       {/*数据显示信息*/}
       <Table
-        rowSelection={{ type: 'checkbox' }}
+        rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
         pagination={{ pageSize: 15 }}
       />
       {/*查看周志模板*/}
-      <Detail setFalse={setFalse} showModel={isShowDetailModal} />
+      <Detail
+        selectData={selectData}
+        setFalse={setFalse}
+        showModel={isShowDetailModal}
+      />
     </>
   );
 };

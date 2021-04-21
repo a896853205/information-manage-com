@@ -5,12 +5,14 @@ import {
   WarningOutlined,
 } from '@ant-design/icons';
 import Search from 'antd/lib/input/Search';
-
-const Config = () => (
+import { Key } from 'antd/es/table/interface';
+interface configProps {
+  selectedRowKeys: Key[];
+}
+const Config = ({ selectedRowKeys }: configProps) => (
   <div
     style={{
       display: 'flex',
-      flexDirection: 'row',
       justifyContent: 'space-between',
     }}
   >
@@ -18,7 +20,10 @@ const Config = () => (
     {/*左侧删除按钮及提示框*/}
     <Popconfirm
       title="一经删除将无法恢复数据,请确认是否进行删除"
-      onConfirm={() => {}}
+      onConfirm={() => {
+        // TODO 向后端发送数据
+        console.log(selectedRowKeys);
+      }}
       okText="确定删除"
       cancelText="取消"
       icon={<WarningOutlined style={{ color: 'red' }} />}
@@ -38,22 +43,22 @@ const Config = () => (
           <Checkbox.Group
             defaultValue={[
               'key',
+              'projectName',
               'name',
-              'studentName',
-              'status',
-              'advice',
               'date',
+              'status',
+              'level',
               'action',
             ]}
             onChange={() => {}}
           >
             <Space direction="vertical">
               <Checkbox value="key">序号</Checkbox>
-              <Checkbox value="studentName">学生名称</Checkbox>
-              <Checkbox value="name">项目名称</Checkbox>
+              <Checkbox value="name">学生名称</Checkbox>
+              <Checkbox value="projectName">项目名称</Checkbox>
               <Checkbox value="date">日期</Checkbox>
               <Checkbox value="status">完成情况</Checkbox>
-              <Checkbox value="advice">评价</Checkbox>
+              <Checkbox value="level">评价</Checkbox>
               <Checkbox value="action">操作</Checkbox>
             </Space>
           </Checkbox.Group>
