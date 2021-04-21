@@ -24,6 +24,8 @@ module.exports = withCSS({
     // includePaths: [path.join(__dirname, 'styles')],
   },
   webpack: (config, _options) => {
+    config.plugins.push(new AntdDayjsWebpackPlugin());
+
     config.plugins.push(
       new ESLintPligin({
         emitError: true,
@@ -65,9 +67,9 @@ module.exports = withCSS({
             'arrow-parens': [2, 'as-needed'],
           },
         },
-      }),
-      new AntdDayjsWebpackPlugin()
+      })
     );
+
     return config;
   },
 });
