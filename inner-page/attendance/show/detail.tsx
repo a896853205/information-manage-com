@@ -1,20 +1,52 @@
-import { Modal, Input, Row, Col, Divider, Select } from 'antd';
-
-import Calendar from './calendar';
+import { Modal, Input, Row, Col, Divider, Select, DatePicker } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
+import { useState, useEffect } from 'react';
 
 const { Option } = Select;
 
 interface DetailProps {
   modalVisible: boolean;
   setModalHidden: () => void;
-  currentAttendance: PT.Attendance;
+  currentDataShow: PT.DataShow;
 }
+
+interface DateRenderStyle {
+  border?: string;
+  borderRadius?: string;
+  borderColor?: string;
+  background?: string;
+}
+
+/**
+ * 解决加入antd-dayjs-webpack-plugin后ts声明文件还是moment的问题
+ */
+type Moment = Dayjs;
 
 const Detail: React.FC<DetailProps> = ({
   modalVisible,
   setModalHidden,
-  currentAttendance,
+  currentDataShow: currentDataShow,
 }) => {
+  // 储存dayjs对象，默认为父组件传入的日期，可通过选择框事件修改
+  // TODO 增加选择框修改年和月的事件
+  const [year] = useState<string>(currentDataShow.date.split('/')[0]);
+  const [month] = useState<string>(currentDataShow.date.split('/')[1]);
+
+  // TODO 用月份和年份，从后端获取该月的出勤数据
+  const [attendedDays, setAttendedDays] = useState<boolean[]>([]);
+
+  // FIXME 设置假的出勤数据,当后台有数据后要把此处删掉
+  const mockAttendedDays: boolean[] = [];
+  for (let i = 0; i < currentDataShow.dayInMonth; i++) {
+    mockAttendedDays.push(Math.random() < 0.7 ? true : false);
+  }
+  //
+  useEffect(() => {
+    setAttendedDays(mockAttendedDays);
+  }, []);
+
+  const onChange = (): void => {};
+
   return (
     <Modal
       title="考勤管理"
@@ -27,38 +59,50 @@ const Detail: React.FC<DetailProps> = ({
       onCancel={() => setModalHidden()}
       width={'60vw'}
     >
-      <Row align={'middle'} gutter={[0, 16]}>
+      <Row align={'middle'} gutter={[0, 16]} style={{ marginBottom: '16px' }}>
         <Col span={2}>
           <span>姓名:</span>
         </Col>
         <Col span={22}>
-          <Input disabled value={currentAttendance?.name ?? '-'}></Input>
+          <Input disabled value={currentDataShow?.name ?? '-'}></Input>
         </Col>
 
         <Col span={2}>
           <span>项目:</span>
         </Col>
         <Col span={22}>
-          <Input disabled value={currentAttendance?.projectName ?? '-'}></Input>
+          <Input disabled value={currentDataShow?.projectName ?? '-'}></Input>
         </Col>
-
         <Col span={2}>
-          <span>年份:</span>
+          <span>考勤:</span>
         </Col>
-        <Col span={6}>
-          <Input disabled value="2018"></Input>
-        </Col>
-
-        <Col offset={8} span={2}>
-          <span>月份:</span>
-        </Col>
-        <Col span={6}>
-          <Input disabled value="一月"></Input>
+        <Col span={22}>
+          <DatePicker
+            style={{ width: '100%' }}
+            placeholder={'选择要查看的月份'}
+            inputReadOnly={true}
+            format={'YYYY-MM'}
+            dateRender={(current: Dayjs) => {
+              const style: DateRenderStyle = {};
+              // 学生出勤就加一个圆圈代表出勤
+              if (
+                attendedDays &&
+                current.isBefore(dayjs()) &&
+                attendedDays[current.date()]
+              ) {
+                style.background = 'yellowGreen';
+              }
+              return (
+                <div className="ant-picker-cell-inner" style={style}>
+                  {current.date()}
+                </div>
+              );
+            }}
+            showTime={false}
+          />
         </Col>
       </Row>
-      {/* FIXME: 这里有点造轮子了,不过写的还可以, 直接使用RangePicker 然后open属性打开就好.antd中有很多细节的处理, 而且即使造轮子是不是这里应该之传入日期更好一点 */}
-      <Calendar date={currentAttendance.date} />
-      <h3 style={{ margin: '0' }}>添加评价</h3>
+
       <Divider />
       <Select style={{ width: '100%' }} defaultValue={'通过'}>
         <Option value="通过">通过</Option>

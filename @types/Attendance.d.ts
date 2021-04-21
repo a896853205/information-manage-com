@@ -9,7 +9,18 @@ namespace PT {
     id: string;
     name: string;
     projectName: string;
-    date: Date;
+    date: number;
     status: string;
+  };
+  /**
+   * 研究生考勤类型用于展示类型
+   */
+  type DataShow = {
+    id: string;
+    name: string;
+    projectName: string;
+    date: string;
+    status: string;
+    dayInMonth: number;
   };
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import dayjs, { Dayjs } from 'dayjs';
 import { Table, Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
@@ -15,9 +15,22 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
     modalVisible,
     { setTrue: setModalVisible, setFalse: setModalHidden },
   ] = useBoolean(false);
-  const [currentAttendance, setCurrentAttendance] = useState<PT.Attendance>();
+  const [currentDataShow, setCurrentDataShow] = useState<PT.DataShow>();
 
-  const DEFAULT_COLUMNS: ColumnsType<PT.Attendance> = [
+  //把后端传过来的带有时间戳的数据转化成具体的年和月
+  const datasToShows = (dataSource: PT.Attendance[]): PT.DataShow[] => {
+    let res: PT.DataShow[] = dataSource.map(item => {
+      let d: Dayjs = dayjs.unix(item.date);
+      return {
+        ...item,
+        date: `${d.year()}/${d.month() + 1}`,
+        dayInMonth: d.daysInMonth(),
+      };
+    });
+    return res;
+  };
+
+  const DEFAULT_COLUMNS: ColumnsType<PT.DataShow> = [
     {
       title: '序号',
       dataIndex: 'id',
@@ -50,7 +63,7 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
       render: (_: unknown, record) => (
         <Button
           onClick={() => {
-            setCurrentAttendance(record);
+            setCurrentDataShow(record);
             setModalVisible();
           }}
         >
@@ -67,13 +80,13 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
           type: 'checkbox',
         }}
         columns={DEFAULT_COLUMNS}
-        dataSource={dataSource}
+        dataSource={datasToShows(dataSource)}
       />
-      {currentAttendance ? (
+      {currentDataShow ? (
         <Detail
           modalVisible={modalVisible}
           setModalHidden={setModalHidden}
-          currentAttendance={currentAttendance}
+          currentDataShow={currentDataShow}
         />
       ) : null}
     </>
