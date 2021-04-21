@@ -4,10 +4,15 @@ import Mock from 'mockjs';
 
 import Show from 'inner-page/weekly/show';
 import Config from 'inner-page/weekly/config';
+import { Key } from 'antd/es/table/interface';
 
 const Compose = () => {
   const [data, setData] = useState<PT.Weekly[]>([]); // data 页面当前显示数据
-
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]); // 左侧选择框选择的所有列
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: setSelectedRowKeys,
+  };
   useEffect(() => {
     const { weeklyData } = Mock.mock({
       'weeklyData|10': [
@@ -20,10 +25,10 @@ const Compose = () => {
             '停车相关管理系统及平台',
             '大型复杂结构施工监控关键技术研究',
           ],
-          'name|+1': ['jhx', 'jwy', 'lwm', 'ycc'],
-          date: '@date("yyyy/MM")',
-          status: '已完成',
-          level: '优秀',
+          'name|+1': '@cname()', // 生成随机中文名字
+          'date|+1': '@datetime()',
+          'status|+1': ['已完成', '未完成'],
+          'level|+1': '@natural(1,3)', // 生成1-3之间的随机数
         },
       ],
     });
@@ -31,12 +36,11 @@ const Compose = () => {
     // 初始化数据属性
     setData(weeklyData);
   }, []);
-
   return (
     <>
       {/* <BreadcrumbList /> */}
-      <Config />
-      <Show data={data} />
+      <Config selectedRowKeys={selectedRowKeys} />
+      <Show rowSelection={rowSelection} data={data} />
     </>
   );
 };

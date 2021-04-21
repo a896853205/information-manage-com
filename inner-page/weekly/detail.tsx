@@ -2,24 +2,32 @@ import React from 'react';
 
 import {
   Button,
-  DatePicker,
   Divider,
   Form,
   Input,
   Modal,
   Radio,
   Space,
+  DatePicker,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 
 interface IncreaseProps {
   showModel: boolean;
   setFalse: () => void;
+  selectData: PT.Weekly;
 }
 
-const Increase = ({ showModel, setFalse }: IncreaseProps) => {
+const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
+  let data = selectData;
+  // data 做了类似类组件的生命周期的处理所以这里判断一下data是否为空
+  if (!data) {
+    return <></>;
+  }
   return (
     <Modal
+      centered={true}
+      key={data.key}
       title="查看周志"
       visible={showModel}
       onCancel={setFalse}
@@ -28,17 +36,17 @@ const Increase = ({ showModel, setFalse }: IncreaseProps) => {
           提交
         </Button>
       }
-      style={{ top: 10 }}
       width={1000}
     >
       {/*详情页面的表单结构*/}
       <Form
+        initialValues={selectData}
         labelCol={{ span: 2 }}
         wrapperCol={{ span: 25 }}
         layout="horizontal"
       >
         <Form.Item name="name" label="姓名">
-          <Input value="jhx" disabled />
+          <Input disabled />
         </Form.Item>
         <Form.Item name="projectName" label="项目名称">
           <Input
@@ -46,8 +54,8 @@ const Increase = ({ showModel, setFalse }: IncreaseProps) => {
             disabled
           />
         </Form.Item>
-        <Form.Item name="date" label="项目年份">
-          <DatePicker picker="month" />
+        <Form.Item name="dates" label="项目年份">
+          <DatePicker defaultValue={undefined} disabled picker="month" />
         </Form.Item>
         <Form.Item label="第一周">
           <Space>
@@ -82,8 +90,8 @@ const Increase = ({ showModel, setFalse }: IncreaseProps) => {
           </Space>
         </Form.Item>
         <Divider orientation="left">填写评论</Divider>
-        <Form.Item name="advice">
-          <Radio.Group defaultValue={2}>
+        <Form.Item name="level">
+          <Radio.Group>
             <Radio value={1}>优秀</Radio>
             <Radio value={2}>合格</Radio>
             <Radio value={3}>不合格</Radio>
