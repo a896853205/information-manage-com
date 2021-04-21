@@ -17,12 +17,6 @@
     "skipLibCheck": true,
     "strict": true,
     "baseUrl": ".",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@inner-page/*": ["inner-page/*"],
-      "@layouts/*": ["layout/*"],
-      "@style/*": ["style/*"]
-    },
     "target": "ES5",
     "typeRoots": ["node_modules/@types"]
   },

@@ -1,12 +1,8 @@
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-
-// const path = require('path');
-// const eslintOption = require('./.eslintrc.js');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const ESLintPligin = require('eslint-webpack-plugin');
 const withSass = require('@zeit/next-sass');
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
-const ESLintPligin = require('eslint-webpack-plugin');
 
 module.exports = withCSS({
   ssModules: true,
@@ -66,10 +62,10 @@ module.exports = withCSS({
             'no-mixed-spaces-and-tabs': [2, false],
             // 'arrow-parens': 2,
             'arrow-parens': [2, 'as-needed'],
+            eqeqeq: [2, 'always'],
           },
         },
-      }),
-      new AntdDayjsWebpackPlugin()
+      })
     );
 
     return config;

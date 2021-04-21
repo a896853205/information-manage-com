@@ -1862,13 +1862,8 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
 
 antd-dayjs-webpack-plugin@^1.0.6:
   version "1.0.6"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/antd-dayjs-webpack-plugin/-/antd-dayjs-webpack-plugin-1.0.6.tgz#7d98bcb51422248b8cd4a32e352a0425a3bffa3a"
-  integrity sha512-UlK3BfA0iE2c5+Zz/Bd2iPAkT6cICtrKG4/swSik5MZweBHtgmu1aUQCHvICdiv39EAShdZy/edfP6mlkS/xXg==
-=======
   resolved "https://registry.npm.taobao.org/antd-dayjs-webpack-plugin/download/antd-dayjs-webpack-plugin-1.0.6.tgz#7d98bcb51422248b8cd4a32e352a0425a3bffa3a"
   integrity sha1-fZi8tRQiJIuM1KMuNSoEJaO/+jo=
->>>>>>> attendance
 
 antd@^4.15.0:
   version "4.15.2"
