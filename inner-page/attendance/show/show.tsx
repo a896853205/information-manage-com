@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+
 import { Table, Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
+import dayjs, { Dayjs } from 'dayjs';
 
 import Detail from './detail';
 
@@ -15,22 +16,27 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
     modalVisible,
     { setTrue: setModalVisible, setFalse: setModalHidden },
   ] = useBoolean(false);
-  const [currentDataShow, setCurrentDataShow] = useState<PT.DataShow>();
+  const [
+    currentAttendanceShow,
+    setCurrentAttendanceShow,
+  ] = useState<PT.AttendanceShow>();
 
-  //把后端传过来的带有时间戳的数据转化成具体的年和月
-  const datasToShows = (dataSource: PT.Attendance[]): PT.DataShow[] => {
-    let res: PT.DataShow[] = dataSource.map(item => {
-      let d: Dayjs = dayjs.unix(item.date);
+  // 把后端传过来的带有时间戳的数据转化成具体的年和月
+  const formatData = (dataSource: PT.Attendance[]): PT.AttendanceShow[] => {
+    const formatedData: PT.AttendanceShow[] = dataSource.map(item => {
+      const d: Dayjs = dayjs.unix(item.date);
+
       return {
         ...item,
-        date: `${d.year()}/${d.month() + 1}`,
+        formatedYearAndMonth: d.format('YYYY/MM'),
         dayInMonth: d.daysInMonth(),
       };
     });
-    return res;
+
+    return formatedData;
   };
 
-  const DEFAULT_COLUMNS: ColumnsType<PT.DataShow> = [
+  const DEFAULT_COLUMNS: ColumnsType<PT.AttendanceShow> = [
     {
       title: '序号',
       dataIndex: 'id',
@@ -48,7 +54,7 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
     },
     {
       title: '日期',
-      dataIndex: 'date',
+      dataIndex: 'formatedYearAndMonth',
       key: 'date',
     },
     {
@@ -63,7 +69,7 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
       render: (_: unknown, record) => (
         <Button
           onClick={() => {
-            setCurrentDataShow(record);
+            setCurrentAttendanceShow(record);
             setModalVisible();
           }}
         >
@@ -80,13 +86,13 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
           type: 'checkbox',
         }}
         columns={DEFAULT_COLUMNS}
-        dataSource={datasToShows(dataSource)}
+        dataSource={formatData(dataSource)}
       />
-      {currentDataShow ? (
+      {currentAttendanceShow ? (
         <Detail
           modalVisible={modalVisible}
           setModalHidden={setModalHidden}
-          currentDataShow={currentDataShow}
+          currentAttendanceShow={currentAttendanceShow}
         />
       ) : null}
     </>

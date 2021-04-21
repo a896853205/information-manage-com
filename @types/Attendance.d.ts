@@ -15,12 +15,13 @@ namespace PT {
   /**
    * 研究生考勤类型用于展示类型
    */
-  type DataShow = {
+  type AttendanceShow = {
     id: string;
     name: string;
     projectName: string;
-    date: string;
+    date: number;
+    formatedDate: string; // 'YYYY/MM' 
+    dayInMonth: number;   // day
     status: string;
-    dayInMonth: number;
   };
 }
