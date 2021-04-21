@@ -1,9 +1,7 @@
 import { useState } from 'react';
-
 import Mock from 'mockjs';
-
 import Increase from 'inner-page/attendance/increase';
-import Show from 'inner-page/attendance/show';
+import Show from './show/show';
 
 const { defaultDataSource }: { defaultDataSource: PT.Attendance[] } = Mock.mock(
   {
@@ -27,7 +25,9 @@ const { defaultDataSource }: { defaultDataSource: PT.Attendance[] } = Mock.mock(
 
 const Attendance = () => {
   // 表格填充数据
-  let [dataSource] = useState<PT.Attendance[]>(defaultDataSource);
+  let [dataSource, setDateSource] = useState<PT.Attendance[]>(
+    defaultDataSource
+  );
 
   return (
     <>

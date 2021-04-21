@@ -1,3 +1,5 @@
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+
 // const path = require('path');
 // const eslintOption = require('./.eslintrc.js');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
@@ -23,6 +25,8 @@ module.exports = withCSS({
     // includePaths: [path.join(__dirname, 'styles')],
   },
   webpack: (config, _options) => {
+    config.plugins.push(new AntdDayjsWebpackPlugin());
+
     config.plugins.push(
       new ESLintPligin({
         emitError: true,
@@ -67,6 +71,7 @@ module.exports = withCSS({
       }),
       new AntdDayjsWebpackPlugin()
     );
+
     return config;
   },
 });
