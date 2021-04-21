@@ -5,23 +5,18 @@ namespace PT {
   /**
    * 研究生考勤类型
    */
-  type Attendance = {
+  interface Attendance {
     id: string;
     name: string;
     projectName: string;
     date: number;
     status: string;
-  };
+  }
   /**
    * 研究生考勤类型用于展示类型
    */
-  type AttendanceShow = {
-    id: string;
-    name: string;
-    projectName: string;
-    date: number;
-    formatedDate: string; // 'YYYY/MM' 
-    dayInMonth: number;   // day
-    status: string;
-  };
+  interface AttendanceShow extends Attendance {
+    formatedYearAndMonth: string; // 'YYYY/MM'
+    dayInMonth: number; // day
+  }
 }
