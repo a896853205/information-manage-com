@@ -4,7 +4,6 @@ import { Button, Divider, Form, Input, Modal, Radio, Space } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import dateFnsGenerateConfig from 'rc-picker/lib/generate/dateFns';
 import generatePicker from 'antd/es/date-picker/generatePicker';
-import dayjs from 'dayjs';
 
 const DatePicker = generatePicker<Date>(dateFnsGenerateConfig);
 
@@ -53,7 +52,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
         {/*这里先修改name不让表单自动注入,等后续更改完Date再做尝试*/}
         <Form.Item name="dates" label="项目年份">
           <DatePicker
-            defaultValue={dayjs(data.date).toDate()}
+            defaultValue={new Date(data.date)}
             disabled
             picker="month"
           />

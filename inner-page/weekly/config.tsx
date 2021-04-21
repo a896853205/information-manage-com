@@ -43,22 +43,22 @@ const Config = ({ selectedRowKeys }: configProps) => (
           <Checkbox.Group
             defaultValue={[
               'key',
+              'projectName',
               'name',
-              'studentName',
-              'status',
-              'advice',
               'date',
+              'status',
+              'level',
               'action',
             ]}
             onChange={() => {}}
           >
             <Space direction="vertical">
               <Checkbox value="key">序号</Checkbox>
-              <Checkbox value="studentName">学生名称</Checkbox>
-              <Checkbox value="name">项目名称</Checkbox>
+              <Checkbox value="name">学生名称</Checkbox>
+              <Checkbox value="projectName">项目名称</Checkbox>
               <Checkbox value="date">日期</Checkbox>
               <Checkbox value="status">完成情况</Checkbox>
-              <Checkbox value="advice">评价</Checkbox>
+              <Checkbox value="level">评价</Checkbox>
               <Checkbox value="action">操作</Checkbox>
             </Space>
           </Checkbox.Group>

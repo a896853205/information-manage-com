@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Layout } from 'antd';
-import { ApiOutlined, CalculatorFilled, HomeOutlined } from '@ant-design/icons';
+import { ApiOutlined, HomeOutlined } from '@ant-design/icons';
 
 import AntdRouterMenu from 'layouts/Antd-router-menu';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
