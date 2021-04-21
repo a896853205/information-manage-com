@@ -1,7 +1,6 @@
 /**
  * 具体的项目信息弹窗
  */
-import { Key } from 'react';
 import { Table, Button, Modal, Space } from 'antd';
 import { useBoolean } from 'ahooks';
 
