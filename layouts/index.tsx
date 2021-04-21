@@ -19,19 +19,21 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ children }) => {
   const [isLoading, setLoadingState] = useState(false);
   const router = useRouter();
-  const { menuData, role } = useRoleMenu();
+  const role = Number(localStorage.getItem('Role'));
   if (role === 0) {
     localStorage.clear();
     router.push('/');
   }
+  const [menu, { setMenu }] = useRoleMenu(role);
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
+      console.log('router change');
       setLoadingState(true);
     });
     router.events.on('routeChangeComplete', () => {
       setLoadingState(false);
     });
-  }, []);
+  }, [setMenu()]);
 
   return (
     <Layout>
@@ -49,7 +51,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
           <div>Scientific Research</div>
           <div>Management</div>
         </div>
-        <AntdRouterMenu menuData={menuData} role={role} />
+        <AntdRouterMenu menuData={menu} role={role} />
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
         <div className="home-content-box">
