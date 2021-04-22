@@ -22,9 +22,9 @@ const Detail = ({
         visible={informationVisible}
         onOk={() => setInformationVisible(false)}
         onCancel={() => setInformationVisible(false)}
-        width={700}
+        width={'60vw'}
       >
-        <Form title="用户信息" size="small">
+        <Form title="用户信息">
           <Form.Item label="用户姓名">
             <Input placeholder="请输入姓名" disabled={true} />
           </Form.Item>
@@ -105,11 +105,11 @@ const Detail = ({
           setConfirmVisible(true);
         }}
         onCancel={() => setUserModalVisable(false)}
-        width={500}
+        width={'60vw'}
         okText="确定"
         cancelText="取消"
       >
-        <Form title="填写审核意见" size="small">
+        <Form title="填写审核意见">
           <Form.Item>
             <Input.TextArea />
           </Form.Item>
@@ -122,7 +122,7 @@ const Detail = ({
         title="信息"
         centered
         visible={confirmVisible}
-        width={260}
+        width={'60vw'}
       >
         <div>审批成功</div>
         <Row justify="end">

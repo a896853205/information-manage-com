@@ -24,7 +24,7 @@ const Show: React.FC<ShowProps> = props => {
     <>
       <Table
         dataSource={projectDataSource}
-        size="small"
+        size="middle"
         rowSelection={{ type: 'checkbox', ...rowSelection }}
       >
         <Column title="序号" dataIndex="id" key="id" />
@@ -89,7 +89,7 @@ const Show: React.FC<ShowProps> = props => {
         title="项目申请"
         visible={isShow}
         onCancel={setFalse}
-        width={1000}
+        width="60vw"
         footer={
           <div>
             <Button type="primary" onClick={setFalse}>

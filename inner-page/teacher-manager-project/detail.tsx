@@ -151,7 +151,7 @@ const Detail = () => {
       <Card title="对接导师">
         <Table
           dataSource={teacherData}
-          size="small"
+          size="middle"
           rowSelection={{ type: 'checkbox', ...rowSelection }}
         >
           <Column title="选择" dataIndex="index" key="index" />
@@ -215,7 +215,7 @@ const Detail = () => {
       <Card title="学生管理">
         <Table
           dataSource={studentData}
-          size="small"
+          size="middle"
           rowSelection={{ type: 'checkbox', ...rowSelection }}
         >
           <Column title="" dataIndex="index" key="index" />
