@@ -84,7 +84,6 @@ const Show = ({ data, rowSelection }: ShowProps) => {
         columns={columns}
         dataSource={data}
         size="middle"
-        scroll={{ y: '51.5vh' }}
         pagination={{ pageSize: 15 }}
       />
       {/*查看周志模板*/}

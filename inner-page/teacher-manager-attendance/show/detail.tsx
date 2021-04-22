@@ -24,11 +24,9 @@ const Detail: React.FC<DetailProps> = ({
 }) => {
   // 储存dayjs对象，默认为父组件传入的日期，可通过选择框事件修改
   // TODO 增加选择框修改年和月的事件
-  // FIXME 增加@ts-ignore防止TODO未完成前发生报错
+  const [_year] = useState<number>(dayjs(currentAttendanceShow.date).year());
   // @ts-ignore
-  const [year] = useState<number>(dayjs(currentAttendanceShow.date).year());
-  // @ts-ignore
-  const [month] = useState<number>(dayjs(currentAttendanceShow.date).month());
+  const [_month] = useState<number>(dayjs(currentAttendanceShow.date).month());
 
   // TODO 用月份和年份，从后端获取该月的出勤数据, 或许不是boolean数组类型, 可能就是一个unix时间戳数组
   const [attendedDays, setAttendedDays] = useState<boolean[]>([]);

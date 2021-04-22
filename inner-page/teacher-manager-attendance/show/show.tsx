@@ -88,7 +88,6 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
         }}
         columns={DEFAULT_COLUMNS}
         size="middle"
-        scroll={{ y: '51.5vh' }}
         dataSource={formatData(dataSource)}
       />
       {currentAttendanceShow ? (
