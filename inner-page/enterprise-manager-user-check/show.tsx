@@ -72,7 +72,6 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
     <>
       <Table
         size="middle"
-        scroll={{ y: '51.5vh' }}
         columns={columns}
         dataSource={dataSource}
         rowSelection={{
