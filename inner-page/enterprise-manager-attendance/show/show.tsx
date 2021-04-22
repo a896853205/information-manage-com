@@ -81,13 +81,13 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
 
   return (
     <>
-      {/*FIXME 简单修改样式*/}
       <Table
         rowSelection={{
           type: 'checkbox',
         }}
-        columns={DEFAULT_COLUMNS}
         size="middle"
+        scroll={{ y: '51.5vh' }}
+        columns={DEFAULT_COLUMNS}
         dataSource={formatData(dataSource)}
       />
       {currentAttendanceShow ? (
