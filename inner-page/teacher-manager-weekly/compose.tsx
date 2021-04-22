@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Key } from 'antd/es/table/interface';
 import Mock from 'mockjs';
 
 import Show from 'inner-page/teacher-manager-weekly/show';
 import Config from 'inner-page/teacher-manager-weekly/config';
+import { Key } from 'antd/es/table/interface';
 
 const Compose = () => {
   const [data, setData] = useState<PT.Weekly[]>([]); // data 页面当前显示数据
@@ -26,7 +26,7 @@ const Compose = () => {
             '大型复杂结构施工监控关键技术研究',
           ],
           'name|+1': '@cname()', // 生成随机中文名字
-          'date|+1': '@datetime()',
+          'date|+1': '@natural(1457814740000,1567814740000)', // 生成随机时间戳
           'status|+1': ['已完成', '未完成'],
           'level|+1': '@natural(1,3)', // 生成1-3之间的随机数
         },

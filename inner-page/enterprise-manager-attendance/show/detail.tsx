@@ -24,7 +24,6 @@ const Detail: React.FC<DetailProps> = ({
 }) => {
   // 储存dayjs对象，默认为父组件传入的日期，可通过选择框事件修改
   // TODO 增加选择框修改年和月的事件
-  // FIXME 增加@ts-ignore防止TODO未完成前发生报错
   // @ts-ignore
   const [year] = useState<number>(dayjs(currentAttendanceShow.date).year());
   // @ts-ignore

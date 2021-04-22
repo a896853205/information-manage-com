@@ -37,7 +37,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           提交
         </Button>
       }
-      width={1000}
+      width={'60vw'}
     >
       {/*详情页面的表单结构*/}
       <Form
@@ -50,10 +50,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           <Input disabled />
         </Form.Item>
         <Form.Item name="projectName" label="项目名称">
-          <Input
-            value="退役锂电材料短程循环与过程污染控制技术与评价方法研究"
-            disabled
-          />
+          <Input disabled />
         </Form.Item>
         <Form.Item name="dates" label="项目年份">
           <DatePicker defaultValue={dayjs(data.date)} disabled picker="month" />
@@ -94,9 +91,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
         <Form.Item name="level">
           <Radio.Group>
             <Radio value={1}>优秀</Radio>
-            <Radio value={2} defaultChecked={true}>
-              合格
-            </Radio>
+            <Radio value={2}>合格</Radio>
             <Radio value={3}>不合格</Radio>
           </Radio.Group>
         </Form.Item>

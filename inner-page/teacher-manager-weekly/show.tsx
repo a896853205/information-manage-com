@@ -6,6 +6,7 @@ import { useBoolean } from 'ahooks';
 
 import Detail from './detail';
 import { TableRowSelection } from 'antd/es/table/interface';
+import dayjs from 'dayjs';
 
 interface ShowProps {
   data: PT.Weekly[];
@@ -33,6 +34,9 @@ const Show = ({ data, rowSelection }: ShowProps) => {
       title: '日期',
       key: 'date',
       dataIndex: 'date',
+      render: (_text, _render) => (
+        <>{dayjs(_render.date).format('YYYY-MM-DD')}</>
+      ),
     },
     {
       title: '完成情况',
@@ -44,13 +48,13 @@ const Show = ({ data, rowSelection }: ShowProps) => {
       key: 'level',
       dataIndex: 'level',
       render: (_text, _render) => (
-        <div>
+        <>
           {_render.level === 1
             ? '优秀'
             : _render.level === 2
             ? '合格'
             : '不合格'}
-        </div>
+        </>
       ),
     },
     {
@@ -79,6 +83,8 @@ const Show = ({ data, rowSelection }: ShowProps) => {
         rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
+        size="middle"
+        scroll={{ y: '51.5vh' }}
         pagination={{ pageSize: 15 }}
       />
       {/*查看周志模板*/}
