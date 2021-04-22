@@ -79,6 +79,10 @@ const Detail: React.FC<DetailProps> = ({
             placeholder="选择要查看的月份"
             inputReadOnly
             format="YYYY-MM"
+            disabledDate={() => {
+              // TODO 目前为删除所有后续可做更改
+              return true;
+            }}
             onPanelChange={(value, mode) => {
               console.log(value, mode);
             }}

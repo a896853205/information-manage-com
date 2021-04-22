@@ -13,9 +13,7 @@ const { Search } = Input;
 // 组件
 const Increase = () => {
   return (
-    <Row justify="space-between">
-      <Col />
-
+    <Row justify="end">
       <Col>
         <Space>
           <span style={{ width: '40px' }}>日期：</span>
