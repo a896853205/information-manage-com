@@ -18,7 +18,7 @@ const { defaultDataSource }: { defaultDataSource: PT.Attendance[] } = Mock.mock(
           '停车相关管理系统及平台',
           '大型复杂结构施工监控关键技术研究',
         ],
-        date: '@integer(946656000,1618933233)',
+        date: '@integer(94665600000,161893323300)',
         status: '审批中',
       },
     ],

@@ -3,7 +3,6 @@ import Mock from 'mockjs';
 
 import Show from 'inner-page/teacher-manager-project/show';
 import Config from 'inner-page/teacher-manager-project/config';
-
 const { dataSource }: { dataSource: PT.Project[] } = Mock.mock({
   'dataSource|10': [
     {

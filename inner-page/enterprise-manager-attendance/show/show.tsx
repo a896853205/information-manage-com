@@ -24,7 +24,7 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
   // 把后端传过来的带有时间戳的数据转化成具体的年和月
   const formatData = (dataSource: PT.Attendance[]): PT.AttendanceShow[] => {
     const formatedData: PT.AttendanceShow[] = dataSource.map(item => {
-      const d: Dayjs = dayjs.unix(item.date);
+      const d: Dayjs = dayjs(item.date);
 
       return {
         ...item,
