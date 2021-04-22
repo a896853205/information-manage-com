@@ -83,6 +83,10 @@ const Detail: React.FC<DetailProps> = ({
             onPanelChange={(value, mode) => {
               console.log(value, mode);
             }}
+            disabledDate={() => {
+              // FIXME 目前设置所有日期不可选后续根据需求做更改
+              return true;
+            }}
             dateRender={(current: Dayjs) => {
               const style: DateRenderStyle = {};
               // 学生出勤就加一个圆圈代表出勤
