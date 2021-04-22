@@ -6,14 +6,15 @@ namespace PT {
    * 项目类型
    */
   type Project = {
-    id: string;
+    key?: number;
+    id: number;
     name: string;
-    enterprise: string;
-    invest: number;
+    enterprise?: string;
+    invest?: number;
     needStudent: number;
-    createTime: Date;
-    startTime: Date;
-    endTime: Date;
+    createTime?: Date;
+    startTime?: Date;
+    endTime?: Date;
     state: string;
   };
 }
