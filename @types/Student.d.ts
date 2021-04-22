@@ -15,5 +15,7 @@ namespace PT {
     projectName: string;
     enterpriseTeacher: string;
     state: string;
+    major: string[];
+    tel: string;
   };
 }

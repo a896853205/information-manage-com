@@ -9,11 +9,14 @@ namespace PT {
     id: string;
     name: string;
     enterprise: string;
+    enterpriseTeacher: string;
     invest: number;
     needStudent: number;
-    createTime: Date;
-    startTime: Date;
-    endTime: Date;
+    createTime: number;
+    startTime: number;
+    endTime: number;
     state: string;
+    major: string;
+    schoolTeacher: string[];
   };
 }

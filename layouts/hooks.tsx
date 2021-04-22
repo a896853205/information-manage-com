@@ -99,6 +99,16 @@ const useRoleMenu = (role?: number | null) => {
             [new MenuItem('/enterprise-manager-user-check', '用户账号审批')],
             <ApiOutlined />
           ),
+          new MenuItemGroup(
+            '信息库管理',
+            [
+              new MenuItem('/enterprise-manager-teacher', '示范点导师管理'),
+              new MenuItem('/enterprise-manager-project-library', '项目库管理'),
+              new MenuItem('/enterprise-manager-postgraduate', '研究生管理'),
+            ],
+
+            <ApiOutlined />
+          ),
         ];
       }
       default:
