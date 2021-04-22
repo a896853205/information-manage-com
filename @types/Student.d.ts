@@ -9,6 +9,9 @@ namespace PT {
     id: string;
     name: string;
     schoolName: string;
+    certificate: string;
+    achievement: string;
+    major: string;
     grade: string;
     schoolTeacher: string;
     eduBackground: string;
