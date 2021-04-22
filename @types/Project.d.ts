@@ -19,4 +19,10 @@ namespace PT {
     major: string;
     schoolTeacher: string[];
   };
+  /**
+   * 企业管理员-> 项目库管理用于展示类型
+   */
+  interface ProjectShow extends Project {
+    formatedYearAndMonthAndDay: string; // 'YYYY/MM/DD'
+  }
 }

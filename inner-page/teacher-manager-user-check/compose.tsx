@@ -12,7 +12,7 @@ const { data }: { data: PT.User[] } = Mock.mock({
       'name|+1': ['黄奕鹏', '李马星'],
       role: '高校导师',
       'organ|+1': ['广东工业大学', '广东财经大学'],
-      teacher: '',
+      teacher: '-',
       time: '@date("yyyy-MM-dd")',
     },
   ],
