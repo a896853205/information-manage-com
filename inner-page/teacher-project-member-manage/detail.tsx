@@ -179,7 +179,7 @@ const Detail = () => {
         title="新增学生"
         visible={isShow}
         onCancel={setFalse}
-        width={1000}
+        width={'60vw'}
         footer={
           <>
             <Button type="primary" onClick={setFalse}>

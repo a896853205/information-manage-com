@@ -53,7 +53,7 @@ const Show: React.FC<ShowProps> = props => {
         title="项目成员管理"
         visible={isShow}
         onCancel={setFalse}
-        width={1000}
+        width={'60vw'}
         footer={
           <>
             <Button type="primary" onClick={setFalse}>
