@@ -153,7 +153,7 @@ const Detail = () => {
         <Button onClick={setTrue} icon={<PlusOutlined />}>
           新增
         </Button>
-        <Table dataSource={selectedStudentData} size="small">
+        <Table dataSource={selectedStudentData} size="middle">
           <Column title="序号" dataIndex="id" key="id" />
           <Column title="学生姓名" dataIndex="name" key="name" />
           <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
@@ -193,7 +193,7 @@ const Detail = () => {
       >
         <Table
           dataSource={studentData}
-          size="small"
+          size="middle"
           rowSelection={{ type: 'checkbox', ...rowSelection }}
         >
           <Column title="" dataIndex="index" key="index" />

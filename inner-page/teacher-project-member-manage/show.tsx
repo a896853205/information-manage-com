@@ -24,7 +24,7 @@ const Show: React.FC<ShowProps> = props => {
     <>
       <Table
         dataSource={projectDataSource}
-        size="small"
+        size="middle"
         rowSelection={{ type: 'checkbox', ...rowSelection }}
       >
         <Column title="序号" dataIndex="id" key="id" />

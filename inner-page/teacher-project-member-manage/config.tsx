@@ -50,6 +50,7 @@ const Config = () => {
         onCancel={setFalse}
         okText="确认"
         cancelText="取消"
+        width={'60vw'}
       >
         <Space>
           选择导出的类型：
