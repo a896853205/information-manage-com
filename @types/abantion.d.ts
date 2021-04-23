@@ -1,6 +1,6 @@
 namespace PT {
     // weekly数据属性
-    type abantion = {
+    type Abantion = {
       key: number;
       index: number;
       schoolName: string; 

@@ -6,7 +6,7 @@ import TextArea from 'antd/lib/input/TextArea';
 interface IncreaseProps {
   showModel: boolean;
   setFalse: () => void;
-  selectData: PT.abantion;
+  selectData: PT.Abantion;
 }
 
 const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {

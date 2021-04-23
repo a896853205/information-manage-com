@@ -9,11 +9,11 @@ import Detail from './detail';
 import dayjs from 'dayjs';
 
 interface ShowProps {
-  data: PT.abantion[];
+  data: PT.Abantion[];
 }
 const Show = ({ data }: ShowProps) => {
   // columns 当前显示表格的行属性
-  const [columns] = useState<ColumnsType<PT.abantion>>([
+  const [columns] = useState<ColumnsType<PT.Abantion>>([
     {
       title: '序号',
       key: 'key',
@@ -69,7 +69,7 @@ const Show = ({ data }: ShowProps) => {
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
-  const [selectData, setSelectData] = useState<PT.abantion>(data[0]); // 代表点击查看后显示的当前列
+  const [selectData, setSelectData] = useState<PT.Abantion>(data[0]); // 代表点击查看后显示的当前列
 
   return (
     <>

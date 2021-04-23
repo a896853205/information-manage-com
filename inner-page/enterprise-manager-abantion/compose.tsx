@@ -5,7 +5,7 @@ import Mock from 'mockjs';
 import Show from 'inner-page/enterprise-manager-abantion/show';
 import Config from './config';
 const Compose = () => {
-  const [data, setData] = useState<PT.abantion[]>([]); // data 页面当前显示数据
+  const [data, setData] = useState<PT.Abantion[]>([]); // data 页面当前显示数据
 
   useEffect(() => {
     const { abantionData } = Mock.mock({
