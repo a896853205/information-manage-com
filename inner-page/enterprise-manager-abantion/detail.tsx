@@ -22,19 +22,18 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
       title="终止培养申请"
       visible={showModel}
       onCancel={setFalse}
+      width={'60vw'}
       footer={
         <div>
           <Button type="primary">提交</Button>
           <Button onClick={setFalse}>取消</Button>
         </div>
       }
-      width={900}
     >
       {/*详情页面的表单结构*/}
       <Form
         initialValues={selectData}
-        labelCol={{ span: 2 }}
-        wrapperCol={{ span: 25 }}
+        labelCol={{ span: 3 }}
         layout="horizontal"
         name="终止培养申请"
       >
@@ -62,18 +61,17 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
         </Form.Item>
 
         <Form.Item label="备注说明">
-          <TextArea />
+          <TextArea disabled />
         </Form.Item>
-
         <Divider orientation="left">填写评价</Divider>
-        <Form.Item name="level">
+        <Form.Item name="level" wrapperCol={{ offset: 1 }}>
           <Radio.Group>
             <Radio value={1}>同意</Radio>
             <Radio value={2}>不同意</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item label="评语" name="textAdvice">
-          <TextArea rows={1} cols={8} />
+          <TextArea rows={2} />
         </Form.Item>
       </Form>
     </Modal>

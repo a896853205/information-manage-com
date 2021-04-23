@@ -34,9 +34,6 @@ const Config = () => {
         justifyContent: 'space-between',
       }}
     >
-      {/*数据展示及操作模板*/}
-      {/*左侧删除按钮及提示框*/}
-
       <Button
         type="primary"
         onClick={() => {
@@ -46,8 +43,6 @@ const Config = () => {
         <PlusOutlined />
         新增
       </Button>
-
-      {/*右侧搜索栏目前只实现了搜索属性name也就是项目名称*/}
       <Space>
         <div>审批状态：</div>
         <Dropdown overlay={menu}>
@@ -71,11 +66,11 @@ const Config = () => {
             <Button onClick={setFalse}>取消</Button>
           </div>
         }
-        width={900}
+        width={'60vw'}
       >
         {/*详情页面的表单结构*/}
         <Form
-          labelCol={{ span: 2 }}
+          labelCol={{ span: 3 }}
           wrapperCol={{ span: 25 }}
           layout="horizontal"
           name="新增终止培养申请"
