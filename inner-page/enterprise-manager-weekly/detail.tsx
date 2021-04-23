@@ -12,7 +12,6 @@ import {
   DatePicker,
 } from 'antd';
 
-import TextArea from 'antd/lib/input/TextArea';
 interface scoreEvaluate {
   key: number;
   name: String;
