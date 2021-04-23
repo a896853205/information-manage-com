@@ -6,7 +6,7 @@ const Config = () => (
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
+      flexDirection: 'row-reverse',
     }}
   >
     <Space size={600}>

@@ -56,7 +56,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
     {
       title: '评价',
       key: 'evaluate',
-      render: () => <TextArea rows={1} disabled cols={8} />,
+      dataIndex: 'evaluate',
     },
   ]);
   return (
@@ -71,7 +71,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           取消
         </Button>
       }
-      width={1000}
+      width={'60vw'}
     >
       {/*详情页面的表单结构*/}
       <Form
@@ -157,11 +157,9 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             </Button>
           </Space>
         </Form.Item>
-        <Divider orientation="left">成绩评价</Divider>
-        <Form.Item name="level">
-          <Table dataSource={leveldata} columns={column} />;
-        </Form.Item>
       </Form>
+      <Divider orientation="left">成绩评价</Divider>
+      <Table dataSource={leveldata} columns={column} />
     </Modal>
   );
 };

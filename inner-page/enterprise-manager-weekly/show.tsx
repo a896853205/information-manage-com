@@ -71,6 +71,7 @@ const Show = ({ data, rowSelection }: ShowProps) => {
         columns={columns}
         dataSource={data}
         pagination={{ pageSize: 15 }}
+        size="middle"
       />
       {/*查看周志模板*/}
       <Detail
