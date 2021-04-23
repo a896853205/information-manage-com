@@ -28,7 +28,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           <Button onClick={setFalse}>取消</Button>
         </div>
       }
-      width={900}
+      width={'60vw'}
     >
       {/*详情页面的表单结构*/}
       <Form
@@ -88,7 +88,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
           </Row>
         </Form.Item>
         <Form.Item label="备注说明">
-          <TextArea />
+          <TextArea disabled />
         </Form.Item>
 
         <Divider orientation="left">填写评价</Divider>

@@ -29,7 +29,7 @@ const Config = () => {
         justifyContent: 'space-between',
       }}
     >
-      <Space size={550}>
+      <Space size={570}>
         <div></div>
         <Space>
           <div>审批状态：</div>

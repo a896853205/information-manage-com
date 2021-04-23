@@ -66,6 +66,7 @@ const Show = ({ awarddata }: ShowProps) => {
     <>
       {/*数据显示信息*/}
       <Table
+        size="middle"
         columns={columns}
         dataSource={awarddata}
         pagination={{ pageSize: 15 }}
