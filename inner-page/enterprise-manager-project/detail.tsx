@@ -34,7 +34,7 @@ const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
     {
       'key|+1': 1,
       'id|+1': 1,
-      'name|+1': '@name()',
+      'name|+1': '@cname()',
       'school|+1': ['哈尔滨理工大学', '黑龙江大学'],
       introduce: '',
     },
