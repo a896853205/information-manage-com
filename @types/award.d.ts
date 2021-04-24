@@ -3,7 +3,7 @@
  */
 namespace PT {
   /**
-   * 学生
+   * 奖励
    */
   type Award = {
     key: string;
