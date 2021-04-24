@@ -76,7 +76,7 @@ const Detail = () => {
           </Col>
 
           <Col span={10}>
-            <Form.Item label={'期号'}>
+            <Form.Item label={'期号'} labelCol={{ offset: 2 }}>
               <Input value={'58-41'}></Input>
             </Form.Item>
           </Col>
@@ -88,7 +88,7 @@ const Detail = () => {
           </Col>
 
           <Col span={10}>
-            <Form.Item label={'版面'}>
+            <Form.Item label={'版面'} labelCol={{ offset: 2 }}>
               <Input value={'专刊'}></Input>
             </Form.Item>
           </Col>
@@ -100,13 +100,13 @@ const Detail = () => {
           </Col>
 
           <Col span={10}>
-            <Form.Item label={'ISSN号'}>
+            <Form.Item label={'ISSN号'} labelCol={{ offset: 1 }}>
               <Input value={'ISSN1000-0097'}></Input>
             </Form.Item>
           </Col>
 
           <Col offset={4} span={10}>
-            <Form.Item label={'CN号'}>
+            <Form.Item label={'C N 号'} labelCol={{ offset: 1 }}>
               <Input value={'CN-11-1340/G2'}></Input>
             </Form.Item>
           </Col>
