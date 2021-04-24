@@ -18,7 +18,7 @@ const Show: React.FC<ShowProps> = props => {
 
   return (
     <>
-      <Table dataSource={projectDataSource} size="small">
+      <Table dataSource={projectDataSource} size="middle">
         <Column title="序号" dataIndex="id" key="id" />
         <Column title="项目名称" dataIndex="name" key="name" />
         <Column

@@ -1,16 +1,7 @@
 /**
  * 具体的项目信息弹窗
  */
-import {
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  Radio,
-  Card,
-  Table,
-  Space,
-} from 'antd';
+import { Form, Input, DatePicker, Radio, Card, Table, Space } from 'antd';
 import Mock from 'mockjs';
 import { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
@@ -132,7 +123,7 @@ const Detail = () => {
       <Table
         columns={DEFAULT_COLUMNS}
         dataSource={teacherData}
-        size="small"
+        size="middle"
       ></Table>
     </>
   );

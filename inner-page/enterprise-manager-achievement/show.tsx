@@ -83,7 +83,7 @@ const Show: React.FC<ShowProps> = props => {
       <Table
         dataSource={formatData(achievementDataSource)}
         columns={DEFAULT_COLUMNS}
-        size="small"
+        size="middle"
         rowSelection={{ type: 'checkbox', ...rowSelection }}
         style={{ marginTop: 20 }}
       ></Table>
