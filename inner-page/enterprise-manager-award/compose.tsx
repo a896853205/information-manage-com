@@ -5,7 +5,7 @@ import Mock from 'mockjs';
 import Show from 'inner-page/enterprise-manager-award/show';
 import Config from 'inner-page/enterprise-manager-award/config';
 const Compose = () => {
-  const [awardData, setData] = useState<PT.award[]>([]); // data 页面当前显示数据
+  const [awardData, setData] = useState<PT.Award[]>([]); // data 页面当前显示数据
 
   useEffect(() => {
     const { awardData } = Mock.mock({

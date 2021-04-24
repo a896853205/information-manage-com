@@ -6,7 +6,7 @@ import TextArea from 'antd/lib/input/TextArea';
 interface IncreaseProps {
   showModel: boolean;
   setFalse: () => void;
-  selectData: PT.award;
+  selectData: PT.Award;
 }
 
 const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
@@ -33,7 +33,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
       {/*详情页面的表单结构*/}
       <Form
         initialValues={selectData}
-        labelCol={{ span: 2 }}
+        labelCol={{ span: 3 }}
         wrapperCol={{ span: 25 }}
         layout="horizontal"
         name="奖励申请管理"
@@ -92,7 +92,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
         </Form.Item>
 
         <Divider orientation="left">填写评价</Divider>
-        <Form.Item name="level">
+        <Form.Item name="level" wrapperCol={{ offset: 1 }}>
           <Radio.Group>
             <Radio value={1}>同意</Radio>
             <Radio value={2}>不同意</Radio>

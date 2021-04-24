@@ -7,11 +7,11 @@ import { useBoolean } from 'ahooks';
 import Detail from './detail';
 
 interface ShowProps {
-  awarddata: PT.award[];
+  awarddata: PT.Award[];
 }
 const Show = ({ awarddata }: ShowProps) => {
   // columns 当前显示表格的行属性
-  const [columns] = useState<ColumnsType<PT.award>>([
+  const [columns] = useState<ColumnsType<PT.Award>>([
     {
       title: '序号',
       key: 'key',
@@ -60,7 +60,7 @@ const Show = ({ awarddata }: ShowProps) => {
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
-  const [selectData, setSelectData] = useState<PT.award>(awarddata[0]); // 代表点击查看后显示的当前列
+  const [selectData, setSelectData] = useState<PT.Award>(awarddata[0]); // 代表点击查看后显示的当前列
 
   return (
     <>
