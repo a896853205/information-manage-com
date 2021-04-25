@@ -9,9 +9,13 @@ namespace PT {
     key?: number;
     id: number;
     name: string;
+    enterprise: string;
     enterpriseTeacher: string;
     invest: number;
     needStudent: number;
+    createTime: number;
+    startTime: number;
+    endTime: number;
     enterprise?: string;
     invest?: number;
     needStudent: number;
