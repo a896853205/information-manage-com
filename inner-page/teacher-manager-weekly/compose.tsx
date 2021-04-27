@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
+import { Key } from 'antd/es/table/interface';
 import Mock from 'mockjs';
 
 import Show from 'inner-page/teacher-manager-weekly/show';
 import Config from 'inner-page/teacher-manager-weekly/config';
-import { Key } from 'antd/es/table/interface';
 
 const Compose = () => {
   const [data, setData] = useState<PT.Weekly[]>([]); // data 页面当前显示数据

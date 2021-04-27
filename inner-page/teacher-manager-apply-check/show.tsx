@@ -17,7 +17,7 @@ const Show: React.FC<ShowProps> = props => {
 
   return (
     <>
-      <Table dataSource={projectDataSource} size="small">
+      <Table dataSource={projectDataSource} size="middle">
         <Column title="序号" dataIndex="id" key="id" />
         <Column title="项目名称" dataIndex="name" key="name" />
         <Column title="所属示范点" dataIndex="enterprise" key="enterprise" />
@@ -44,7 +44,7 @@ const Show: React.FC<ShowProps> = props => {
         title="项目审核"
         visible={isShow}
         onCancel={setFalse}
-        width={1200}
+        width={'60vw'}
         footer={
           <Button key="back" onClick={setFalse}>
             返回

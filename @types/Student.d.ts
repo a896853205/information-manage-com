@@ -9,11 +9,16 @@ namespace PT {
     id: string;
     name: string;
     schoolName: string;
+    certificate: string;
+    achievement: string;
+    major: string;
     grade: string;
     schoolTeacher: string;
     eduBackground: string;
     projectName: string;
     enterpriseTeacher: string;
     state: string;
+    major: string[];
+    tel: string;
   };
 }

@@ -71,7 +71,7 @@ const Show: React.FC<ShowProps> = ({ dataSource }) => {
   return (
     <>
       <Table
-        size="small"
+        size="middle"
         columns={columns}
         dataSource={dataSource}
         rowSelection={{

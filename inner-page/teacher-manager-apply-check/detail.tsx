@@ -20,7 +20,7 @@ import Verify from 'inner-page/teacher-manager-apply-check/verify';
 
 const { Column, ColumnGroup } = Table;
 
-const { teacherData }: { teacherData: PT.Teacher[] } = Mock.mock({
+const { teacherData }: { teacherData: PT.SchoolTeacher[] } = Mock.mock({
   'teacherData|2': [
     {
       'key|+1': 1,
@@ -132,7 +132,7 @@ const Detail = () => {
         </Form>
       </Card>
       <Card title="指标审核">
-        <Table dataSource={teacherData} size="small">
+        <Table dataSource={teacherData} size="middle">
           <Column title="序号" dataIndex="id" key="id" />
           <Column title="导师名称" dataIndex="name" key="name" />
           <Column title="所属高校" dataIndex="schoolName" key="schoolName" />
@@ -205,7 +205,7 @@ const Detail = () => {
           title="高校导师指标资格审核"
           visible={isShow}
           onCancel={setFalse}
-          width={500}
+          width={'60vw'}
           footer={
             <div>
               <Button type="primary" onClick={setFalse}>
