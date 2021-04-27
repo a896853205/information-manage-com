@@ -53,7 +53,7 @@ const Show: React.FC<ShowProps> = props => {
       render: () => (
         <Space size="middle">
           <Button type="primary" onClick={setTrue}>
-            查看
+            审核
           </Button>
         </Space>
       ),
