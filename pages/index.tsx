@@ -15,34 +15,38 @@ const Login = () => {
   return (
     <div className="index-box">
       <div className="index-inner-box">
-        <div className="left-box">
+        <div
+          className="left-box"
+          style={isLogin ? { width: '750px' } : { width: '500px' }}
+        >
           {isLogin ? (
-            <img
-              className="image-background"
-              src="image/login.jpg"
-              alt="login"
-            />
-          ) : (
             <>
-              <div className="left-logo-box">
-                <img src="image/edu.svg" className="logo-svg" />
-                <span>黑龙江研究生联合培养基地</span>
-              </div>
+              <div className="outter-box"></div>
               <img
                 className="image-background"
-                src="image/register.png"
+                src="image/login.jpg"
+                alt="login"
+              />
+            </>
+          ) : (
+            <>
+              <div className="outter-box"></div>
+              <img
+                className="image-background"
+                src="image/register.jpg"
                 alt="register"
               />
             </>
           )}
         </div>
-        <div className="right-box">
-          {isLogin ? (
-            <div className="logo-box">
-              <img src="image/edu.svg" className="logo-svg" />
-              <span>黑龙江研究生联合培养基地</span>
-            </div>
-          ) : null}
+        <div
+          className="right-box"
+          style={isLogin ? { width: '500px' } : { width: '750px' }}
+        >
+          <div className="logo-box" style={!isLogin ? { padding: '20px' } : {}}>
+            <img src="image/edu.svg" className="logo-svg" />
+            <span>黑龙江研究生联合培养基地</span>
+          </div>
           <div className="nav">
             <a
               onClick={setTrue}

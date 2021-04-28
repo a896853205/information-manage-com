@@ -11,6 +11,7 @@ const Detail = () => {
           label="选择类型"
           labelCol={{ span: 3 }}
           wrapperCol={{ span: 21 }}
+          labelAlign="left"
         >
           <Radio.Group defaultValue={1} buttonStyle="solid">
             <Radio.Button value={1}>高校管理员</Radio.Button>
@@ -19,9 +20,10 @@ const Detail = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item
-          label="示范点"
           labelCol={{ span: 3 }}
           wrapperCol={{ span: 21 }}
+          label="示范点"
+          labelAlign="left"
         >
           <Row gutter={24}>
             <Col span={6}>
@@ -47,6 +49,7 @@ const Detail = () => {
         </Form.Item>
         <Form.Item
           label="绑定邮箱"
+          labelAlign="left"
           labelCol={{ span: 3 }}
           wrapperCol={{ span: 21 }}
         >
@@ -54,24 +57,24 @@ const Detail = () => {
         </Form.Item>
         <Row gutter={24}>
           <Col span={12}>
-            <Form.Item label="用户姓名">
+            <Form.Item label="用户姓名" labelAlign="left">
               <Input placeholder="请输入用户姓名" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="用户账号">
+            <Form.Item label="用户账号" labelAlign="left">
               <Input placeholder="请输入用户账号" />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={24}>
           <Col span={12}>
-            <Form.Item label="设置密码">
+            <Form.Item label="设置密码" labelAlign="left">
               <Input placeholder="请输入密码" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="确认密码">
+            <Form.Item label="确认密码" labelAlign="left">
               <Input placeholder="请确认密码" />
             </Form.Item>
           </Col>
