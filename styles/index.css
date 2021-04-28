@@ -1,0 +1,90 @@
+:root {
+  --left-width: 550px;
+  --right-width: 700px;
+}
+
+.index-box {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(244, 244, 244);
+}
+
+.index-inner-box {
+  width: calc(var(--left-width) + var(--right-width));
+  display: flex;
+  box-shadow: 0 0 20px #ddd;
+  background: rgba(0, 0, 0, 0);
+}
+
+.left-box {
+  position: relative;
+  width: var(--left-width);
+}
+
+.image-background {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+}
+
+.left-logo-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin: 30px;
+}
+
+.left-logo-box span {
+  font-size: 28px;
+  padding-left: 30px;
+}
+
+.right-box {
+  width: var(--right-width);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 60px 80px;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  padding: 60px 0 64px 0;
+}
+
+.logo-box span {
+  font-size: 28px;
+  padding-left: 30px;
+}
+
+.logo-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.nav {
+  margin: 20px 0;
+}
+
+.unfocus {
+  color: rgb(170, 170, 190);
+}
+
+.focus {
+  font-size: 20px;
+  font-weight: 900;
+  color: #000;
+}
+
+.button {
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  margin-right: 20px;
+}
