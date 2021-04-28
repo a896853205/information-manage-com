@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Table } from 'antd';
+import { Button, Table, Space } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
@@ -48,28 +48,30 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
       key: 'action',
       render: (_text, _render) => (
         <div>
-          <Button
-            size="small"
-            type={'primary'}
-            onClick={() => {
-              setTrue();
-              setSelectData(_render);
-            }}
-          >
-            审批
-          </Button>
-          <Button
-            size="small"
-            onClick={() => {
-              setTrue();
-              setSelectData(_render);
-            }}
-          >
-            编辑
-          </Button>
-          <Button type="primary" danger={true} size="small">
-            删除
-          </Button>
+          <Space>
+            <Button
+              size="small"
+              type={'primary'}
+              onClick={() => {
+                setTrue();
+                setSelectData(_render);
+              }}
+            >
+              审批
+            </Button>
+            <Button
+              size="small"
+              onClick={() => {
+                setTrue();
+                setSelectData(_render);
+              }}
+            >
+              编辑
+            </Button>
+            <Button type="primary" danger={true} size="small">
+              删除
+            </Button>
+          </Space>
         </div>
       ),
     },
