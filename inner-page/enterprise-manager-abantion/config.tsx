@@ -9,7 +9,7 @@ import {
 import Search from 'antd/lib/input/Search';
 import React from 'react';
 import { useBoolean } from 'ahooks';
-import { Button, Form, Input, Modal, Dropdown } from 'antd';
+import { Button, Form, Input, Modal, Dropdown, Col, Row } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 
 const Config = () => {
@@ -78,13 +78,22 @@ const Config = () => {
           <Form.Item name="name" label="学生姓名">
             <Input />
           </Form.Item>
-          <Form.Item label="手机号码">
-            <Input />
-          </Form.Item>
-          <Form.Item label="所属学校">
-            <Input disabled />
-          </Form.Item>
-
+        </Form>
+        <Form labelCol={{ span: 6 }}>
+          <Row>
+            <Col span={12}>
+              <Form.Item label="手机号码">
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="所属学校" labelCol={{ span: 5 }}>
+                <Input disabled />
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+        <Form labelCol={{ span: 3 }}>
           <Form.Item label="所属示范点">
             <Input disabled />
           </Form.Item>
