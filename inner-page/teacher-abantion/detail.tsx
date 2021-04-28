@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Divider, Form, Input, Modal, Radio } from 'antd';
+import { Button, Divider, Form, Input, Modal, Radio, Row, Col } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 
 interface IncreaseProps {
@@ -31,25 +31,39 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
       }
     >
       {/*详情页面的表单结构*/}
+
       <Form
         initialValues={selectData}
-        labelCol={{ span: 3 }}
+        labelCol={{ span: 5 }}
         layout="horizontal"
         name="终止培养申请"
       >
-        <Form.Item name="name" label="学生姓名">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="手机号码">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="所属学校">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="所属导师">
-          <Input disabled />
-        </Form.Item>
-
+        <Row justify="space-between">
+          <Col span={12}>
+            <Form.Item name="name" label="学生姓名">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="手机号码">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row justify="space-between">
+          <Col span={12}>
+            <Form.Item label="所属学校">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="所属导师">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+      <Form labelCol={{ span: 3 }}>
         <Form.Item label="所属示范点">
           <Input disabled />
         </Form.Item>
