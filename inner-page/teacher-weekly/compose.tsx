@@ -39,7 +39,7 @@ const Compose = () => {
   return (
     <>
       {/* <BreadcrumbList /> */}
-      <Config selectedRowKeys={selectedRowKeys} />
+      <Config />
       <Show rowSelection={rowSelection} data={data} />
     </>
   );

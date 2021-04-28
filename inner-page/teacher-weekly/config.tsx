@@ -1,5 +1,5 @@
 import { DatePicker, Popover, Space, Button, Checkbox } from 'antd';
-import { RightCircleFilled, UnorderedListOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined } from '@ant-design/icons';
 import Search from 'antd/lib/input/Search';
 const Config = () => (
   <div
