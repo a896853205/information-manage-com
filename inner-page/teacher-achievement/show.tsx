@@ -108,7 +108,10 @@ const Show: React.FC<ShowProps> = props => {
             <Button key="back" onClick={setFalse}>
               返回
             </Button>
-            <Button style={{ background: 'green' }} onClick={passDetail}>
+            <Button
+              style={{ background: 'green', color: 'white' }}
+              onClick={passDetail}
+            >
               通过
             </Button>
             <Button type="primary" danger onClick={withoutPassDetail}>
