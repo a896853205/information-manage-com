@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Table, Space } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
-
+import dayjs from 'dayjs';
 import Detail from './detail';
 
 interface ShowProps {
@@ -36,6 +36,9 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
       title: '申请时间',
       key: 'date',
       dataIndex: 'date',
+      render: (_text, _render) => (
+        <>{dayjs(_render.date).format('YYYY-MM-DD')}</>
+      ),
     },
 
     {
