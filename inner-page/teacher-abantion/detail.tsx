@@ -34,7 +34,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
 
       <Form
         initialValues={selectData}
-        labelCol={{ span: 5 }}
+        labelCol={{ span: 6 }}
         layout="horizontal"
         name="终止培养申请"
       >
@@ -45,7 +45,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="手机号码">
+            <Form.Item label="手机号码" labelCol={{ span: 5 }}>
               <Input disabled />
             </Form.Item>
           </Col>
@@ -57,7 +57,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="所属导师">
+            <Form.Item label="所属导师" labelCol={{ span: 5 }}>
               <Input disabled />
             </Form.Item>
           </Col>
