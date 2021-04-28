@@ -24,7 +24,7 @@ const Login = () => {
               <div className="outter-box"></div>
               <img
                 className="image-background"
-                src="image/login.jpg"
+                src="image/login.png"
                 alt="login"
               />
             </>
