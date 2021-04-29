@@ -24,21 +24,26 @@ const Detail = ({
         onCancel={() => setInformationVisible(false)}
         width={'60vw'}
       >
-        <Form title="用户信息">
+        <Form title="用户信息" labelCol={{ span: 3 }}>
           <Form.Item label="用户姓名">
             <Input placeholder="请输入姓名" disabled={true} />
           </Form.Item>
-          <Form.Item label="联系电话">
-            <Row>
-              <Col span={12}>
+        </Form>
+        <Form labelCol={{ span: 6 }}>
+          <Row>
+            <Col span={12}>
+              <Form.Item label="联系电话">
                 <Input placeholder="请输入手机号码" disabled={true} />
-              </Col>
-              <Col span={12}>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="所属高校" labelCol={{ span: 5 }}>
                 <Input placeholder="请输入高校名称" disabled={true} />
-              </Col>
-            </Row>
-          </Form.Item>
-
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+        <Form labelCol={{ span: 3 }}>
           <Form.Item label="学科专业">
             <Input placeholder="请填写学科专业" disabled={true} />
           </Form.Item>
