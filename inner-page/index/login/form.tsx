@@ -1,11 +1,27 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Form, Input, message } from 'antd';
+import { useRequest } from 'ahooks';
+
+import { auth } from 'services/apis/account';
 
 const Detail = () => {
+  const [username, _setUsername] = useState('');
+  const [password, _setPassword] = useState('');
   const router = useRouter();
-  const onFinish = (values: any) => {
+
+  const { run, cancel, loading } = useRequest(auth, {
+    debounceInterval: 300,
+    manual: true,
+  });
+
+  useEffect(() => {
+    return () => {
+      cancel();
+    };
+  }, []);
+  const onFinish = async (values: any) => {
     switch (values.username) {
       case 'test1':
         localStorage.setItem('Role', '1');
@@ -22,6 +38,10 @@ const Detail = () => {
       default:
         message.error('账号输入错误');
     }
+
+    // TODO: 判断完全之后再setUsername与setPassword
+    const token = await run(username, password);
+    // TODO: 将token设置到默认header中，然后跳转home， 然后再框架组件中由token获取用户权限， 然后传递给menu， 显示对应menu
   };
 
   return (
@@ -50,6 +70,7 @@ const Detail = () => {
               width: '200px',
               borderRadius: '5px',
             }}
+            loading={loading}
           >
             登录
           </Button>
