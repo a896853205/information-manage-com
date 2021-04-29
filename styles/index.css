@@ -1,8 +1,3 @@
-:root {
-  --left-width: 500px;
-  --right-width: 750px;
-}
-
 .index-box {
   height: 100vh;
   display: flex;
@@ -18,9 +13,14 @@
   background: rgba(0, 0, 0, 0);
 }
 
-.left-box {
+.left-login-box {
   position: relative;
-  width: var(--left-width);
+  width: 750px;
+}
+
+.left-register-box {
+  position: relative;
+  width: 500px;
 }
 
 .image-background {
@@ -40,8 +40,16 @@
   height: 100%;
 }
 
-.right-box {
-  width: var(--right-width);
+.right-login-box {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 60px 80px;
+}
+
+.right-register-box {
+  width: 750px;
   display: flex;
   flex-direction: column;
   background: #fff;
