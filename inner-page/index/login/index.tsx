@@ -4,15 +4,15 @@ import Detail from 'inner-page/index/login/form';
 import { LOGIN, REGISTER } from 'inner-page/index';
 
 interface ShowProps {
-  setPageState: Function;
+  onChange: Function;
 }
 
-const Show: React.FC<ShowProps> = ({ setPageState }) => {
+const Show: React.FC<ShowProps> = ({ onChange }) => {
   return (
     <>
       <div className="left-login-box">
         <Image
-          src="/image/login.png"
+          src="/image/index/login.png"
           alt="login"
           layout="fill"
           objectFit="cover"
@@ -21,16 +21,14 @@ const Show: React.FC<ShowProps> = ({ setPageState }) => {
       </div>
       <div className="right-login-box">
         <div className="logo-box">
-          {/* FIXME: 图片 */}
-          {/* FIXME: 图片的路径名应与本文件的路径一致 */}
-          <img src="image/edu.svg" className="logo-svg" />
+          <Image src="/image/index/edu.svg" width={36} height={36} alt="logo" />
           <span className="logo-content">黑龙江研究生联合培养基地</span>
         </div>
         <div className="nav">
-          <a onClick={() => setPageState(LOGIN)} className="focus button">
+          <a onClick={() => onChange(LOGIN)} className="focus button">
             登录
           </a>
-          <a onClick={() => setPageState(REGISTER)} className="unfocus button">
+          <a onClick={() => onChange(REGISTER)} className="unfocus button">
             注册
           </a>
         </div>
@@ -39,7 +37,7 @@ const Show: React.FC<ShowProps> = ({ setPageState }) => {
         </div>
         <div className="inner-bottom">
           <span>没有账号？</span>
-          <a onClick={() => setPageState(REGISTER)}>点此注册</a>
+          <a onClick={() => onChange(REGISTER)}>点此注册</a>
         </div>
       </div>
     </>

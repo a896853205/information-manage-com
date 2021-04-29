@@ -56,16 +56,8 @@ const Detail = () => {
         <Form.Item label="确认密码" labelAlign="left">
           <Input placeholder="请确认密码" />
         </Form.Item>
-        <Form.Item>
-          <Button
-            size="large"
-            type="primary"
-            // FIXME: css写在文件里, 而且css应该放在与tsx放在一起
-            style={{
-              width: '200px',
-              borderRadius: '5px',
-            }}
-          >
+        <Form.Item wrapperCol={{ span: 12 }}>
+          <Button size="large" type="primary" block>
             注册
           </Button>
         </Form.Item>

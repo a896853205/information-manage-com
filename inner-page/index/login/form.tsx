@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Form, Input, message } from 'antd';
@@ -6,8 +5,7 @@ import { Button, Form, Input, message } from 'antd';
 const Detail = () => {
   const router = useRouter();
 
-  // FIXME: 禁止使用any
-  const onFinish = (values: any) => {
+  const onFinish = (values: { username: string; password: string }) => {
     switch (values.username) {
       case 'test1':
         localStorage.setItem('Role', '1');
@@ -42,17 +40,8 @@ const Detail = () => {
       >
         <Input type="password" placeholder="请输入用户密码" />
       </Form.Item>
-      <Form.Item>
-        <Button
-          size="large"
-          type="primary"
-          htmlType="submit"
-          // FIXME: css写在文件里, 而且css应该放在与tsx放在一起
-          style={{
-            width: '200px',
-            borderRadius: '5px',
-          }}
-        >
+      <Form.Item wrapperCol={{ span: 12 }}>
+        <Button size="large" type="primary" htmlType="submit" block>
           登录
         </Button>
       </Form.Item>
