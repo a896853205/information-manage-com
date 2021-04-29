@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Form, Input, message } from 'antd';
@@ -7,8 +7,6 @@ import { useRequest } from 'ahooks';
 import { auth } from 'services/apis/account';
 
 const Detail = () => {
-  const [username, _setUsername] = useState('');
-  const [password, _setPassword] = useState('');
   const router = useRouter();
 
   const { run, cancel, loading } = useRequest(auth, {
@@ -40,7 +38,7 @@ const Detail = () => {
     }
 
     // TODO: 判断完全之后再setUsername与setPassword
-    const token = await run(username, password);
+    const token = await run(values.username, values.password);
     // TODO: 将token设置到默认header中，然后跳转home， 然后再框架组件中由token获取用户权限， 然后传递给menu， 显示对应menu
   };
 
