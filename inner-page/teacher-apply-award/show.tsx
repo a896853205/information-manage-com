@@ -7,11 +7,11 @@ import dayjs from 'dayjs';
 import Detail from './detail';
 
 interface ShowProps {
-  teacherAwarddata: PT.teacherAward[];
+  teacherAwarddata: PT.Award[];
 }
 const Show = ({ teacherAwarddata }: ShowProps) => {
   // columns 当前显示表格的行属性
-  const [columns] = useState<ColumnsType<PT.teacherAward>>([
+  const [columns] = useState<ColumnsType<PT.Award>>([
     {
       title: '序号',
       key: 'key',
@@ -80,9 +80,7 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
     },
   ]);
   const [isShowDetailModal, { setFalse, setTrue }] = useBoolean(false);
-  const [selectData, setSelectData] = useState<PT.teacherAward>(
-    teacherAwarddata[0]
-  ); // 代表点击查看后显示的当前列
+  const [selectData, setSelectData] = useState<PT.Award>(teacherAwarddata[0]); // 代表点击查看后显示的当前列
 
   return (
     <>

@@ -5,7 +5,7 @@ import Mock from 'mockjs';
 import Show from 'inner-page/teacher-apply-award/show';
 import Config from 'inner-page/teacher-apply-award/config';
 const Compose = () => {
-  const [teacherAwardData, setData] = useState<PT.teacherAward[]>([]); // data 页面当前显示数据
+  const [teacherAwardData, setData] = useState<PT.Award[]>([]); // data 页面当前显示数据
 
   useEffect(() => {
     const { teacherAwardData } = Mock.mock({
