@@ -7,7 +7,6 @@
 }
 
 .index-inner-box {
-  width: calc(var(--left-width) + var(--right-width));
   display: flex;
   box-shadow: 0 0 20px #ddd;
   background: rgba(0, 0, 0, 0);
@@ -23,19 +22,15 @@
   width: 500px;
 }
 
-.image-background {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: none;
-}
-
 .mask-box {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
   width: 100%;
   height: 100%;
 }

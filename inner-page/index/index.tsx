@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import Login from 'inner-page/index/login';
 import Register from 'inner-page/index/register';
 
-import 'styles/index.css';
+import './index.css';
 
 /** index页处于登录状态 */
 export const LOGIN = 'login';
