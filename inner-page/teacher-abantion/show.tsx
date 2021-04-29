@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Table } from 'antd';
+import { Button, Table, Space } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
@@ -56,7 +56,7 @@ const Show = ({ data }: ShowProps) => {
       title: '操作',
       key: 'action',
       render: (_text, _render) => (
-        <div>
+        <Space>
           <Button
             size="small"
             type={'primary'}
@@ -80,7 +80,7 @@ const Show = ({ data }: ShowProps) => {
           <Button type="primary" danger={true} size="small">
             删除
           </Button>
-        </div>
+        </Space>
       ),
     },
   ]);
