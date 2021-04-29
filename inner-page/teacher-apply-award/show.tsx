@@ -53,7 +53,7 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
         <div>
           <Space>
             <Button
-              size="small"
+              size="middle"
               type={'primary'}
               onClick={() => {
                 setTrue();
@@ -63,7 +63,7 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
               审批
             </Button>
             <Button
-              size="small"
+              size="middle"
               onClick={() => {
                 setTrue();
                 setSelectData(_render);
@@ -71,7 +71,7 @@ const Show = ({ teacherAwarddata }: ShowProps) => {
             >
               编辑
             </Button>
-            <Button type="primary" danger={true} size="small">
+            <Button type="primary" danger={true} size="middle">
               删除
             </Button>
           </Space>

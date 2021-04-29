@@ -58,7 +58,7 @@ const Show = ({ data }: ShowProps) => {
       render: (_text, _render) => (
         <Space>
           <Button
-            size="small"
+            size="middle"
             type={'primary'}
             onClick={() => {
               setTrue();
@@ -69,7 +69,7 @@ const Show = ({ data }: ShowProps) => {
           </Button>
 
           <Button
-            size="small"
+            size="middle"
             onClick={() => {
               setTrue();
               setSelectData(_render);
@@ -77,7 +77,7 @@ const Show = ({ data }: ShowProps) => {
           >
             编辑
           </Button>
-          <Button type="primary" danger={true} size="small">
+          <Button type="primary" danger={true} size="middle">
             删除
           </Button>
         </Space>
