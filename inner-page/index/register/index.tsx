@@ -4,14 +4,15 @@ import Detail from 'inner-page/index/register/form';
 import { LOGIN, REGISTER } from 'inner-page/index';
 
 interface ShowProps {
-  setPageState: Function;
+  onPageStateChange: (pageState: string) => void;
 }
-const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
+
+const Show: React.FC<ShowProps> = ({ onPageStateChange }) => {
   return (
     <>
       <div className="left-register-box">
         <Image
-          src="/image/register.jpg"
+          src="/image/index/register.jpg"
           alt="login"
           layout="fill"
           objectFit="cover"
@@ -20,14 +21,20 @@ const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
       </div>
       <div className="right-register-box">
         <div className="logo-register-box">
-          <img src="image/edu.svg" className="logo-svg" />
+          <Image src="/image/index/edu.svg" width={36} height={36} alt="logo" />
           <span className="logo-content">黑龙江研究生联合培养基地</span>
         </div>
         <div className="nav">
-          <a onClick={() => setPageState(LOGIN)} className="unfocus button">
+          <a
+            onClick={() => onPageStateChange(LOGIN)}
+            className="unfocus button"
+          >
             登录
           </a>
-          <a onClick={() => setPageState(REGISTER)} className="focus button">
+          <a
+            onClick={() => onPageStateChange(REGISTER)}
+            className="focus button"
+          >
             注册
           </a>
         </div>
@@ -36,7 +43,7 @@ const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
         </div>
         <div className="inner-bottom">
           <span>已有账号？</span>
-          <a onClick={() => setPageState(REGISTER)}>点此登录</a>
+          <a onClick={() => onPageStateChange(REGISTER)}>点此登录</a>
         </div>
       </div>
     </>

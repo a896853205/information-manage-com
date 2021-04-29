@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Input, Button, Row, Col, Select, Radio } from 'antd';
 
 const { Option } = Select;
@@ -57,15 +56,8 @@ const Detail = () => {
         <Form.Item label="确认密码" labelAlign="left">
           <Input placeholder="请确认密码" />
         </Form.Item>
-        <Form.Item>
-          <Button
-            size="large"
-            type="primary"
-            style={{
-              width: '200px',
-              borderRadius: '5px',
-            }}
-          >
+        <Form.Item wrapperCol={{ span: 12 }}>
+          <Button size="large" type="primary" block>
             注册
           </Button>
         </Form.Item>
