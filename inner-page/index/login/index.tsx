@@ -4,10 +4,10 @@ import Detail from 'inner-page/index/login/form';
 import { LOGIN, REGISTER } from 'inner-page/index';
 
 interface ShowProps {
-  onChange: Function;
+  onPageStateChange: (pageState: string) => void;
 }
 
-const Show: React.FC<ShowProps> = ({ onChange }) => {
+const Show: React.FC<ShowProps> = ({ onPageStateChange }) => {
   return (
     <>
       <div className="left-login-box">
@@ -25,10 +25,13 @@ const Show: React.FC<ShowProps> = ({ onChange }) => {
           <span className="logo-content">黑龙江研究生联合培养基地</span>
         </div>
         <div className="nav">
-          <a onClick={() => onChange(LOGIN)} className="focus button">
+          <a onClick={() => onPageStateChange(LOGIN)} className="focus button">
             登录
           </a>
-          <a onClick={() => onChange(REGISTER)} className="unfocus button">
+          <a
+            onClick={() => onPageStateChange(REGISTER)}
+            className="unfocus button"
+          >
             注册
           </a>
         </div>
@@ -37,7 +40,7 @@ const Show: React.FC<ShowProps> = ({ onChange }) => {
         </div>
         <div className="inner-bottom">
           <span>没有账号？</span>
-          <a onClick={() => onChange(REGISTER)}>点此注册</a>
+          <a onClick={() => onPageStateChange(REGISTER)}>点此注册</a>
         </div>
       </div>
     </>
