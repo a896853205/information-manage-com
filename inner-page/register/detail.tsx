@@ -4,27 +4,21 @@ import { Form, Input, Button, Row, Col, Select, Radio } from 'antd';
 const { Option } = Select;
 
 const Detail = () => {
+  const formItemLayout = {
+    labelCol: { span: 3 },
+    wrapperCol: { span: 21 },
+  };
   return (
     <>
-      <Form title="注册">
-        <Form.Item
-          label="选择类型"
-          labelCol={{ span: 3 }}
-          wrapperCol={{ span: 21 }}
-          labelAlign="left"
-        >
+      <Form title="注册" {...formItemLayout}>
+        <Form.Item label="选择类型" labelAlign="left">
           <Radio.Group defaultValue={1} buttonStyle="solid">
             <Radio.Button value={1}>高校管理员</Radio.Button>
             <Radio.Button value={2}>高校导师</Radio.Button>
             <Radio.Button value={3}>企业管理员</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        <Form.Item
-          labelCol={{ span: 3 }}
-          wrapperCol={{ span: 21 }}
-          label="示范点"
-          labelAlign="left"
-        >
+        <Form.Item label="示范点" labelAlign="left">
           <Row gutter={24}>
             <Col span={6}>
               <Select>
@@ -47,38 +41,22 @@ const Detail = () => {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item
-          label="绑定邮箱"
-          labelAlign="left"
-          labelCol={{ span: 3 }}
-          wrapperCol={{ span: 21 }}
-        >
+        <Form.Item label="绑定邮箱" labelAlign="left">
           <Input placeholder="请输入绑定邮箱" />
         </Form.Item>
-        <Row gutter={24}>
-          <Col span={12}>
-            <Form.Item label="用户姓名" labelAlign="left">
-              <Input placeholder="请输入用户姓名" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="用户账号" labelAlign="left">
-              <Input placeholder="请输入用户账号" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={24}>
-          <Col span={12}>
-            <Form.Item label="设置密码" labelAlign="left">
-              <Input placeholder="请输入密码" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="确认密码" labelAlign="left">
-              <Input placeholder="请确认密码" />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Form.Item label="用户姓名" labelAlign="left">
+          <Input placeholder="请输入用户姓名" />
+        </Form.Item>
+
+        <Form.Item label="用户账号" labelAlign="left">
+          <Input placeholder="请输入用户账号" />
+        </Form.Item>
+        <Form.Item label="设置密码" labelAlign="left">
+          <Input placeholder="请输入密码" />
+        </Form.Item>
+        <Form.Item label="确认密码" labelAlign="left">
+          <Input placeholder="请确认密码" />
+        </Form.Item>
         <Form.Item>
           <Button
             size="large"
