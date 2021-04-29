@@ -6,7 +6,7 @@ import { LOGIN, REGISTER } from 'inner-page/index';
 interface ShowProps {
   setPageState: Function;
 }
-const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
+const Show: React.FC<ShowProps> = ({ setPageState }) => {
   return (
     <>
       <div className="left-register-box">

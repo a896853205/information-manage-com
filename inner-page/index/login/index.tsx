@@ -6,7 +6,8 @@ import { LOGIN, REGISTER } from 'inner-page/index';
 interface ShowProps {
   setPageState: Function;
 }
-const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
+
+const Show: React.FC<ShowProps> = ({ setPageState }) => {
   return (
     <>
       <div className="left-login-box">
@@ -20,6 +21,8 @@ const Show: React.FC<ShowProps> = ({ setPageState }: ShowProps) => {
       </div>
       <div className="right-login-box">
         <div className="logo-box">
+          {/* FIXME: 图片 */}
+          {/* FIXME: 图片的路径名应与本文件的路径一致 */}
           <img src="image/edu.svg" className="logo-svg" />
           <span className="logo-content">黑龙江研究生联合培养基地</span>
         </div>

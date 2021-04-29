@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Input, Button, Row, Col, Select, Radio } from 'antd';
 
 const { Option } = Select;
@@ -61,6 +60,7 @@ const Detail = () => {
           <Button
             size="large"
             type="primary"
+            // FIXME: css写在文件里, 而且css应该放在与tsx放在一起
             style={{
               width: '200px',
               borderRadius: '5px',
