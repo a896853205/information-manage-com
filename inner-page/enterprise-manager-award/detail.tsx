@@ -33,42 +33,72 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
       {/*详情页面的表单结构*/}
       <Form
         initialValues={selectData}
-        labelCol={{ span: 3 }}
+        labelCol={{ span: 6 }}
         wrapperCol={{ span: 25 }}
         layout="horizontal"
         name="奖励申请管理"
       >
-        <Form.Item name="name" label="学生姓名">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="手机号码">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="所属学校">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="所属导师">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="身份证号">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="电子邮箱">
-          <Input disabled />
-        </Form.Item>
+        <Row>
+          <Col span={12}>
+            <Form.Item name="name" label="学生姓名">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="手机号码" labelCol={{ span: 5 }}>
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="所属学校">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="所属导师" labelCol={{ span: 5 }}>
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="身份证号">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="电子邮箱" labelCol={{ span: 5 }}>
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+      <Form labelCol={{ span: 3 }}>
         <Form.Item label="所属示范点">
           <Input disabled />
         </Form.Item>
         <Form.Item label="所属项目">
           <Input disabled />
         </Form.Item>
-        <Form.Item label="奖励选项">
-          <Input disabled />
-        </Form.Item>
-        <Form.Item label="奖励金额">
-          <Input disabled />
-        </Form.Item>
+      </Form>
+      <Form labelCol={{ span: 6 }}>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="奖励选项">
+              <Input disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="奖励金额" labelCol={{ span: 5 }}>
+              <Input disabled />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
 
+      <Form labelCol={{ span: 3 }}>
         <Form.Item label="作证材料">
           <Row>
             <Col span={15}>

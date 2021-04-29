@@ -5,7 +5,7 @@ import { ColumnsType } from 'antd/es/table';
 import { useBoolean } from 'ahooks';
 
 import Detail from './detail';
-
+import dayjs from 'dayjs';
 interface ShowProps {
   awarddata: PT.Award[];
 }
@@ -36,6 +36,9 @@ const Show = ({ awarddata }: ShowProps) => {
       title: '申请时间',
       key: 'date',
       dataIndex: 'date',
+      render: (_text, _render) => (
+        <>{dayjs(_render.date).format('YYYY-MM-DD')}</>
+      ),
     },
 
     {
