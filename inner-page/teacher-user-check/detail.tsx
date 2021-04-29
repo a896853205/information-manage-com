@@ -67,7 +67,7 @@ const Detail = ({
                 <Button
                   icon={<FolderAddOutlined />}
                   type={'primary'}
-                  size="small"
+                  size="middle"
                 >
                   选择
                 </Button>
