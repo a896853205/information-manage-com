@@ -10,6 +10,8 @@ import {
   Table,
   Space,
   DatePicker,
+  Row,
+  Col,
 } from 'antd';
 
 interface scoreEvaluate {
@@ -75,7 +77,7 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
       {/*详情页面的表单结构*/}
       <Form
         initialValues={selectData}
-        labelCol={{ span: 2 }}
+        labelCol={{ span: 3 }}
         wrapperCol={{ span: 25 }}
         layout="horizontal"
       >
@@ -88,10 +90,22 @@ const Increase = ({ showModel, setFalse, selectData }: IncreaseProps) => {
             disabled
           />
         </Form.Item>
-        <Form.Item name="dates" label="项目年份">
-          <DatePicker defaultValue={undefined} disabled picker="year" />
-          <DatePicker defaultValue={undefined} disabled picker="month" />
-        </Form.Item>
+      </Form>
+      <Form labelCol={{ span: 6 }}>
+        <Row>
+          <Col span={6}>
+            <Form.Item name="dates" label="年份" labelCol={{ span: 12 }}>
+              <DatePicker defaultValue={undefined} disabled picker="year" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item name="dates" label="月份" labelCol={{ span: 6 }}>
+              <DatePicker defaultValue={undefined} disabled picker="month" />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+      <Form labelCol={{ span: 3 }}>
         <Form.Item label="第一周">
           <Space>
             <Input value="社会实践报告.docx" />
