@@ -38,5 +38,5 @@ jobs:
             docker pull registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:${{ github.sha }}
             docker container stop $(docker ps --filter="label=service=front-end")
             docker run -p 80:3000 -d registry.cn-shanghai.aliyuncs.com/laboratory-1819/information-mange-com:${{ github.sha }}
-            docker container prune --all --force --filter="label=service=front-end"
+            docker container prune --force --filter="label=service=front-end"
             docker image prune --all --force --filter="label=service=front-end"
