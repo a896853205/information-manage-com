@@ -16,6 +16,7 @@ RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
+LABEL service="front-end"
 WORKDIR /information-manage-com
 
 ENV NODE_ENV production
