@@ -1,25 +1,11 @@
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const ESLintPligin = require('eslint-webpack-plugin');
+const withPlugins = require('next-compose-plugins');
 const withSass = require('@zeit/next-sass');
-const withLess = require('@zeit/next-less');
-const withCSS = require('@zeit/next-css');
+// const withLess = require('@zeit/next-less');
+const withCss = require('@zeit/next-css');
 
-module.exports = withCSS({
-  ssModules: true,
-  cssLoaderOptions: {
-    importLoaders: 1,
-    localIdentName: '[local]___[hash:base64:5]',
-  },
-  ...withLess(
-    withSass({
-      lessLoaderOptions: {
-        javascriptEnabled: true,
-      },
-    })
-  ),
-  sassOptions: {
-    // includePaths: [path.join(__dirname, 'styles')],
-  },
+const nextConfig = {
   webpack: (config, _options) => {
     config.plugins.push(new AntdDayjsWebpackPlugin());
 
@@ -70,4 +56,5 @@ module.exports = withCSS({
 
     return config;
   },
-});
+};
+module.exports = withPlugins([withSass, withCss], nextConfig);
