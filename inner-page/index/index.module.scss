@@ -1,3 +1,5 @@
+$button-margin-right: 20px;
+
 .index-box {
   height: 100vh;
   display: flex;
@@ -70,21 +72,17 @@
 
 .nav {
   margin: 20px 0;
-}
-
-.unfocus {
-  color: rgb(170, 170, 190);
-}
-
-.focus {
-  font-size: 20px;
-  font-weight: 900;
-  color: #000;
-}
-
-.button {
   border: 0;
   background: rgba(0, 0, 0, 0);
   cursor: pointer;
-  margin-right: 20px;
+  .unfocus {
+    color: rgb(170, 170, 190);
+    margin-right: $button-margin-right;
+  }
+  .focus {
+    font-size: 20px;
+    font-weight: 900;
+    color: #000;
+    margin-right: $button-margin-right;
+  }
 }

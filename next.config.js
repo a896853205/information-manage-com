@@ -1,14 +1,9 @@
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const ESLintPligin = require('eslint-webpack-plugin');
-const withPlugins = require('next-compose-plugins');
-const withSass = require('@zeit/next-sass');
-// const withLess = require('@zeit/next-less');
-const withCss = require('@zeit/next-css');
 
-const nextConfig = {
+module.exports = {
   webpack: (config, _options) => {
     config.plugins.push(new AntdDayjsWebpackPlugin());
-
     config.plugins.push(
       new ESLintPligin({
         emitError: true,
@@ -57,4 +52,3 @@ const nextConfig = {
     return config;
   },
 };
-module.exports = withPlugins([withSass, withCss], nextConfig);
