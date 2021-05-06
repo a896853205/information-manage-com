@@ -9,7 +9,7 @@ import useRoleMenu from 'layouts/hooks';
 import { MenuItem, MenuItemGroup } from 'layouts/Menu';
 
 interface Props {
-  role: number | null;
+  role?: number;
 }
 
 const AntdRouterMenu: React.FC<Props> = memo(({ role }) => {

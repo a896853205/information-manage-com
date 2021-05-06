@@ -6,6 +6,12 @@ const config: AxiosRequestConfig = {
 
 const instance = axios.create(config);
 
+if (typeof window !== 'undefined') {
+  instance.defaults.headers.common['Authorization'] = localStorage.getItem(
+    'token'
+  );
+}
+
 // TODO: 此处写interceptors.
 instance.interceptors.response.use(res => res.data);
 

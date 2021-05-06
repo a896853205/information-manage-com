@@ -1,27 +1,27 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { Avatar, Button, Space } from 'antd';
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Avatar, Button, Space, Divider } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import useRequest from '@ahooksjs/use-request';
+
+import { account } from 'services/apis/account';
 
 const UserHeader = () => {
   const router = useRouter();
+  const { data } = useRequest(account);
+
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: '250px' }}>
       <Space>
-        <Avatar
-          style={{ backgroundColor: '#87d068' }}
-          icon={<UserOutlined />}
-        />
-        <Button type="text" style={{ fontSize: '14px' }}>
-          admin
-        </Button>
+        <Avatar src={data?.avatarUrl}>U</Avatar>
+        <span style={{ fontSize: '14px' }}>{data?.name ?? 'username'}</span>
+        <Divider type="vertical" />
         <Button
           type="text"
           icon={<LogoutOutlined />}
           style={{ fontSize: '14px' }}
           onClick={() => {
-            // TODO: 还需清空Storage
             localStorage.clear();
             router.push('/');
           }}
