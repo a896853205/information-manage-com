@@ -1,7 +1,10 @@
-import { Spin } from 'antd';
+import TypedSpan from 'components/typed-span';
+
+import styles from './page-loading.module.scss';
+
 const PageLoading = () => (
-  <div className="page-loading-box">
-    <Spin size="large" />
+  <div className={styles['page-loading-box']}>
+    <TypedSpan strings="Loading................................." />
   </div>
 );
 
