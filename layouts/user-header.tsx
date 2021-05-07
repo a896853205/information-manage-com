@@ -1,4 +1,5 @@
 import React from 'react';
+import { memo } from 'react';
 import { useRouter } from 'next/router';
 
 import { Avatar, Button, Space, Divider } from 'antd';
@@ -7,7 +8,7 @@ import useRequest from '@ahooksjs/use-request';
 
 import { account } from 'services/apis/account';
 
-const UserHeader = () => {
+const UserHeader = memo(() => {
   const router = useRouter();
   const { data } = useRequest(account);
 
@@ -31,6 +32,6 @@ const UserHeader = () => {
       </Space>
     </div>
   );
-};
+});
 
 export default UserHeader;

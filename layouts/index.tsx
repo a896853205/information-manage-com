@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 
 import { Layout } from 'antd';
 
-import client from 'services/client';
 import PageLoading from 'components/page-loading';
 import AntdRouterMenu from 'layouts/Antd-router-menu';
 import UserHeader from 'layouts/user-header';
