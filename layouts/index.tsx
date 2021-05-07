@@ -52,6 +52,7 @@ const Home: React.FC<HomeProps> = ({ children }) => {
               justifyContent: 'space-between',
               display: 'flex',
               background: '#fafafa',
+              flexDirection: 'row-reverse',
             }}
           >
             <UserHeader />

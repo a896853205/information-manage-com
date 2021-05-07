@@ -19,3 +19,12 @@
   background: #fff;
   padding: 20px;
 }
+
+@font-face {
+  font-family: 'code';
+  src: url('/font/font.ttf');
+}
+
+* {
+  font-family: code;
+}
