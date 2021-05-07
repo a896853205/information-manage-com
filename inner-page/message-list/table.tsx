@@ -31,7 +31,12 @@ const MessageTable = () => {
   ];
 
   return (
-    <Table dataSource={mockData} size="small" style={{ width: '100%' }}>
+    <Table
+      dataSource={mockData}
+      size="small"
+      style={{ width: '100%' }}
+      rowKey={record => record.key}
+    >
       <Column
         title="Type"
         dataIndex="type"

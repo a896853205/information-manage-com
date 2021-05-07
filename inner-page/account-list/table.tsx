@@ -29,7 +29,12 @@ const AccountTable = () => {
   ];
 
   return (
-    <Table dataSource={mockData} size="small" style={{ width: '100%' }}>
+    <Table
+      dataSource={mockData}
+      size="small"
+      style={{ width: '100%' }}
+      rowKey={record => record.id}
+    >
       <Column
         title="Avatar"
         dataIndex="avatarUrl"
