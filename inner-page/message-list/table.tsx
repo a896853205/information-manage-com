@@ -1,5 +1,7 @@
 import { Table, Button, Divider, Tag } from 'antd';
 
+import { CopyOutlined } from '@ant-design/icons';
+
 const { Column } = Table;
 
 /**
@@ -48,11 +50,16 @@ const MessageTable = () => {
       <Column title="Message" dataIndex="message" key="message" />
       <Column
         title="Action"
-        width={200}
+        width={280}
         align="center"
         render={() => {
           return (
             <>
+              <Button type="link">
+                <CopyOutlined />
+                copy
+              </Button>
+              <Divider type="vertical" />
               <Button type="link">alter</Button>
               <Divider type="vertical" />
               <Button type="link">delete</Button>

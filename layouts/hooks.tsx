@@ -17,7 +17,14 @@ const useRoleMenu = (role?: number) => {
       default:
         // TODO: 列表需要作为参数
         return [
-          new MenuItem('/message-list', 'message-list', <BarsOutlined />),
+          new MenuItemGroup(
+            'message',
+            [
+              new MenuItem('/message-list', 'message-list'),
+              new MenuItem('/message-create', 'message-create'),
+            ],
+            <BarsOutlined />
+          ),
           new MenuItem('/account-list', 'account-list', <UserSwitchOutlined />),
         ];
     }
