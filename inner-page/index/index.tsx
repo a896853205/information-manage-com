@@ -5,7 +5,7 @@ import { GithubOutlined } from '@ant-design/icons';
 
 import { CLIENT_ID, REDIRECT_URI } from 'constants/github';
 /**
- * show
+ * Index
  */
 const Index = () => {
   const [loading, setLoading] = useState(false);

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import { MenuItem, MenuItemGroup } from 'layouts/Menu';
+import { BarsOutlined, UserSwitchOutlined } from '@ant-design/icons';
+
+import { MenuItem, MenuItemGroup } from 'layouts/header/antd-router-menu';
 
 /**
  * 根据用户不同权限生成对应导航
@@ -9,12 +11,15 @@ import { MenuItem, MenuItemGroup } from 'layouts/Menu';
  * @example return [menu, { setMenuFromRole }]
  */
 const useRoleMenu = (role?: number) => {
-  // FIXME: 这里可以学习一下, 策略模式改善switch case. 其次备注可以看下jsdoc
+  // FIXME: 这里可以学习一下, 策略模式改善switch case.
   const menuFromRole = (role?: number) => {
     switch (role) {
       default:
         // TODO: 列表需要作为参数
-        return [new MenuItem('/home', '首页')];
+        return [
+          new MenuItem('/message-list', 'message-list', <BarsOutlined />),
+          new MenuItem('/account-list', 'account-list', <UserSwitchOutlined />),
+        ];
     }
   };
 
