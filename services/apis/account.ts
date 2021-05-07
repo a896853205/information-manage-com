@@ -5,5 +5,5 @@ import client from 'services/client';
  * @returns 账号数据
  */
 export const account = (): Promise<PT.Account> => {
-  return client.get('http://localhost:7002/account');
+  return client.get('account');
 };
