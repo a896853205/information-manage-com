@@ -8,7 +8,7 @@ module.exports = {
       new ESLintPligin({
         emitError: true,
         extensions: [`tsx`, 'js', 'jsx'],
-        exclude: [`/node_modules/`, `.next`, `public`],
+        exclude: [`node_modules/`, `.next`, `public`],
         overrideConfig: {
           parser: '@typescript-eslint/parser',
           parserOptions: {

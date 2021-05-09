@@ -1,6 +1,8 @@
 import { FC } from 'react';
 
-import { Table, Button, Divider, Tag } from 'antd';
+import { Table, Button, Divider, Tag, message } from 'antd';
+// TODO：换成异步的Clipboard
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { CopyOutlined } from '@ant-design/icons';
 
@@ -31,7 +33,7 @@ const getTagColorFromType = (type: string) => {
 };
 const MessageTable: FC<Props> = ({ setPage, messages }) => {
   return (
-    <Table
+    <Table<MC.Message>
       dataSource={messages}
       size="small"
       style={{ width: '100%' }}
@@ -53,13 +55,22 @@ const MessageTable: FC<Props> = ({ setPage, messages }) => {
         title="Action"
         width={280}
         align="center"
-        render={() => {
+        render={(_, record: MC.Message) => {
           return (
             <>
-              <Button type="link">
-                <CopyOutlined />
-                copy
-              </Button>
+              <CopyToClipboard
+                text={`res.setHeader('code', '${record.code}');`}
+                onCopy={() => {
+                  message.success(
+                    `res.setHeader('code', '${record.code}'); copy success`
+                  );
+                }}
+              >
+                <Button type="link">
+                  <CopyOutlined />
+                  copy
+                </Button>
+              </CopyToClipboard>
               <Divider type="vertical" />
               <Button type="link">alter</Button>
               <Divider type="vertical" />

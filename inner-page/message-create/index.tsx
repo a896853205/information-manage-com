@@ -1,4 +1,4 @@
-import { Typography, Divider } from 'antd';
+import { Typography } from 'antd';
 
 import TypedSpan from 'components/typed-span';
 import styles from './message-create.module.scss';
