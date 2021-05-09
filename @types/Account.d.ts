@@ -1,4 +1,4 @@
-namespace PT {
+namespace MC {
   interface AccountToken {
     token: string;
   }
